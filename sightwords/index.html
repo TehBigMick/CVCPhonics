@@ -1,27 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sight Words Levels</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose a high-frequency sight-word reading stage or practise with quick cards.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Sight words | Michael's Phonics Hub</title>
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <header>
-    <img src="../assets/logo-fry.png" alt="Michael's Sight Words Logo">
+  <a class="skip-link" href="#main">Skip to sight-word stages</a>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../cvc/index.html">CVC words</a>
+      <a class="active" href="index.html">Sight words</a>
+    </nav>
   </header>
 
-  <main>
-    <div class="grid" style="max-width: 500px; margin: 2rem auto;">
-      <a href="test.html?level=Pre-Primer" class="btn">Pre-Primer</a>
-      <a href="test.html?level=Primer" class="btn">Primer</a>
-      <a href="test.html?level=Grade%201" class="btn">Grade 1</a>
-      <a href="test.html?level=Grade%202" class="btn">Grade 2</a>
-    </div>
+  <main id="main">
+    <section class="page-intro page-shell sight-intro">
+      <div>
+        <a class="back-link" href="../index.html">← Back to all activities</a>
+        <p class="eyebrow"><span aria-hidden="true">●</span> Sight-word path</p>
+        <h1>Make common words feel <em>familiar.</em></h1>
+        <p>Frequent, low-pressure encounters help children recognise high-frequency words more quickly. Choose a 25-word check or begin with ten quick cards.</p>
+      </div>
+      <div class="intro-word-art sight-art" role="img" aria-label="Examples of common sight words">
+        <span>you</span><span>the</span><span>said</span>
+      </div>
+    </section>
+
+    <section class="section page-shell" aria-labelledby="stages-title">
+      <div class="section-heading compact-heading">
+        <div>
+          <p class="kicker">Four stages</p>
+          <h2 id="stages-title">Choose a sight-word stage</h2>
+        </div>
+        <p>The word groups follow the existing pathway, from the first 25 words through to the first 100.</p>
+      </div>
+
+      <div class="level-grid sight-levels">
+        <article class="level-card level-a">
+          <div class="level-top"><span class="level-letter">1</span><span class="pill">First 25</span></div>
+          <h3>Pre-Primer</h3>
+          <p>Core words found throughout early reading books.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>the</span><span>you</span><span>was</span></div>
+          <a class="button button-dark" href="test.html?level=Pre-Primer">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="level-card level-b">
+          <div class="level-top"><span class="level-letter">2</span><span class="pill">Words 26–50</span></div>
+          <h3>Primer</h3>
+          <p>Add another useful group of everyday words.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>one</span><span>what</span><span>said</span></div>
+          <a class="button button-dark" href="test.html?level=Primer">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="level-card level-c">
+          <div class="level-top"><span class="level-letter">3</span><span class="pill">Words 51–75</span></div>
+          <h3>Grade 1</h3>
+          <p>Grow automatic recognition and reading fluency.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>some</span><span>like</span><span>time</span></div>
+          <a class="button button-dark" href="test.html?level=Grade%201">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="level-card level-d">
+          <div class="level-top"><span class="level-letter">4</span><span class="pill">Words 76–100</span></div>
+          <h3>Grade 2</h3>
+          <p>Practise a broader set of high-frequency words.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>people</span><span>could</span><span>find</span></div>
+          <a class="button button-dark" href="test.html?level=Grade%202">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="tool-callout tool-callout-blue page-shell">
+      <div class="card-stack" aria-hidden="true"><span>we</span><span>and</span><span>you</span></div>
+      <div>
+        <p class="kicker">Practice activity</p>
+        <h2>Sort ten quick cards</h2>
+        <p>Read each word, listen to check it, then place it in the “Got it” or “Practise again” pile.</p>
+      </div>
+      <a class="button button-primary" href="practice.html">Start quick cards <span aria-hidden="true">→</span></a>
+    </section>
   </main>
 
-  <footer>
-    &copy; 2025 Michael's Phonics Hub
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <p>Michael's Phonics Hub</p>
+      <p>Read · build · grow</p>
+    </div>
   </footer>
 </body>
 </html>

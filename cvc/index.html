@@ -1,27 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CVC Phonics Levels</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose a CVC phonics reading level or practise short vowel sounds.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>CVC words | Michael's Phonics Hub</title>
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <header>
-    <img src="../assets/logo-cvc.png" alt="Michael's CVC Phonics Logo">
+  <a class="skip-link" href="#main">Skip to CVC levels</a>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a class="active" href="index.html">CVC words</a>
+      <a href="../sightwords/index.html">Sight words</a>
+    </nav>
   </header>
 
-  <main>
-    <div class="grid" style="max-width: 500px; margin: 2rem auto;">
-      <a href="test.html?level=Level%20A" class="btn">Level A</a>
-      <a href="test.html?level=Level%20B" class="btn">Level B</a>
-      <a href="test.html?level=Level%20C" class="btn">Level C</a>
-      <a href="test.html?level=Level%20D" class="btn">Level D</a>
-    </div>
+  <main id="main">
+    <section class="page-intro page-shell cvc-intro">
+      <div>
+        <a class="back-link" href="../index.html">← Back to all activities</a>
+        <p class="eyebrow"><span aria-hidden="true">●</span> CVC reading path</p>
+        <h1>Build confident <em>word readers.</em></h1>
+        <p>A CVC word has a consonant, a vowel and another consonant. Choose a level for a 25-word teacher-led check, or warm up with the sound builder.</p>
+      </div>
+      <div class="intro-word-art" role="img" aria-label="Examples of consonant-vowel-consonant words">
+        <span>sun</span><span>pig</span><span>map</span>
+      </div>
+    </section>
+
+    <section class="section page-shell" aria-labelledby="levels-title">
+      <div class="section-heading compact-heading">
+        <div>
+          <p class="kicker">Four steps</p>
+          <h2 id="levels-title">Choose a reading level</h2>
+        </div>
+        <p>For a true check, show each word without sounding it out for the learner.</p>
+      </div>
+
+      <div class="level-grid">
+        <article class="level-card level-a">
+          <div class="level-top"><span class="level-letter">A</span><span class="pill">Start here</span></div>
+          <h3>Level A</h3>
+          <p>Familiar first words for beginning blenders.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>cat</span><span>dog</span><span>sun</span></div>
+          <a class="button button-dark" href="test.html?level=Level%20A">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="level-card level-b">
+          <div class="level-top"><span class="level-letter">B</span><span class="pill">Next step</span></div>
+          <h3>Level B</h3>
+          <p>More short words with a wider mix of sounds.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>fox</span><span>hen</span><span>mud</span></div>
+          <a class="button button-dark" href="test.html?level=Level%20B">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="level-card level-c">
+          <div class="level-top"><span class="level-letter">C</span><span class="pill">Build fluency</span></div>
+          <h3>Level C</h3>
+          <p>Strengthen blending with less familiar words.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>mix</span><span>cub</span><span>web</span></div>
+          <a class="button button-dark" href="test.html?level=Level%20C">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="level-card level-d">
+          <div class="level-top"><span class="level-letter">D</span><span class="pill">Challenge</span></div>
+          <h3>Level D</h3>
+          <p>Apply blending confidently across all short vowels.</p>
+          <div class="example-words" role="group" aria-label="Example words"><span>keg</span><span>rim</span><span>mug</span></div>
+          <a class="button button-dark" href="test.html?level=Level%20D">Start 25-word check <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="tool-callout page-shell">
+      <div class="tool-visual" aria-hidden="true"><span>m</span><span class="blank-tile">?</span><span>p</span></div>
+      <div>
+        <p class="kicker">Practice game</p>
+        <h2>Find the missing middle sound</h2>
+        <p>Hear a CVC word, then choose the vowel that completes it. Ten quick rounds with helpful feedback.</p>
+      </div>
+      <a class="button button-primary" href="builder.html">Play sound builder <span aria-hidden="true">→</span></a>
+    </section>
   </main>
 
-  <footer>
-    &copy; 2025 Michael's Phonics Hub
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <p>Michael's Phonics Hub</p>
+      <p>Read · build · grow</p>
+    </div>
   </footer>
 </body>
 </html>

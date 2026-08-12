@@ -1,44 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB" data-quiz-type="sight">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sight Words Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Sight-word reading check | Michael's Phonics Hub</title>
   <link rel="stylesheet" href="../styles/main.css">
 </head>
-<body>
-  <header>
-    <img src="../assets/logo-fry.png" alt="Michael's Sight Words Logo">
+<body class="activity-page sight-activity">
+  <a class="skip-link" href="#activity">Skip to reading check</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <a class="exit-link" href="index.html">Exit check</a>
   </header>
 
-  <main>
-    <div id="quiz-container" class="quiz-container">
-      <h2 id="level-title"></h2>
-
-      <div id="word"
-           class="word-display"
-           style="font-size: 4rem; text-align: center; margin: 2rem 0;">
+  <main id="activity" class="activity-shell">
+    <section id="quiz-container" class="quiz-card" aria-labelledby="level-title">
+      <div class="quiz-heading">
+        <div>
+          <p class="kicker">Teacher-led sight-word check</p>
+          <h1 id="level-title">Pre-Primer</h1>
+        </div>
+        <p id="counter" class="counter">Word 1 of 25</p>
       </div>
+      <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
 
-      <div style="display: flex; justify-content: center; gap: 1rem;">
-        <button id="yes-btn" class="btn">Yes</button>
-        <button id="no-btn"  class="btn">No</button>
+      <p class="quiz-prompt">Can the learner read this word independently?</p>
+      <div id="word" class="word-display sight-word-display" aria-live="polite">the</div>
+
+      <div class="answer-grid">
+        <button id="no-btn" class="answer-button answer-practise" type="button">
+          <span class="answer-icon" aria-hidden="true">↻</span>
+          <span><strong>Needs practice</strong><small>Save this word to review</small></span>
+        </button>
+        <button id="yes-btn" class="answer-button answer-read" type="button">
+          <span class="answer-icon" aria-hidden="true">✓</span>
+          <span><strong>Read it</strong><small>Independent and correct</small></span>
+        </button>
       </div>
-
-      <div id="counter"
-           style="text-align: center; margin-top: 1.5rem; font-weight: 600;">
+      <div class="quiz-footer-row">
+        <button id="undo-btn" class="undo-button" type="button" disabled>← Undo last answer</button>
+        <p class="key-hint"><kbd>←</kbd> needs practice <kbd>→</kbd> read it</p>
       </div>
-    </div>
+    </section>
 
-    <div id="result-container"
-         style="text-align: center; margin-top: 2rem;">
-    </div>
+    <section id="result-container" class="result-card" hidden aria-live="polite"></section>
   </main>
 
-  <footer>
-    &copy; 2025 Michael's Phonics Hub
-  </footer>
-
-  <script type="module" src="../scripts/fry-app.js"></script>
+  <script type="module" src="../scripts/quiz-app.js"></script>
 </body>
 </html>

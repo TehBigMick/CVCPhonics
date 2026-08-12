@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practise ten sight words with quick, audio-supported cards.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Quick cards | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="activity-page sight-activity">
+  <a class="skip-link" href="#activity">Skip to quick cards</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <a class="exit-link" href="index.html">Exit cards</a>
+  </header>
+
+  <main id="activity" class="activity-shell">
+    <section id="cards-container" class="quiz-card game-card" aria-labelledby="cards-title">
+      <div class="quiz-heading">
+        <div>
+          <p class="kicker">Sight-word practice</p>
+          <h1 id="cards-title">Ten quick cards</h1>
+        </div>
+        <label class="level-picker">Word stage
+          <select id="level-select">
+            <option>Pre-Primer</option>
+            <option>Primer</option>
+            <option>Grade 1</option>
+            <option>Grade 2</option>
+          </select>
+        </label>
+      </div>
+      <div class="progress-track" aria-hidden="true"><span id="cards-progress"></span></div>
+      <div class="round-row"><p id="cards-counter">Card 1 of 10</p><p id="cards-score">0 in the “Got it” pile</p></div>
+
+      <p class="quiz-prompt">Read the word aloud. Listen when you are ready to check.</p>
+      <div class="flashcard-wrap">
+        <span class="card-tab" aria-hidden="true">Read me</span>
+        <div id="card-word" class="flashcard-word" aria-live="polite">the</div>
+      </div>
+      <button id="hear-word" class="listen-button" type="button"><span aria-hidden="true">🔊</span> Listen to check</button>
+
+      <div class="answer-grid card-actions">
+        <button id="again-btn" class="answer-button answer-practise" type="button">
+          <span class="answer-icon" aria-hidden="true">↻</span>
+          <span><strong>Practise again</strong><small>Add it to the focus pile</small></span>
+        </button>
+        <button id="got-btn" class="answer-button answer-read" type="button">
+          <span class="answer-icon" aria-hidden="true">✓</span>
+          <span><strong>Got it</strong><small>I read this word by myself</small></span>
+        </button>
+      </div>
+    </section>
+    <section id="cards-result" class="result-card" hidden aria-live="polite"></section>
+  </main>
+
+  <script type="module" src="../scripts/cards-app.js"></script>
+</body>
+</html>

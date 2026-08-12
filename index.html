@@ -1,26 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Playful, teacher-made CVC phonics and sight-word practice for early readers.">
+  <meta name="theme-color" content="#f8f4ec">
   <title>Michael's Phonics Hub</title>
   <link rel="stylesheet" href="styles/main.css">
+  <script type="module" src="scripts/home.js"></script>
 </head>
 <body>
-  <header>
-    <!-- Banner logo for the site -->
-    <img src="assets/banner-logo.png" alt="Michael's Phonics Hub Logo">
+  <a class="skip-link" href="#main">Skip to learning activities</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="active" href="index.html">Home</a>
+      <a href="cvc/index.html">CVC words</a>
+      <a href="sightwords/index.html">Sight words</a>
+    </nav>
   </header>
 
-  <main>
-    <div class="grid" style="max-width: 400px; margin: 2rem auto;">
-      <a href="cvc/index.html" class="btn">CVC Phonics Test</a>
-      <a href="sightwords/index.html" class="btn">Sight Words Test</a>
-    </div>
+  <main id="main">
+    <section class="hero page-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span aria-hidden="true">●</span> Read · build · grow</p>
+        <h1 id="hero-title">Strong readers start with <em>small wins.</em></h1>
+        <p class="hero-text">Short, focused phonics activities for early readers — made for practising together at home or in the classroom.</p>
+        <div class="button-row">
+          <a class="button button-primary" href="cvc/index.html">Start with CVC words <span aria-hidden="true">→</span></a>
+          <a class="button button-secondary" href="sightwords/index.html">Explore sight words</a>
+        </div>
+        <ul class="trust-list">
+          <li><span aria-hidden="true">✓</span> No sign-in</li>
+          <li><span aria-hidden="true">✓</span> Child-friendly</li>
+          <li><span aria-hidden="true">✓</span> Teacher-made</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" role="img" aria-label="The word cat split into three letter sounds">
+        <div class="sun-shape" aria-hidden="true"></div>
+        <div class="speech-cloud" aria-hidden="true">Blend the sounds!</div>
+        <div class="word-card">
+          <div class="letter-tiles" aria-hidden="true">
+            <span class="tile tile-coral">c</span>
+            <span class="tile tile-yellow">a</span>
+            <span class="tile tile-blue">t</span>
+          </div>
+          <div class="blend-arrow" aria-hidden="true"><span></span></div>
+          <strong>cat</strong>
+          <p>/c/ · /a/ · /t/</p>
+        </div>
+        <span class="doodle doodle-star" aria-hidden="true">✦</span>
+        <span class="doodle doodle-wave" aria-hidden="true">〰</span>
+      </div>
+    </section>
+
+    <section class="progress-panel page-shell" id="recent-progress" hidden aria-live="polite">
+      <div>
+        <p class="kicker">Welcome back</p>
+        <h2>Your latest check</h2>
+      </div>
+      <div class="recent-result">
+        <span id="recent-label">Level A</span>
+        <strong id="recent-score">0 / 25</strong>
+        <a id="recent-link" href="cvc/index.html">Continue learning →</a>
+      </div>
+    </section>
+
+    <section class="section page-shell" aria-labelledby="paths-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Choose a learning path</p>
+          <h2 id="paths-title">What shall we practise today?</h2>
+        </div>
+        <p>Each path includes four short checks and a relaxed practice activity.</p>
+      </div>
+
+      <div class="path-grid">
+        <article class="path-card path-cvc">
+          <div class="path-icon" aria-hidden="true">
+            <span>c</span><span>a</span><span>t</span>
+          </div>
+          <div class="path-content">
+            <span class="pill">Phonics</span>
+            <h3>CVC word reading</h3>
+            <p>Blend a consonant, vowel and consonant to read simple words such as <strong>cat</strong>, <strong>dog</strong> and <strong>sun</strong>.</p>
+            <div class="path-meta"><span>4 levels</span><span>100 words</span></div>
+            <a class="text-link" href="cvc/index.html">Choose a CVC level <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="path-card path-sight">
+          <div class="path-icon sight-icon" aria-hidden="true">
+            <span>the</span><span>you</span><span>was</span>
+          </div>
+          <div class="path-content">
+            <span class="pill">Fluency</span>
+            <h3>Sight-word reading</h3>
+            <p>Build confidence with common words that young readers meet again and again in books and sentences.</p>
+            <div class="path-meta"><span>4 stages</span><span>100 words</span></div>
+            <a class="text-link" href="sightwords/index.html">Choose a sight-word stage <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="practice-band">
+      <div class="page-shell practice-layout">
+        <div>
+          <p class="kicker kicker-light">Learn through play</p>
+          <h2>Not ready for a check yet?</h2>
+          <p>Start with a low-pressure game. Learners can listen, try and repeat as many times as they need.</p>
+        </div>
+        <div class="mini-game-grid">
+          <a class="mini-game" href="cvc/builder.html">
+            <span class="game-number">01</span>
+            <span class="game-symbol" aria-hidden="true">c_t</span>
+            <strong>Sound builder</strong>
+            <small>Hear a word and find its missing vowel.</small>
+            <span class="game-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="mini-game" href="sightwords/practice.html">
+            <span class="game-number">02</span>
+            <span class="game-symbol cards-symbol" aria-hidden="true">the</span>
+            <strong>Quick cards</strong>
+            <small>Read ten words and make a practice pile.</small>
+            <span class="game-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="teacher-note page-shell">
+      <div class="teacher-badge" aria-hidden="true">MK</div>
+      <div>
+        <p class="kicker">A note for grown-ups</p>
+        <h2>Keep it short, warm and useful.</h2>
+        <p>Let the child try the word without help, then mark whether they read it independently. Stop while it still feels positive — five focused minutes beats a long, tiring session.</p>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    &copy; 2025 Michael's Phonics Hub
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <a class="brand brand-footer" href="index.html">
+        <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+        <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+      </a>
+      <p>Made for small readers and their grown-ups. <span id="copyright-year"></span></p>
+    </div>
   </footer>
 </body>
 </html>

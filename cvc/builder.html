@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Listen to a CVC word and choose its missing middle vowel.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Sound builder | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="activity-page builder-page">
+  <a class="skip-link" href="#activity">Skip to sound builder</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <a class="exit-link" href="index.html">Exit game</a>
+  </header>
+
+  <main id="activity" class="activity-shell">
+    <section id="builder-container" class="quiz-card game-card" aria-labelledby="builder-title">
+      <div class="quiz-heading">
+        <div>
+          <p class="kicker">CVC practice game</p>
+          <h1 id="builder-title">Sound builder</h1>
+        </div>
+        <label class="level-picker">Word level
+          <select id="level-select">
+            <option>Level A</option>
+            <option>Level B</option>
+            <option>Level C</option>
+            <option>Level D</option>
+          </select>
+        </label>
+      </div>
+      <div class="progress-track" aria-hidden="true"><span id="builder-progress"></span></div>
+      <div class="round-row"><p id="builder-counter">Round 1 of 10</p><p id="builder-score">0 correct</p></div>
+
+      <p class="quiz-prompt">Listen, then choose the missing middle sound.</p>
+      <button id="hear-word" class="listen-button" type="button"><span aria-hidden="true">🔊</span> Hear the word</button>
+      <div id="word-slots" class="word-slots" role="group" aria-label="Word with its middle letter missing">
+        <span>c</span><span class="missing-slot">?</span><span>t</span>
+      </div>
+      <div id="vowel-options" class="vowel-options" role="group" aria-label="Choose a vowel"></div>
+      <button id="clue-button" class="clue-button" type="button">Need a clue?</button>
+      <p id="clue" class="clue" hidden></p>
+      <p id="builder-feedback" class="game-feedback" aria-live="polite"></p>
+      <button id="next-word" class="button button-primary next-button" type="button" hidden>Next word <span aria-hidden="true">→</span></button>
+    </section>
+    <section id="builder-result" class="result-card" hidden aria-live="polite"></section>
+  </main>
+
+  <script type="module" src="../scripts/builder-app.js"></script>
+</body>
+</html>
