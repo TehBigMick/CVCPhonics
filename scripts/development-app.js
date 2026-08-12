@@ -2,10 +2,9 @@ import { AGE_SETS, CATEGORY_DETAILS } from './development-data.js';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const RESPONSE_DETAILS = {
-  usually: { label: 'Usually', className: 'usually' },
+  yes: { label: 'Yes', className: 'yes' },
   sometimes: { label: 'Sometimes', className: 'sometimes' },
-  notYet: { label: 'Not yet', className: 'not-yet' },
-  notSure: { label: 'Not sure', className: 'not-sure' }
+  notYet: { label: 'Not yet', className: 'not-yet' }
 };
 
 const state = {
@@ -244,7 +243,7 @@ function buildSummary() {
   const counts = responseCounts(state.responses);
   const followUps = state.ageSet.questions
     .map((question, index) => ({ ...question, response: state.responses[index] }))
-    .filter(item => item.response === 'notYet' || item.response === 'notSure');
+    .filter(item => item.response === 'notYet');
   const name = state.profile.childName || 'Child';
   const ageText = formatAge(state.profile.chronologicalAge);
   const adjustedText = state.profile.adjustmentApplied
@@ -267,13 +266,13 @@ function buildSummary() {
       .map((question, index) => question.category === categoryKey ? state.responses[index] : null)
       .filter(Boolean);
     const categoryCounts = responseCounts(categoryResponses);
-    const positiveWidth = ((categoryCounts.usually + categoryCounts.sometimes) / categoryResponses.length) * 100;
+    const positiveWidth = ((categoryCounts.yes + categoryCounts.sometimes) / categoryResponses.length) * 100;
 
     return `
       <article class="category-result category-result-${categoryKey}">
         <div class="category-result-heading">
           <span aria-hidden="true">${category.icon}</span>
-          <div><strong>${category.label}</strong><small>${categoryCounts.usually} usually · ${categoryCounts.sometimes} sometimes · ${categoryCounts.notYet} not yet · ${categoryCounts.notSure} not sure</small></div>
+          <div><strong>${category.label}</strong><small>${categoryCounts.yes} yes · ${categoryCounts.sometimes} sometimes · ${categoryCounts.notYet} not yet</small></div>
         </div>
         <div class="category-result-bar" aria-hidden="true"><span style="width: ${positiveWidth}%"></span></div>
       </article>
@@ -282,7 +281,7 @@ function buildSummary() {
 
   if (followUps.length === 0) {
     followUpSection.hidden = false;
-    followUpItems.innerHTML = '<div class="no-follow-ups"><strong>No items were marked “Not yet” or “Not sure”.</strong><p>Continue to notice new skills. Any concern is still worth discussing, regardless of these answers.</p></div>';
+    followUpItems.innerHTML = '<div class="no-follow-ups"><strong>No items were marked “Not yet”.</strong><p>Continue to notice new skills. Any concern is still worth discussing, regardless of these answers.</p></div>';
   } else {
     followUpSection.hidden = false;
     followUpItems.innerHTML = followUps.map(item => {
@@ -313,19 +312,19 @@ function renderGuidance(followUpCount) {
 
   if (state.skillLoss === 'notSure' || followUpCount > 0) {
     resultNotice.className = 'result-guidance guidance-discuss';
-    resultNotice.innerHTML = `<span aria-hidden="true">→</span><div><strong>Use this summary to guide your next conversation.</strong><p>${followUpCount} item${followUpCount === 1 ? ' was' : 's were'} marked “Not yet” or “Not sure”. Try them during ordinary routines and discuss any concern with a teacher or health professional.</p></div>`;
+    resultNotice.innerHTML = `<span aria-hidden="true">→</span><div><strong>Use this summary to guide your next conversation.</strong><p>${followUpCount} item${followUpCount === 1 ? ' was' : 's were'} marked “Not yet”. Try them during ordinary routines and discuss any concern with a teacher or health professional.</p></div>`;
     return;
   }
 
   resultNotice.className = 'result-guidance guidance-continue';
-  resultNotice.innerHTML = '<span aria-hidden="true">✓</span><div><strong>Keep noticing, talking and playing.</strong><p>No items were marked “Not yet” or “Not sure”. This is not a clinical result, so raise any concern even when the summary looks positive.</p></div>';
+  resultNotice.innerHTML = '<span aria-hidden="true">✓</span><div><strong>Keep noticing, talking and playing.</strong><p>No items were marked “Not yet”. This is not a clinical result, so raise any concern even when the summary looks positive.</p></div>';
 }
 
 function responseCounts(responses) {
   return responses.reduce((counts, response) => {
     if (response) counts[response] += 1;
     return counts;
-  }, { usually: 0, sometimes: 0, notYet: 0, notSure: 0 });
+  }, { yes: 0, sometimes: 0, notYet: 0 });
 }
 
 function showPanel(name) {
