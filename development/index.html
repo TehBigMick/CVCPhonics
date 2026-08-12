@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A private, age-matched developmental check-in for parents and early-years educators.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Development Check-In | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="development-page">
+  <a class="skip-link" href="#main">Skip to the development check-in</a>
+
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../cvc/index.html">CVC words</a>
+      <a href="../sightwords/index.html">Sight words</a>
+      <a class="active" href="index.html">Development</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="development-intro" class="development-intro page-shell">
+      <div class="development-intro-copy">
+        <a class="back-link" href="../index.html">← Back to all activities</a>
+        <p class="eyebrow"><span aria-hidden="true">●</span> For parents &amp; educators</p>
+        <h1>Notice progress. Start a <em>helpful conversation.</em></h1>
+        <p>Enter the child’s date of birth and this tool will choose an age-appropriate set of observations. Work through one item at a time, then print a clear summary.</p>
+        <ul class="development-benefits">
+          <li><span aria-hidden="true">✓</span><strong>Private by design</strong> — nothing is uploaded or saved</li>
+          <li><span aria-hidden="true">✓</span><strong>12 age bands</strong> — from 2 months to 5 years</li>
+          <li><span aria-hidden="true">✓</span><strong>No pass or fail</strong> — just useful observations and notes</li>
+        </ul>
+      </div>
+      <div class="development-visual" aria-hidden="true">
+        <div class="growth-path">
+          <span class="growth-dot baby-dot">2m</span>
+          <span class="growth-dot toddler-dot">2y</span>
+          <span class="growth-dot child-dot">5y</span>
+          <span class="growth-line"></span>
+        </div>
+        <div class="check-card-preview">
+          <span class="preview-category">Learning &amp; play</span>
+          <strong>One small observation at a time</strong>
+          <div><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="development-workspace page-shell" aria-live="polite">
+      <aside class="monitoring-note" aria-labelledby="monitoring-title">
+        <span class="note-icon" aria-hidden="true">i</span>
+        <div>
+          <h2 id="monitoring-title">This is developmental monitoring, not a clinical screening test.</h2>
+          <p>It cannot diagnose a delay or replace a validated screening tool. If a child has lost a skill, you have a concern, or the results raise a question, speak with the child’s health professional or local early-intervention service.</p>
+        </div>
+      </aside>
+
+      <section id="setup-panel" class="development-panel setup-panel" aria-labelledby="setup-title">
+        <div class="panel-heading">
+          <div>
+            <p class="kicker">Step 1 of 3</p>
+            <h2 id="setup-title">Find the right age set</h2>
+            <p>Only the date of birth is required. The optional details make the printed summary easier to identify.</p>
+          </div>
+          <div class="privacy-stamp"><span aria-hidden="true">⌂</span> Stays on this device</div>
+        </div>
+
+        <form id="setup-form" novalidate>
+          <div class="form-grid">
+            <label class="field">
+              <span>Child’s first name <small>Optional</small></span>
+              <input id="child-name" name="childName" type="text" maxlength="40" autocomplete="off" placeholder="First name">
+            </label>
+            <label class="field">
+              <span>Person completing this <small>Optional</small></span>
+              <select id="observer-role" name="observerRole">
+                <option value="">Choose a role</option>
+                <option>Parent or carer</option>
+                <option>Teacher</option>
+                <option>Early-years educator</option>
+                <option>Other professional</option>
+              </select>
+            </label>
+            <label class="field field-wide">
+              <span>Child’s date of birth <b aria-hidden="true">*</b></span>
+              <input id="birth-date" name="birthDate" type="date" required>
+              <small>The age is calculated using today’s date.</small>
+            </label>
+          </div>
+
+          <div class="prematurity-box">
+            <label class="check-field">
+              <input id="born-early" type="checkbox">
+              <span><strong>The child was born at least 3 weeks before the due date</strong><small>For children under 2, an adjusted age can give a more appropriate check-in.</small></span>
+            </label>
+            <label id="weeks-early-field" class="field weeks-field" hidden>
+              <span>How many weeks early?</span>
+              <input id="weeks-early" type="number" min="3" max="16" inputmode="numeric" placeholder="e.g. 6">
+            </label>
+          </div>
+
+          <p id="setup-error" class="form-error" role="alert" hidden></p>
+          <button class="button button-primary setup-submit" type="submit">Choose my check-in <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+
+      <section id="question-panel" class="development-panel question-panel" aria-labelledby="question-text" hidden>
+        <div class="question-topbar">
+          <button id="question-exit" class="quiet-button" type="button">← Change details</button>
+          <span id="age-set-label" class="age-set-label">2-year check-in</span>
+          <span id="question-count" class="question-count">1 of 12</span>
+        </div>
+        <div class="development-progress" aria-hidden="true"><span id="question-progress"></span></div>
+
+        <div class="question-content">
+          <div id="category-badge" class="category-badge category-social">
+            <span id="category-icon" aria-hidden="true">♥</span>
+            <span id="category-label">Social &amp; emotional</span>
+          </div>
+          <p class="question-eyebrow">Thinking about what you have seen recently…</p>
+          <h2 id="question-text">Does the child…?</h2>
+          <div id="question-direction" class="direction-card">
+            <span aria-hidden="true">Try it</span>
+            <p>Use an ordinary play opportunity and allow the child time to respond.</p>
+          </div>
+        </div>
+
+        <div id="response-options" class="development-responses" role="group" aria-label="Choose the response that fits best">
+          <button class="response-button response-usually" type="button" data-response="usually">
+            <span aria-hidden="true">✓</span><strong>Usually</strong><small>Seen clearly and regularly</small>
+          </button>
+          <button class="response-button response-sometimes" type="button" data-response="sometimes">
+            <span aria-hidden="true">~</span><strong>Sometimes</strong><small>Seen occasionally or just emerging</small>
+          </button>
+          <button class="response-button response-not-yet" type="button" data-response="notYet">
+            <span aria-hidden="true">○</span><strong>Not yet</strong><small>Not observed at this time</small>
+          </button>
+          <button class="response-button response-not-sure" type="button" data-response="notSure">
+            <span aria-hidden="true">?</span><strong>Not sure</strong><small>Not tried or not enough opportunity</small>
+          </button>
+        </div>
+
+        <div class="question-navigation">
+          <button id="previous-question" class="quiet-button" type="button" disabled>← Previous question</button>
+          <p>Choose the closest answer. You can go back and change it.</p>
+        </div>
+      </section>
+
+      <section id="concern-panel" class="development-panel concern-panel" aria-labelledby="concern-title" hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="kicker">Step 2 of 3 complete</p>
+            <h2 id="concern-title">Two final reflections</h2>
+            <p>These matter more than any total. Trust what you know about the child.</p>
+          </div>
+        </div>
+
+        <form id="concern-form">
+          <fieldset class="loss-fieldset">
+            <legend>Has the child stopped using any skill they could previously do?</legend>
+            <p>Examples might include words, gestures, play skills or movements.</p>
+            <div class="loss-options">
+              <label><input type="radio" name="skillLoss" value="no" required><span>No</span></label>
+              <label><input type="radio" name="skillLoss" value="yes"><span>Yes</span></label>
+              <label><input type="radio" name="skillLoss" value="notSure"><span>Not sure</span></label>
+            </div>
+          </fieldset>
+
+          <label class="field notes-field">
+            <span>Is there anything you would like to remember or discuss? <small>Optional</small></span>
+            <textarea id="concern-notes" rows="5" maxlength="800" placeholder="Add your observations, examples or questions here…"></textarea>
+          </label>
+
+          <p id="concern-error" class="form-error" role="alert" hidden></p>
+          <div class="concern-actions">
+            <button id="back-to-questions" class="button button-secondary" type="button">← Review answers</button>
+            <button class="button button-primary" type="submit">Create summary <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </section>
+
+      <section id="result-panel" class="development-panel development-result" aria-labelledby="result-title" hidden>
+        <div class="result-header">
+          <div>
+            <p class="kicker">Step 3 of 3</p>
+            <h2 id="result-title">Development check-in summary</h2>
+            <p id="result-meta">Completed today · 2-year check-in</p>
+          </div>
+          <div class="summary-mark" aria-hidden="true">✓</div>
+        </div>
+
+        <div id="result-notice" class="result-guidance"></div>
+        <div id="response-overview" class="response-overview"></div>
+
+        <section class="category-summary-section" aria-labelledby="category-summary-title">
+          <h3 id="category-summary-title">Observations by area</h3>
+          <div id="category-summary" class="category-summary"></div>
+        </section>
+
+        <section id="follow-up-section" class="follow-up-section" aria-labelledby="follow-up-title">
+          <div class="follow-up-heading">
+            <div>
+              <p class="kicker">Worth another look</p>
+              <h3 id="follow-up-title">Items marked “Not yet” or “Not sure”</h3>
+            </div>
+            <p>These are conversation starters, not a diagnosis.</p>
+          </div>
+          <div id="follow-up-items" class="follow-up-items"></div>
+        </section>
+
+        <section id="notes-summary" class="notes-summary" hidden></section>
+
+        <section class="next-steps" aria-labelledby="next-steps-title">
+          <div class="next-steps-icon" aria-hidden="true">→</div>
+          <div>
+            <h3 id="next-steps-title">What to do next</h3>
+            <p>If you are concerned, if the child has lost a skill, or if something does not feel right, share this summary with the child’s health professional. Ask about a validated developmental screening or referral rather than waiting for the next check-in.</p>
+          </div>
+        </section>
+
+        <div class="result-actions development-result-actions">
+          <button id="print-summary" class="button button-primary" type="button">Print or save summary</button>
+          <button id="edit-summary" class="button button-secondary" type="button">Review answers</button>
+          <button id="new-check-in" class="button button-secondary" type="button">Start a new check-in</button>
+        </div>
+      </section>
+    </section>
+
+    <section id="development-information" class="development-information page-shell">
+      <div>
+        <p class="kicker">How it was created</p>
+        <h2>Original questions, informed by public milestones.</h2>
+      </div>
+      <div class="information-grid">
+        <article>
+          <span aria-hidden="true">01</span>
+          <h3>Observe, don’t perform</h3>
+          <p>Use recent examples from ordinary routines. A child does not need to demonstrate every skill on demand.</p>
+        </article>
+        <article>
+          <span aria-hidden="true">02</span>
+          <h3>Consider the whole child</h3>
+          <p>Culture, home languages, opportunity, health and context can all affect how a skill is shown.</p>
+        </article>
+        <article>
+          <span aria-hidden="true">03</span>
+          <h3>Act on concerns</h3>
+          <p>This tool supports conversation. Only validated tools administered appropriately can provide developmental screening.</p>
+        </article>
+      </div>
+      <p class="source-note">Content model informed by the <a href="https://www.cdc.gov/act-early/milestones/index.html" target="_blank" rel="noreferrer">CDC developmental milestones</a> and <a href="https://www.aap.org/en/patient-care/developmental-surveillance-and-screening-patient-care/" target="_blank" rel="noreferrer">American Academy of Pediatrics guidance</a>. This independent tool is not affiliated with or endorsed by either organisation and is not ASQ-3.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <p>Michael's Phonics Hub</p>
+      <p>Development Check-In · Private, supportive and non-diagnostic</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../scripts/development-app.js"></script>
+</body>
+</html>
