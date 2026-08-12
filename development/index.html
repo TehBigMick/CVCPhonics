@@ -34,6 +34,7 @@
         <ul class="development-benefits">
           <li><span aria-hidden="true">✓</span><strong>Private by design</strong> — nothing is uploaded or saved</li>
           <li><span aria-hidden="true">✓</span><strong>12 age bands</strong> — from 2 months to 5 years</li>
+          <li><span aria-hidden="true">✓</span><strong>Five developmental areas</strong> — 15 short observations in each check-in</li>
           <li><span aria-hidden="true">✓</span><strong>No pass or fail</strong> — just useful observations and notes</li>
         </ul>
       </div>
@@ -45,7 +46,7 @@
           <span class="growth-line"></span>
         </div>
         <div class="check-card-preview">
-          <span class="preview-category">Learning &amp; play</span>
+          <span class="preview-category">Problem solving</span>
           <strong>One small observation at a time</strong>
           <div><i></i><i></i><i></i></div>
         </div>
@@ -114,14 +115,14 @@
         <div class="question-topbar">
           <button id="question-exit" class="quiet-button" type="button">← Change details</button>
           <span id="age-set-label" class="age-set-label">2-year check-in</span>
-          <span id="question-count" class="question-count">1 of 12</span>
+          <span id="question-count" class="question-count">1 of 15</span>
         </div>
         <div class="development-progress" aria-hidden="true"><span id="question-progress"></span></div>
 
         <div class="question-content">
-          <div id="category-badge" class="category-badge category-social">
-            <span id="category-icon" aria-hidden="true">♥</span>
-            <span id="category-label">Social &amp; emotional</span>
+          <div id="category-badge" class="category-badge category-communication">
+            <span id="category-icon" aria-hidden="true">“ ”</span>
+            <span id="category-label">Communication</span>
           </div>
           <p class="question-eyebrow">Thinking about what you have seen recently…</p>
           <h2 id="question-text">Does the child…?</h2>
@@ -132,17 +133,14 @@
         </div>
 
         <div id="response-options" class="development-responses" role="group" aria-label="Choose the response that fits best">
-          <button class="response-button response-usually" type="button" data-response="usually">
-            <span aria-hidden="true">✓</span><strong>Usually</strong><small>Seen clearly and regularly</small>
+          <button class="response-button response-yes" type="button" data-response="yes">
+            <span aria-hidden="true">✓</span><strong>Yes</strong><small>Seen clearly and regularly</small>
           </button>
           <button class="response-button response-sometimes" type="button" data-response="sometimes">
             <span aria-hidden="true">~</span><strong>Sometimes</strong><small>Seen occasionally or just emerging</small>
           </button>
           <button class="response-button response-not-yet" type="button" data-response="notYet">
             <span aria-hidden="true">○</span><strong>Not yet</strong><small>Not observed at this time</small>
-          </button>
-          <button class="response-button response-not-sure" type="button" data-response="notSure">
-            <span aria-hidden="true">?</span><strong>Not sure</strong><small>Not tried or not enough opportunity</small>
           </button>
         </div>
 
@@ -207,7 +205,7 @@
           <div class="follow-up-heading">
             <div>
               <p class="kicker">Worth another look</p>
-              <h3 id="follow-up-title">Items marked “Not yet” or “Not sure”</h3>
+              <h3 id="follow-up-title">Items marked “Not yet”</h3>
             </div>
             <p>These are conversation starters, not a diagnosis.</p>
           </div>
@@ -254,7 +252,7 @@
           <p>This tool supports conversation. Only validated tools administered appropriately can provide developmental screening.</p>
         </article>
       </div>
-      <p class="source-note">Content model informed by the <a href="https://www.cdc.gov/act-early/milestones/index.html" target="_blank" rel="noreferrer">CDC developmental milestones</a> and <a href="https://www.aap.org/en/patient-care/developmental-surveillance-and-screening-patient-care/" target="_blank" rel="noreferrer">American Academy of Pediatrics guidance</a>. This independent tool is not affiliated with or endorsed by either organisation and is not ASQ-3.</p>
+      <p class="source-note">Content model informed by the <a href="https://www.cdc.gov/act-early/milestones/index.html" target="_blank" rel="noreferrer">CDC developmental milestones</a> and <a href="https://www.aap.org/en/patient-care/developmental-surveillance-and-screening-patient-care/" target="_blank" rel="noreferrer">American Academy of Pediatrics guidance</a>. The five-area layout and “Yes”, “Sometimes” and “Not yet” choices provide a familiar format, but every observation is independently written and no licensed ASQ-3 questions, scoring thresholds or interpretations are used. This tool is not affiliated with or endorsed by ASQ-3, the CDC or the AAP.</p>
     </section>
   </main>
 
