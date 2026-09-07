@@ -5,6 +5,7 @@ const pair = document.getElementById('explorer-pair');
 const emoji = document.getElementById('explorer-emoji');
 const word = document.getElementById('explorer-word');
 const speakButton = document.getElementById('explorer-speak');
+const gameLink = document.getElementById('explorer-game-link');
 let current = ALPHABET[0];
 
 ALPHABET.forEach((item, index) => {
@@ -23,5 +24,6 @@ function selectLetter(item, button) {
   current = item;
   grid.querySelectorAll('button').forEach(tile => tile.classList.toggle('active', tile === button));
   pair.textContent = `${item.upper}${item.lower}`; emoji.textContent = item.emoji; word.textContent = item.word;
+  gameLink.href = `letter-game.html?letter=${item.upper}`; gameLink.textContent = `Play the ${item.upper} game`;
   speak(letterSpeech(item));
 }
