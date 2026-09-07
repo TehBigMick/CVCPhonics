@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A child-friendly game for recognising A, a, B and b and learning apple, axe, book and bag.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>A or B? | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="activity-page letters-page">
+  <a class="skip-link" href="#activity">Skip to the letter game</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <a class="exit-link" href="index.html">All alphabet activities</a>
+  </header>
+  <main id="activity" class="activity-shell letter-game-shell">
+    <section id="letter-intro" class="quiz-card game-card letter-intro" aria-labelledby="letter-title">
+      <p class="kicker">First steps</p>
+      <h1 id="letter-title">Meet <em>Aa</em> and <em>Bb</em></h1>
+      <p class="letter-lead">Look, listen and learn four useful words. Then play twelve quick matching rounds.</p>
+      <div class="letter-family-grid">
+        <button class="letter-family letter-family-a" type="button" data-say="A. a. Apple starts with A. Axe starts with A.">
+          <span class="family-pair" aria-hidden="true"><b>A</b><b>a</b></span><strong>A says /a/</strong>
+          <span class="family-words"><span>🍎 Apple</span><span>🪓 Axe</span></span><small><span aria-hidden="true">🔊</span> Tap to hear</small>
+        </button>
+        <button class="letter-family letter-family-b" type="button" data-say="B. b. Book starts with B. Bag starts with B.">
+          <span class="family-pair" aria-hidden="true"><b>B</b><b>b</b></span><strong>B says /b/</strong>
+          <span class="family-words"><span>📖 Book</span><span>🎒 Bag</span></span><small><span aria-hidden="true">🔊</span> Tap to hear</small>
+        </button>
+      </div>
+      <div class="letter-game-note"><span aria-hidden="true">12</span><p><strong>Ready to play?</strong> Find capital and small letters, match letter pairs and sort each word by its first letter.</p></div>
+      <button id="start-letter-game" class="button button-primary letter-start" type="button">Start the game <span aria-hidden="true">→</span></button>
+    </section>
+    <section id="letter-question" class="quiz-card game-card letter-question" aria-labelledby="letter-prompt" hidden>
+      <div class="quiz-heading"><div><p class="kicker">A or B?</p><h1>Letter match</h1></div><p id="letter-score">0 stars</p></div>
+      <div class="progress-track" aria-hidden="true"><span id="letter-progress"></span></div>
+      <div class="round-row"><p id="letter-counter">Round 1 of 12</p><p>Choose one answer</p></div>
+      <div id="letter-cue" class="letter-cue" aria-hidden="true"></div>
+      <h2 id="letter-prompt">Find capital A.</h2>
+      <button id="hear-letter-question" class="listen-button" type="button"><span aria-hidden="true">🔊</span> Hear the question</button>
+      <div id="letter-options" class="letter-options" role="group" aria-label="Answer choices"></div>
+      <p id="letter-feedback" class="game-feedback" aria-live="polite"></p>
+      <button id="next-letter-question" class="button button-primary next-button" type="button" hidden>Next round <span aria-hidden="true">→</span></button>
+      <p class="key-hint">Keyboard: press <kbd>1</kbd> or <kbd>2</kbd> to choose.</p>
+    </section>
+    <section id="letter-result" class="result-card letter-result" hidden aria-live="polite"></section>
+  </main>
+  <script type="module" src="../scripts/letters-app.js"></script>
+</body>
+</html>

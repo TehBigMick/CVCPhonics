@@ -3,76 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A child-friendly game for recognising A, a, B and b and learning apple, axe, book and bag.">
+  <meta name="description" content="Fun A–Z letter games and learning tools designed for children aged 3–4.">
   <meta name="theme-color" content="#f8f4ec">
-  <title>A or B? | Michael's Phonics Hub</title>
+  <title>Alphabet Playroom | Michael's Phonics Hub</title>
   <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/alphabet.css">
 </head>
-<body class="activity-page letters-page">
-  <a class="skip-link" href="#activity">Skip to the letter game</a>
-
-  <header class="activity-header">
+<body class="alphabet-page">
+  <a class="skip-link" href="#main">Skip to alphabet activities</a>
+  <header class="site-header">
     <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
       <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
       <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
     </a>
-    <a class="exit-link" href="../index.html">Exit game</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a><a class="active" href="index.html">Alphabet</a>
+      <a href="../cvc/index.html">CVC words</a><a href="../sightwords/index.html">Sight words</a>
+      <a href="../development/index.html">Development</a>
+    </nav>
   </header>
-
-  <main id="activity" class="activity-shell letter-game-shell">
-    <section id="letter-intro" class="quiz-card game-card letter-intro" aria-labelledby="letter-title">
-      <p class="kicker">Early letter game</p>
-      <h1 id="letter-title">Meet <em>Aa</em> and <em>Bb</em></h1>
-      <p class="letter-lead">Look, listen and learn four useful words. Then play twelve quick matching rounds.</p>
-
-      <div class="letter-family-grid">
-        <button class="letter-family letter-family-a" type="button" data-say="A. a. Apple starts with A. Axe starts with A.">
-          <span class="family-pair" aria-hidden="true"><b>A</b><b>a</b></span>
-          <strong>A says /a/</strong>
-          <span class="family-words"><span>🍎 Apple</span><span>🪓 Axe</span></span>
-          <small><span aria-hidden="true">🔊</span> Tap to hear</small>
-        </button>
-        <button class="letter-family letter-family-b" type="button" data-say="B. b. Book starts with B. Bag starts with B.">
-          <span class="family-pair" aria-hidden="true"><b>B</b><b>b</b></span>
-          <strong>B says /b/</strong>
-          <span class="family-words"><span>📖 Book</span><span>🎒 Bag</span></span>
-          <small><span aria-hidden="true">🔊</span> Tap to hear</small>
-        </button>
+  <main id="main">
+    <section class="alphabet-hero page-shell">
+      <div>
+        <a class="back-link" href="../index.html">← Back to all activities</a>
+        <p class="eyebrow"><span aria-hidden="true">●</span> Designed for ages 3–4</p>
+        <h1>Meet the alphabet through <em>play.</em></h1>
+        <p>Explore one letter at a time, listen to its name, match capital and small letters, notice first sounds and practise making letter shapes.</p>
+        <div class="button-row"><a class="button button-primary" href="explorer.html">Open A–Z explorer <span aria-hidden="true">→</span></a><a class="button button-secondary" href="hunt.html">Play Letter Hunt</a></div>
       </div>
-
-      <div class="letter-game-note">
-        <span aria-hidden="true">12</span>
-        <p><strong>Ready to play?</strong> Find capital and small letters, match letter pairs and sort each word by its first letter.</p>
-      </div>
-      <button id="start-letter-game" class="button button-primary letter-start" type="button">Start the game <span aria-hidden="true">→</span></button>
+      <div class="alphabet-hero-art" aria-hidden="true"><span>Aa</span><span>Bb</span><span>Cc</span><span>…</span><span>Zz</span></div>
     </section>
 
-    <section id="letter-question" class="quiz-card game-card letter-question" aria-labelledby="letter-prompt" hidden>
-      <div class="quiz-heading">
-        <div>
-          <p class="kicker">A or B?</p>
-          <h1>Letter match</h1>
+    <section class="alphabet-section page-shell" aria-labelledby="explore-title">
+      <div class="alphabet-heading"><div><p class="kicker">Look · listen · make</p><h2 id="explore-title">Explore at your own pace</h2></div><p>No timer, no score and no need to finish the alphabet in one sitting.</p></div>
+      <div class="alphabet-tool-grid alphabet-tool-grid-two">
+        <a class="alphabet-tool-card tool-explorer" href="explorer.html"><span class="tool-icon" aria-hidden="true">Aa</span><span class="pill">Learning tool</span><h3>A–Z picture explorer</h3><p>Tap any letter to see its capital and small form, hear it and meet a picture word.</p><strong>Explore all 26 letters →</strong></a>
+        <a class="alphabet-tool-card tool-trace" href="trace.html"><span class="tool-icon" aria-hidden="true">✎</span><span class="pill">Make &amp; say</span><h3>Trace and say</h3><p>Choose a letter and draw over a large guide with a finger, mouse or classroom screen.</p><strong>Open the tracing board →</strong></a>
+      </div>
+    </section>
+
+    <section class="alphabet-section alphabet-games-band">
+      <div class="page-shell">
+        <div class="alphabet-heading"><div><p class="kicker kicker-light">Short playful practice</p><h2 id="games-title">Choose a game</h2></div><p>Every game uses short untimed rounds, large choices and optional spoken prompts.</p></div>
+        <div class="alphabet-tool-grid">
+          <a class="alphabet-tool-card" href="hunt.html"><span class="tool-icon" aria-hidden="true">🔎</span><span class="pill">Listen &amp; find</span><h3>Letter Hunt</h3><p>Hear a letter and find it among three big choices.</p><strong>Start hunting →</strong></a>
+          <a class="alphabet-tool-card" href="pairs.html"><span class="tool-icon" aria-hidden="true">A a</span><span class="pill">Match</span><h3>Capital &amp; small</h3><p>Match each capital letter to its small-letter partner.</p><strong>Match the pairs →</strong></a>
+          <a class="alphabet-tool-card" href="sounds.html"><span class="tool-icon" aria-hidden="true">🍎</span><span class="pill">First sounds</span><h3>What starts with…?</h3><p>Look at a picture and choose the letter at the start of its word.</p><strong>Play first sounds →</strong></a>
+          <a class="alphabet-tool-card" href="train.html"><span class="tool-icon" aria-hidden="true">🚂</span><span class="pill">Letter order</span><h3>Alphabet Train</h3><p>Find the next letter and help complete the alphabet train.</p><strong>Build the train →</strong></a>
+          <a class="alphabet-tool-card tool-first-steps" href="ab-game.html"><span class="tool-icon" aria-hidden="true">Aa Bb</span><span class="pill">Gentle start</span><h3>A or B?</h3><p>Focus only on A and B with apple, axe, book and bag.</p><strong>Play first steps →</strong></a>
         </div>
-        <p id="letter-score">0 stars</p>
       </div>
-      <div class="progress-track" aria-hidden="true"><span id="letter-progress"></span></div>
-      <div class="round-row">
-        <p id="letter-counter">Round 1 of 12</p>
-        <p>Choose one answer</p>
-      </div>
-
-      <div id="letter-cue" class="letter-cue" aria-hidden="true"></div>
-      <h2 id="letter-prompt">Find capital A.</h2>
-      <button id="hear-letter-question" class="listen-button" type="button"><span aria-hidden="true">🔊</span> Hear the question</button>
-      <div id="letter-options" class="letter-options" role="group" aria-label="Answer choices"></div>
-      <p id="letter-feedback" class="game-feedback" aria-live="polite"></p>
-      <button id="next-letter-question" class="button button-primary next-button" type="button" hidden>Next round <span aria-hidden="true">→</span></button>
-      <p class="key-hint">Keyboard: press <kbd>1</kbd> or <kbd>2</kbd> to choose.</p>
     </section>
 
-    <section id="letter-result" class="result-card letter-result" hidden aria-live="polite"></section>
+    <section class="alphabet-routine page-shell"><div class="teacher-badge" aria-hidden="true">5</div><div><p class="kicker">A simple grown-up routine</p><h2>Five minutes is plenty.</h2><p>Begin with two familiar letters in the explorer, play one short game, then finish by tracing or spotting the same letters somewhere nearby. Repetition across several days matters more than completing every activity at once.</p></div></section>
   </main>
-
-  <script type="module" src="../scripts/letters-app.js"></script>
+  <footer class="site-footer"><div class="page-shell footer-inner"><p>Michael's Phonics Hub</p><p>Read · build · grow</p></div></footer>
 </body>
 </html>

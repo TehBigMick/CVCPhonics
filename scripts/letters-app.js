@@ -122,7 +122,7 @@ function showResult() {
     <div class="result-actions">
       <button id="play-letters-again" class="button button-primary" type="button">Play again</button>
       <button id="review-letters" class="button button-secondary" type="button">Review A and B</button>
-      <a class="button button-secondary" href="../index.html">Back to home</a>
+      <a class="button button-secondary" href="index.html">Alphabet games</a>
     </div>
   `;
   document.getElementById('play-letters-again').addEventListener('click', startGame);
