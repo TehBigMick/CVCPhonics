@@ -653,6 +653,14 @@ h3 {
   text-underline-offset: 4px;
 }
 
+.path-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.featured-path-link { color: var(--coral-dark); }
+
 .practice-band {
   padding-block: 90px;
   background: var(--ink);

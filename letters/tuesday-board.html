@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A teacher-controlled Tuesday phonics board for playful Phase 1 learning and Phase 2 extension activities.">
+  <meta name="theme-color" content="#ffd84f">
+  <title>Tuesday Phonics Board | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/tuesday-board.css">
+</head>
+<body class="lesson-board" data-phase="phase1">
+  <a class="skip-link" href="#board-screen">Skip to today’s activity</a>
+
+  <header class="board-header">
+    <a class="board-brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span>Tuesday board</span>
+    </a>
+
+    <div class="phase-switch" role="group" aria-label="Choose phonics phase">
+      <button class="phase-button phase-one-button" type="button" data-phase-choice="phase1" aria-pressed="true">
+        <span aria-hidden="true">☀️</span> Phase 1
+      </button>
+      <button class="phase-button phase-two-button" type="button" data-phase-choice="phase2" aria-pressed="false">
+        <span aria-hidden="true">🌸</span> Phase 2
+      </button>
+    </div>
+
+    <div class="teacher-tools" aria-label="Teacher tools">
+      <button class="teacher-tool" id="open-teacher-info" type="button" aria-label="Open teacher information">
+        <span aria-hidden="true">i</span><small>Teacher info</small>
+      </button>
+      <button class="teacher-tool" id="open-assessment" type="button" aria-label="Open teacher assessment panel">
+        <span aria-hidden="true">✓</span><small>Assessment</small>
+      </button>
+    </div>
+  </header>
+
+  <main class="board-main">
+    <div class="board-progress" aria-label="Lesson progress">
+      <p id="phase-label">Phase 1 · Yellow</p>
+      <div id="progress-dots" class="progress-dots" aria-hidden="true"></div>
+      <p id="screen-count">1 of 7</p>
+    </div>
+    <section id="board-screen" class="board-screen" tabindex="-1" aria-live="polite"></section>
+  </main>
+
+  <nav class="board-nav" aria-label="Lesson controls">
+    <button class="nav-control" id="board-home" type="button"><span aria-hidden="true">⌂</span><strong>Home</strong></button>
+    <button class="nav-control" id="board-back" type="button"><span aria-hidden="true">←</span><strong>Back</strong></button>
+    <button class="nav-control repeat-control" id="repeat-audio" type="button"><span aria-hidden="true">🔊</span><strong>Repeat audio</strong></button>
+    <button class="nav-control next-control" id="board-next" type="button"><strong>Next</strong><span aria-hidden="true">→</span></button>
+  </nav>
+
+  <dialog class="teacher-dialog" id="teacher-info-dialog" aria-labelledby="teacher-info-title">
+    <form method="dialog"><button class="dialog-close" type="submit" aria-label="Close teacher information">×</button></form>
+    <p class="dialog-kicker">Teacher information</p>
+    <h2 id="teacher-info-title">Activity guidance</h2>
+    <div class="teacher-detail">
+      <span aria-hidden="true">👩‍🏫</span>
+      <div><h3>Lead the activity</h3><p id="teacher-direction"></p></div>
+    </div>
+    <div class="teacher-detail">
+      <span aria-hidden="true">🤝</span>
+      <div><h3>Assistant-teacher role</h3><p id="assistant-direction"></p></div>
+    </div>
+    <div class="teacher-detail physical-reminder">
+      <span aria-hidden="true">👣</span>
+      <div><h3>Keep it physical</h3><p>The board gives the cue. Children move, retrieve objects, trace away from the screen, talk with a partner and help return resources.</p></div>
+    </div>
+  </dialog>
+
+  <dialog class="teacher-dialog assessment-dialog" id="assessment-dialog" aria-labelledby="assessment-title">
+    <form method="dialog"><button class="dialog-close" type="submit" aria-label="Close assessment panel">×</button></form>
+    <p class="dialog-kicker">Teacher only</p>
+    <h2 id="assessment-title">Quick observation</h2>
+    <p id="assessment-activity" class="assessment-activity"></p>
+    <div class="assessment-options" role="group" aria-label="Record this observation">
+      <button type="button" data-assessment="Independent"><span aria-hidden="true">●</span> Independent</button>
+      <button type="button" data-assessment="After prompt"><span aria-hidden="true">●</span> After prompt</button>
+      <button type="button" data-assessment="Not yet"><span aria-hidden="true">●</span> Not yet</button>
+    </div>
+    <p id="assessment-status" class="assessment-status" aria-live="polite">No observation recorded for this activity.</p>
+    <div class="assessment-summary">
+      <h3>Today’s notes</h3>
+      <div id="assessment-summary-list"></div>
+    </div>
+    <button class="clear-assessment" id="clear-assessment" type="button">Clear today’s notes</button>
+  </dialog>
+
+  <dialog class="movement-dialog" id="movement-dialog" aria-labelledby="movement-title">
+    <div class="movement-feet" aria-hidden="true">👣</div>
+    <p>Time to move</p>
+    <h2 id="movement-title">Stand up and move to the picture.</h2>
+    <div class="movement-actions" aria-hidden="true"><span>🧸</span><span>🐦</span><span>🎒</span><span>✏️</span></div>
+    <form method="dialog"><button class="movement-ready" type="submit">We’re ready!</button></form>
+  </dialog>
+
+  <script type="module" src="../scripts/tuesday-board.js"></script>
+</body>
+</html>
