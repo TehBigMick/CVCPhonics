@@ -1,4 +1,72 @@
-<!DOCTYPE html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A six-round individual letter game for early learners."><meta name="theme-color" content="#f8f4ec"><title>Individual Letter Game | Michael's Phonics Hub</title><link rel="stylesheet" href="../styles/main.css"><link rel="stylesheet" href="../styles/alphabet.css"></head><body class="activity-page"><a class="skip-link" href="#activity">Skip to the letter game</a><header class="activity-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a><a class="exit-link" href="index.html">All alphabet activities</a></header><main id="activity" class="activity-shell alphabet-activity">
-<section id="focus-intro" class="quiz-card alphabet-activity-card"><p class="kicker">One letter at a time</p><h1 id="focus-title">All about A</h1><div class="focus-intro-visual"><span id="focus-pair">Aa</span><div><span id="focus-emoji">🍎</span><strong id="focus-word">Apple</strong></div></div><p class="letter-lead">Six short rounds: find the capital, find the small letter, match the pair and spot its picture word.</p><div class="button-row focus-start-row"><button id="focus-hear-intro" class="listen-button" type="button">🔊 Hear it</button><button id="focus-start" class="button button-primary" type="button">Start this letter game →</button></div></section>
-<section id="focus-game" class="quiz-card alphabet-activity-card" aria-labelledby="focus-prompt" hidden><div class="quiz-heading"><div><p class="kicker" id="focus-kicker">Letter A</p><h1 id="focus-game-title">All about A</h1></div><p id="focus-score">0 stars</p></div><div class="progress-track"><span id="focus-progress"></span></div><div class="alphabet-topline"><p id="focus-counter">Round 1 of 6</p><button id="focus-hear" class="listen-button" type="button">🔊 Hear again</button></div><div id="focus-cue" class="alphabet-cue" aria-hidden="true"></div><h2 id="focus-prompt">Find capital A.</h2><div id="focus-choices" class="alphabet-choice-grid" role="group" aria-label="Answer choices"></div><p id="focus-feedback" class="game-feedback" aria-live="polite"></p><button id="focus-next" class="button button-primary next-button" type="button" hidden>Next round →</button></section>
-<section id="focus-result" class="result-card" hidden aria-live="polite"></section></main><script type="module" src="../scripts/letter-focus-game.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Three playful matching, letter-finding and picture games for one letter at a time.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Individual Letter Playground | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/alphabet.css">
+  <link rel="stylesheet" href="../styles/play-games.css">
+</head>
+<body class="activity-page letter-play-page">
+  <a class="skip-link" href="#activity">Skip to the letter games</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <a class="exit-link" href="index.html">Choose another letter</a>
+  </header>
+
+  <main id="activity" class="activity-shell play-shell">
+    <section id="letter-menu" class="quiz-card play-menu" aria-labelledby="letter-play-title">
+      <div class="play-menu-heading">
+        <div>
+          <p class="kicker">One letter · three games</p>
+          <h1 id="letter-play-title">A playground</h1>
+          <p id="letter-play-progress">0 of 3 games explored</p>
+        </div>
+        <button id="hear-focus-letter" class="listen-button" type="button"><span aria-hidden="true">🔊</span> Hear this letter</button>
+      </div>
+
+      <div class="letter-focus-banner">
+        <span id="focus-letter-pair">Aa</span>
+        <button id="focus-picture" type="button"><span id="focus-picture-emoji" aria-hidden="true">🍎</span><strong id="focus-picture-word">Apple</strong><small>Tap to hear</small></button>
+      </div>
+
+      <div class="mini-play-grid">
+        <button class="mini-play-card pairs-card" type="button" data-letter-game="pairs">
+          <span class="mini-play-icon" aria-hidden="true">A a</span><span class="pill">Matching game</span>
+          <h2>Letter Partners</h2><p>Turn cards and match each capital with its small letter.</p><strong>Play pairs →</strong>
+        </button>
+        <button class="mini-play-card bubbles-card" type="button" data-letter-game="bubbles">
+          <span class="mini-play-icon" aria-hidden="true">○ a ○</span><span class="pill">Find the letter</span>
+          <h2>Sound Bubbles</h2><p>Pop every bubble that shows this letter. Take all the time you need.</p><strong>Pop bubbles →</strong>
+        </button>
+        <button class="mini-play-card pictures-card" type="button" data-letter-game="pictures">
+          <span class="mini-play-icon" aria-hidden="true">🍎</span><span class="pill">Picture game</span>
+          <h2>Picture Picnic</h2><p>Listen to a word and find the picture that belongs with this letter.</p><strong>Pack the picnic →</strong>
+        </button>
+      </div>
+    </section>
+
+    <section id="letter-stage" class="quiz-card play-stage" aria-labelledby="letter-stage-title" hidden>
+      <div class="play-stage-header">
+        <button id="back-to-letter-menu" class="small-back-button" type="button">← Game menu</button>
+        <p id="letter-stage-progress">Game 1 of 3</p>
+        <button id="repeat-letter-instruction" class="listen-button" type="button" aria-label="Repeat the instruction">🔊 Repeat</button>
+      </div>
+      <div class="progress-track" aria-hidden="true"><span id="letter-mini-progress"></span></div>
+      <p class="kicker" id="letter-stage-kicker">Matching game</p>
+      <h1 id="letter-stage-title">Letter Partners</h1>
+      <p id="letter-stage-instruction" class="play-instruction">Turn two cards. Match each capital with its small letter.</p>
+      <div id="letter-game-area" class="letter-game-area"></div>
+      <p id="letter-game-feedback" class="game-feedback" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script type="module" src="../scripts/letter-focus-game.js"></script>
+</body>
+</html>

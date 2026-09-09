@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Picture-supported CVC spelling, reading and rhyming games for beginning readers.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Phonics Play Lab | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/play-games.css">
+</head>
+<body class="activity-page phonics-lab-page">
+  <a class="skip-link" href="#activity">Skip to phonics games</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <a class="exit-link" href="index.html">All CVC activities</a>
+  </header>
+
+  <main id="activity" class="activity-shell play-shell">
+    <section id="phonics-menu" class="quiz-card play-menu" aria-labelledby="phonics-lab-title">
+      <div class="phonics-lab-hero">
+        <div>
+          <p class="kicker">Listen · build · read</p>
+          <h1 id="phonics-lab-title">Phonics Play Lab</h1>
+          <p>Choose a calm, picture-supported game. There is no timer and every word can be heard again.</p>
+        </div>
+        <div class="lab-visual" aria-hidden="true"><span>c</span><span>a</span><span>t</span></div>
+      </div>
+      <div class="mini-play-grid phonics-game-menu">
+        <button class="mini-play-card spell-card" type="button" data-phonics-game="spell">
+          <span class="mini-play-icon" aria-hidden="true">c a t</span><span class="pill">Tap to spell</span>
+          <h2>Build the Word</h2><p>Hear a picture word, then place its three letters in order.</p><strong>Start spelling →</strong>
+        </button>
+        <button class="mini-play-card read-card" type="button" data-phonics-game="read">
+          <span class="mini-play-icon" aria-hidden="true">cat 🐱</span><span class="pill">Read and match</span>
+          <h2>Picture Match</h2><p>Blend a CVC word, then choose the picture that matches it.</p><strong>Start matching →</strong>
+        </button>
+        <button class="mini-play-card rhyme-card" type="button" data-phonics-game="rhyme">
+          <span class="mini-play-icon" aria-hidden="true">cat · hat</span><span class="pill">Hear the pattern</span>
+          <h2>Rhyme Train</h2><p>Find the rhyming word and add a new carriage to the train.</p><strong>Build the train →</strong>
+        </button>
+      </div>
+    </section>
+
+    <section id="phonics-stage" class="quiz-card play-stage" aria-labelledby="phonics-stage-title" hidden>
+      <div class="phonics-game-topline">
+        <button id="back-to-phonics-menu" class="small-back-button" type="button">← Game menu</button>
+        <label class="level-picker">Word set
+          <select id="phonics-word-set">
+            <option value="first">First words</option>
+            <option value="more">More words</option>
+            <option value="mixed">Mixed words</option>
+          </select>
+        </label>
+        <button id="repeat-phonics-instruction" class="listen-button" type="button">🔊 Repeat</button>
+      </div>
+      <div class="progress-track" aria-hidden="true"><span id="phonics-game-progress"></span></div>
+      <div class="round-status"><p id="phonics-round">Round 1 of 8</p><p id="phonics-stars">0 stars</p></div>
+      <p class="kicker" id="phonics-stage-kicker">Tap to spell</p>
+      <h1 id="phonics-stage-title">Build the Word</h1>
+      <p id="phonics-stage-instruction" class="play-instruction">Listen to the word. Tap its letters in order.</p>
+      <div id="phonics-game-area" class="letter-game-area"></div>
+      <p id="phonics-game-feedback" class="game-feedback" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script type="module" src="../scripts/phonics-games.js"></script>
+</body>
+</html>

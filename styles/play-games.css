@@ -1,0 +1,161 @@
+.play-shell { width: min(1080px, calc(100% - 40px)); }
+.play-menu,
+.play-stage { padding: clamp(25px, 4vw, 44px); }
+.play-menu-heading,
+.play-stage-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.play-menu-heading h1 { margin-bottom: 6px; font-size: clamp(38px, 5vw, 58px); }
+.play-menu-heading p:last-child { margin: 0; color: var(--ink-soft); font-weight: 800; }
+
+.letter-focus-banner { display: grid; min-height: 230px; margin: 28px 0; grid-template-columns: 1fr 1fr; overflow: hidden; border: 3px solid var(--ink); border-radius: 25px; background: #fff1bc; box-shadow: 6px 7px 0 var(--ink); }
+.letter-focus-banner > span { display: grid; place-items: center; color: var(--coral-dark); font-family: var(--hand); font-size: clamp(95px, 15vw, 145px); line-height: 1; }
+.letter-focus-banner > button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 0; border-left: 3px solid var(--ink); background: var(--mint-pale); color: var(--ink); cursor: pointer; }
+.letter-focus-banner > button > span { font-size: 82px; line-height: 1; }
+.letter-focus-banner > button strong { font-size: 27px; }
+.letter-focus-banner > button small { color: var(--ink-soft); font-weight: 800; }
+
+.mini-play-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.mini-play-card { display: flex; min-height: 300px; flex-direction: column; align-items: flex-start; padding: 22px; border: 2px solid var(--ink); border-radius: 21px; background: #fff; box-shadow: 4px 5px 0 var(--ink); color: var(--ink); cursor: pointer; font: inherit; text-align: left; transition: transform 150ms ease, box-shadow 150ms ease; }
+.mini-play-card:hover { box-shadow: 6px 8px 0 var(--ink); transform: translateY(-4px); }
+.mini-play-card.is-complete::after { align-self: flex-end; margin-top: -29px; padding: 5px 9px; border-radius: 999px; background: var(--mint); content: "✓ explored"; font-size: 10px; font-weight: 900; text-transform: uppercase; }
+.mini-play-icon { display: grid; min-width: 82px; height: 68px; margin-bottom: 20px; padding: 8px 12px; place-items: center; border: 2px solid var(--ink); border-radius: 15px; background: var(--yellow); box-shadow: 3px 4px 0 var(--ink); font-family: var(--hand); font-size: 34px; }
+.bubbles-card .mini-play-icon { background: var(--blue); }.pictures-card .mini-play-icon { background: var(--mint); }
+.mini-play-card h2 { margin: 15px 0 8px; font-size: 24px; }
+.mini-play-card p { color: var(--ink-soft); font-size: 14px; }
+.mini-play-card > strong { margin-top: auto; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+
+.play-stage-header p { margin: 0; color: var(--ink-soft); font-size: 13px; font-weight: 850; }
+.small-back-button { padding: 9px 0; border: 0; background: transparent; color: var(--ink-soft); cursor: pointer; font-weight: 850; text-decoration: underline; text-underline-offset: 4px; }
+.play-stage .progress-track { margin: 21px 0 32px; }
+.play-stage > .kicker,
+.play-stage > h1,
+.play-instruction { text-align: center; }
+.play-stage > h1 { margin-bottom: 10px; font-size: clamp(37px, 5vw, 56px); }
+.play-instruction { max-width: 760px; margin: 0 auto 25px; color: var(--ink-soft); font-size: 18px; font-weight: 750; }
+.letter-game-area { min-height: 330px; }
+
+.memory-grid { display: grid; max-width: 740px; margin: 0 auto; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.memory-card { position: relative; min-height: 145px; border: 3px solid var(--ink); border-radius: 20px; background: var(--coral); box-shadow: 5px 6px 0 var(--ink); color: var(--ink); cursor: pointer; font-family: var(--hand); font-size: clamp(55px, 8vw, 78px); transform-style: preserve-3d; transition: transform 200ms ease, background 200ms ease; }
+.memory-card .card-back { display: none; }
+.memory-card.revealed,
+.memory-card.matched { background: #fff; transform: rotateY(180deg); }
+.memory-card.revealed .card-front,
+.memory-card.matched .card-front { display: none; }
+.memory-card.revealed .card-back,
+.memory-card.matched .card-back { display: block; transform: rotateY(180deg); }
+.memory-card.matched { background: var(--mint); opacity: .86; }
+.memory-card.matched::after { position: absolute; top: 8px; right: 10px; content: "✓"; font-family: var(--sans); font-size: 19px; }
+
+.bubble-field { display: grid; max-width: 810px; margin: 0 auto; grid-template-columns: repeat(5,minmax(0,1fr)); align-items: center; gap: 12px; }
+.sound-bubble { display: grid; aspect-ratio: 1; place-items: center; border: 3px solid var(--ink); border-radius: 50%; background: #cdeefa; box-shadow: inset -10px -12px 0 rgba(48,127,167,.12),4px 5px 0 var(--ink); color: var(--ink); cursor: pointer; font-family: var(--hand); font-size: clamp(43px, 7vw, 67px); transition: transform 180ms ease, opacity 180ms ease; }
+.sound-bubble:nth-child(3n) { background: #fff0b8; }.sound-bubble:nth-child(4n) { background: #f8d7e3; }
+.sound-bubble:hover { transform: translateY(-5px) scale(1.03); }
+.sound-bubble.popped { pointer-events: none; opacity: 0; transform: scale(.15); }
+.sound-bubble.bubble-wobble { animation: bubble-wobble 350ms ease; }
+@keyframes bubble-wobble { 25%{transform:translateX(-8px)}75%{transform:translateX(8px)} }
+
+.picture-round-cue { display: flex; width: max-content; max-width: 100%; align-items: center; gap: 12px; margin: 0 auto 22px; padding: 12px 20px; border: 2px solid var(--ink); border-radius: 999px; background: #fff3c7; font-size: 19px; font-weight: 900; }
+.picture-choice-grid { display: grid; max-width: 850px; margin: 0 auto; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.picture-match-card { display: flex; min-height: 205px; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px; border: 3px solid var(--ink); border-radius: 22px; background: #fff; box-shadow: 5px 6px 0 var(--ink); color: var(--ink); cursor: pointer; }
+.picture-match-card span { font-size: clamp(70px, 10vw, 100px); line-height: 1; }
+.picture-match-card strong { font-size: 22px; }
+.picture-match-card.correct-pick { background: var(--mint); animation: game-pop 330ms ease; }
+.picture-match-card.try-pick { background: #fff2c8; opacity: .72; }
+@keyframes game-pop { 50% { transform: translateY(-8px) rotate(1deg); } }
+
+.mini-finish { display: grid; min-height: 330px; place-items: center; text-align: center; }
+.mini-finish > div { width: min(650px,100%); padding: 29px; border: 3px solid var(--ink); border-radius: 25px; background: var(--mint-pale); box-shadow: 6px 7px 0 var(--ink); }
+.mini-finish .finish-symbol { display: block; color: var(--yellow); font-size: 78px; line-height: 1; -webkit-text-stroke: 2px var(--ink); animation: finish-star 500ms ease-out; }
+.mini-finish h2 { margin: 14px 0 8px; font-size: 35px; }
+.mini-finish p { color: var(--ink-soft); }
+.mini-finish-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+@keyframes finish-star { from { opacity: 0; transform: scale(.3) rotate(-50deg); } }
+
+/* CVC phonics play lab */
+.phonics-lab-page { background: radial-gradient(circle at 12% 16%,rgba(108,182,217,.22) 0 5px,transparent 6px),radial-gradient(circle at 88% 72%,rgba(247,201,75,.28) 0 6px,transparent 7px),var(--cream); background-size: 62px 62px,76px 76px,auto; }
+.phonics-lab-hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 30px; margin-bottom: 28px; }
+.phonics-lab-hero h1 { margin-bottom: 13px; font-size: clamp(43px,6vw,66px); }
+.phonics-lab-hero p:last-child { max-width: 640px; margin: 0; color: var(--ink-soft); font-size: 18px; }
+.lab-visual { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 180px; border-radius: 28px; background: #dbeff8; }
+.lab-visual span { display: grid; width: 78px; height: 88px; place-items: center; border: 2px solid var(--ink); border-radius: 15px; background: #fff; box-shadow: 4px 5px 0 var(--ink); font-family: var(--hand); font-size: 60px; }
+.lab-visual span:nth-child(2) { background: var(--yellow); transform: translateY(-9px); }.lab-visual span:nth-child(3) { background: var(--mint); }
+.phonics-game-menu .mini-play-card { min-height: 280px; }
+.spell-card .mini-play-icon { background: var(--yellow); }.read-card .mini-play-icon { background: var(--blue); }.rhyme-card .mini-play-icon { background: var(--mint); }
+.phonics-game-topline { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.phonics-game-topline .level-picker { min-width: 150px; }
+.round-status { display: flex; align-items: center; justify-content: space-between; gap: 18px; color: var(--ink-soft); font-size: 13px; font-weight: 850; }
+.round-status p { margin: 0; }
+
+.word-picture { display: flex; width: max-content; min-width: 210px; max-width: 100%; flex-direction: column; align-items: center; gap: 6px; margin: 5px auto 21px; padding: 17px 30px; border: 3px solid var(--ink); border-radius: 23px; background: #fff; box-shadow: 5px 6px 0 var(--ink); }
+.word-picture span { font-size: 86px; line-height: 1; }.word-picture strong { font-size: 24px; }
+.spelling-slots { display: flex; min-height: 104px; justify-content: center; gap: 10px; margin: 15px 0 23px; }
+.spelling-slot { position: relative; display: grid; width: clamp(72px,10vw,94px); aspect-ratio: 1; place-items: center; border: 3px dashed #9eadab; border-radius: 17px; background: #fff; font-family: var(--hand); font-size: clamp(55px,8vw,72px); }
+.spelling-slot.hinted::after { position: absolute; color: rgba(23,60,58,.13); content: attr(data-hint); }
+.spelling-slot.filled { border-style: solid; border-color: var(--ink); background: var(--mint-pale); }
+.letter-bank { display: flex; min-height: 92px; flex-wrap: wrap; justify-content: center; gap: 11px; }
+.bank-letter { display: grid; width: 78px; height: 78px; place-items: center; border: 3px solid var(--ink); border-radius: 16px; background: var(--yellow); box-shadow: 4px 5px 0 var(--ink); color: var(--ink); cursor: pointer; font-family: var(--hand); font-size: 59px; }
+.bank-letter.used { pointer-events: none; opacity: .15; transform: scale(.82); }
+.bank-letter.letter-nudge { animation: bubble-wobble 350ms ease; }
+.game-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 20px; }
+
+.read-word-card { display: grid; min-height: 170px; margin: 4px 0 24px; place-items: center; border: 3px dashed #aebbb6; border-radius: 24px; background: #fffdf8; }
+.read-word-card strong { font-family: var(--hand); font-size: clamp(90px,15vw,135px); font-weight: 400; line-height: 1; }
+.sound-dots { display: flex; justify-content: center; gap: 33px; margin-top: -52px; margin-bottom: 35px; }
+.sound-dots span { width: 15px; height: 15px; border: 2px solid var(--ink); border-radius: 50%; background: var(--coral); }
+.read-choice-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
+
+.rhyme-engine { display: grid; grid-template-columns: .72fr 1.28fr; align-items: center; gap: 25px; }
+.rhyme-target { display: flex; min-height: 280px; flex-direction: column; align-items: center; justify-content: center; padding: 21px; border: 3px solid var(--ink); border-radius: 25px; background: #fff1bd; box-shadow: 5px 6px 0 var(--ink); }
+.rhyme-target span { font-size: 105px; line-height: 1; }.rhyme-target strong { margin-top: 7px; font-family: var(--hand); font-size: 54px; font-weight: 400; }
+.rhyme-choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.rhyme-choices .picture-match-card { min-height: 150px; }.rhyme-choices .picture-match-card span { font-size: 65px; }
+.rhyme-train { display: flex; min-height: 83px; align-items: end; justify-content: center; gap: 5px; margin-top: 25px; }
+.rhyme-train::before { content: "🚂"; font-size: 59px; line-height: 1; }
+.rhyme-train span { display: grid; min-width: 64px; height: 50px; place-items: center; border: 2px solid var(--ink); border-radius: 9px; background: var(--mint); box-shadow: 2px 3px 0 var(--ink); font-family: var(--hand); font-size: 25px; }
+
+.phonics-games-section { padding-block: 35px 78px; }
+.phonics-games-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.phonics-game-card { display: flex; min-height: 355px; flex-direction: column; align-items: flex-start; padding: 25px; border: 2px solid var(--ink); border-radius: 22px; background: var(--paper); box-shadow: 5px 6px 0 var(--ink); color: var(--ink); text-decoration: none; transition: transform 150ms ease; }
+.phonics-game-card:hover { transform: translateY(-5px); }
+.phonics-game-card .game-picture { display: grid; min-width: 105px; height: 83px; margin-bottom: 20px; padding: 8px 15px; place-items: center; border: 2px solid var(--ink); border-radius: 15px; background: var(--yellow); box-shadow: 3px 4px 0 var(--ink); font-family: var(--hand); font-size: 42px; }
+.phonics-game-card:nth-child(2) .game-picture { background: var(--blue); }.phonics-game-card:nth-child(3) .game-picture { background: var(--mint); }
+.phonics-game-card h3 { margin-top: 15px; }.phonics-game-card p { color: var(--ink-soft); }
+.phonics-game-card strong:last-child { margin-top: auto; text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 800px) {
+  .mini-play-grid,
+  .phonics-games-grid { grid-template-columns: 1fr; }
+  .mini-play-card { min-height: 230px; }
+  .phonics-lab-hero,
+  .rhyme-engine { grid-template-columns: 1fr; }
+  .lab-visual { min-height: 145px; }
+  .rhyme-target { min-height: 210px; }
+  .bubble-field { grid-template-columns: repeat(4,minmax(0,1fr)); }
+}
+
+@media (max-width: 560px) {
+  .play-shell { width: min(100% - 22px,1080px); }
+  .play-menu-heading,
+  .play-stage-header { align-items: flex-start; flex-direction: column; }
+  .letter-focus-banner { grid-template-columns: 1fr; }
+  .letter-focus-banner > span { min-height: 170px; }
+  .letter-focus-banner > button { min-height: 170px; border-top: 3px solid var(--ink); border-left: 0; }
+  .memory-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .memory-card { min-height: 118px; }
+  .bubble-field { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .picture-choice-grid,
+  .read-choice-grid { grid-template-columns: 1fr; }
+  .picture-match-card { min-height: 145px; }
+  .picture-match-card span { font-size: 67px; }
+  .phonics-lab-hero { display: block; }
+  .lab-visual { margin-top: 22px; }
+  .round-status { align-items: flex-start; flex-direction: column; }
+  .rhyme-choices { grid-template-columns: 1fr 1fr; }
+  .rhyme-choices .picture-match-card { min-height: 135px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memory-card,
+  .sound-bubble,
+  .mini-play-card,
+  .phonics-game-card { transition: none; }
+}
