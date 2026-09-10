@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A teacher-controlled daily ESL circle-time board for practising the day, date, weather, seasons and feelings together.">
+  <meta name="theme-color" content="#70c9eb">
+  <title>Daily Circle Time Board | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/circle-time.css">
+</head>
+<body class="circle-time-page">
+  <a class="skip-link" href="#circle-board">Skip to the circle-time board</a>
+
+  <header class="circle-toolbar">
+    <a class="circle-brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span><strong>Daily</strong> Circle Time</span>
+    </a>
+    <div class="circle-actions" aria-label="Board controls">
+      <button class="circle-action today-action" id="use-today" type="button"><span aria-hidden="true">📅</span><strong>Set today</strong></button>
+      <button class="circle-action" id="speak-board" type="button"><span aria-hidden="true">🔊</span><strong>Say our board</strong></button>
+      <button class="circle-action" id="reset-board" type="button"><span aria-hidden="true">↻</span><strong>Clear</strong></button>
+      <button class="circle-action" id="open-circle-info" type="button"><span aria-hidden="true">i</span><strong>Teacher info</strong></button>
+    </div>
+  </header>
+
+  <main id="circle-board" class="circle-shell">
+    <section class="circle-welcome" aria-labelledby="circle-title">
+      <div>
+        <p class="circle-kicker">Good morning, everyone!</p>
+        <h1 id="circle-title">Let’s build <em>today’s board.</em></h1>
+        <p id="board-instruction">Tap a space, then tap a picture card. You can also drag cards on a classroom computer.</p>
+      </div>
+      <div class="hello-buttons" aria-label="Spoken welcome prompts">
+        <button type="button" data-say="Hello, everyone!"><span aria-hidden="true">👋</span>Hello!</button>
+        <button type="button" data-say="Good morning!"><span aria-hidden="true">🌅</span>Good morning!</button>
+        <button type="button" data-say="How are you today?"><span aria-hidden="true">💬</span>How are you?</button>
+      </div>
+    </section>
+
+    <p class="audio-message" id="audio-message" role="status" aria-live="polite"></p>
+
+    <div class="daily-board">
+      <section class="board-panel calendar-panel" aria-labelledby="calendar-title">
+        <div class="panel-heading">
+          <div class="panel-title-wrap"><span class="panel-icon" aria-hidden="true">📅</span><div><p>Calendar</p><h2 id="calendar-title">What day is it?</h2></div></div>
+          <button class="ask-button" type="button" data-say="What day is it today?"><span aria-hidden="true">🔊</span> Ask</button>
+        </div>
+
+        <div class="day-slots" aria-label="Yesterday, today and tomorrow">
+          <button class="board-slot day-slot" type="button" data-slot="yesterday" data-accepts="day" aria-pressed="false">
+            <small>Yesterday was</small><span class="slot-value" data-slot-value="yesterday">Choose a day</span>
+          </button>
+          <button class="board-slot day-slot active-slot" type="button" data-slot="today" data-accepts="day" aria-pressed="true">
+            <small>Today is</small><span class="slot-value" data-slot-value="today">Choose a day</span>
+          </button>
+          <button class="board-slot day-slot" type="button" data-slot="tomorrow" data-accepts="day" aria-pressed="false">
+            <small>Tomorrow will be</small><span class="slot-value" data-slot-value="tomorrow">Choose a day</span>
+          </button>
+        </div>
+
+        <p class="tap-hint" id="day-hint"><span aria-hidden="true">☝️</span> Choose a day space, then move a day card.</p>
+        <div class="piece-tray day-pieces" data-piece-tray="day" aria-label="Day cards">
+          <button class="move-piece" type="button" draggable="true" data-type="day" data-value="Monday"><span aria-hidden="true">M</span><strong>Monday</strong></button>
+          <button class="move-piece" type="button" draggable="true" data-type="day" data-value="Tuesday"><span aria-hidden="true">T</span><strong>Tuesday</strong></button>
+          <button class="move-piece" type="button" draggable="true" data-type="day" data-value="Wednesday"><span aria-hidden="true">W</span><strong>Wednesday</strong></button>
+          <button class="move-piece" type="button" draggable="true" data-type="day" data-value="Thursday"><span aria-hidden="true">T</span><strong>Thursday</strong></button>
+          <button class="move-piece" type="button" draggable="true" data-type="day" data-value="Friday"><span aria-hidden="true">F</span><strong>Friday</strong></button>
+          <button class="move-piece" type="button" draggable="true" data-type="day" data-value="Saturday"><span aria-hidden="true">S</span><strong>Saturday</strong></button>
+          <button class="move-piece" type="button" draggable="true" data-type="day" data-value="Sunday"><span aria-hidden="true">S</span><strong>Sunday</strong></button>
+        </div>
+
+        <div class="date-builder" aria-label="Build the date">
+          <div>
+            <p class="date-label">The date is</p>
+            <div class="date-slots">
+              <button class="board-slot date-slot" type="button" data-slot="date" data-accepts="date"><small>Date</small><span class="slot-value" data-slot-value="date">?</span></button>
+              <button class="board-slot month-slot" type="button" data-slot="month" data-accepts="month"><small>Month</small><span class="slot-value" data-slot-value="month">Choose</span></button>
+            </div>
+          </div>
+          <div class="date-piece-area">
+            <details class="piece-drawer">
+              <summary><span aria-hidden="true">🔢</span> Choose date</summary>
+              <div class="number-pieces piece-tray" data-piece-tray="date" aria-label="Dates from 1 to 31"></div>
+            </details>
+            <details class="piece-drawer">
+              <summary><span aria-hidden="true">🗓️</span> Choose month</summary>
+              <div class="month-pieces piece-tray" data-piece-tray="month" aria-label="Month cards"></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="board-panel weather-panel" aria-labelledby="weather-title">
+        <div class="panel-heading">
+          <div class="panel-title-wrap"><span class="panel-icon" aria-hidden="true">🌦️</span><div><p>Look outside</p><h2 id="weather-title">What’s the weather like?</h2></div></div>
+          <button class="ask-button" type="button" data-say="What is the weather like today?"><span aria-hidden="true">🔊</span> Ask</button>
+        </div>
+        <button class="board-slot picture-slot weather-slot active-slot" type="button" data-slot="weather" data-accepts="weather" aria-pressed="true">
+          <span class="empty-picture" aria-hidden="true">?</span><span class="slot-value" data-slot-value="weather">Choose the weather</span>
+        </button>
+        <div class="piece-tray picture-pieces" data-piece-tray="weather" aria-label="Weather picture cards">
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="sunny" data-emoji="☀️"><span aria-hidden="true">☀️</span><strong>Sunny</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="cloudy" data-emoji="☁️"><span aria-hidden="true">☁️</span><strong>Cloudy</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="rainy" data-emoji="🌧️"><span aria-hidden="true">🌧️</span><strong>Rainy</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="windy" data-emoji="💨"><span aria-hidden="true">💨</span><strong>Windy</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="stormy" data-emoji="⛈️"><span aria-hidden="true">⛈️</span><strong>Stormy</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="snowy" data-emoji="🌨️"><span aria-hidden="true">🌨️</span><strong>Snowy</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="hot" data-emoji="🥵"><span aria-hidden="true">🥵</span><strong>Hot</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="weather" data-value="cold" data-emoji="🥶"><span aria-hidden="true">🥶</span><strong>Cold</strong></button>
+        </div>
+        <button class="offscreen-prompt" type="button" data-say="Let’s look outside. What can you see? What can you feel?"><span aria-hidden="true">👀</span><strong>Look outside together</strong><small>What can you see and feel?</small></button>
+      </section>
+
+      <section class="board-panel feelings-panel" aria-labelledby="feelings-title">
+        <div class="panel-heading">
+          <div class="panel-title-wrap"><span class="panel-icon" aria-hidden="true">💛</span><div><p>Check in</p><h2 id="feelings-title">How do you feel?</h2></div></div>
+          <button class="ask-button" type="button" data-say="How do you feel today?"><span aria-hidden="true">🔊</span> Ask</button>
+        </div>
+        <button class="board-slot picture-slot feeling-slot active-slot" type="button" data-slot="feeling" data-accepts="feeling" aria-pressed="true">
+          <span class="empty-picture" aria-hidden="true">?</span><span class="slot-value" data-slot-value="feeling">Choose a feeling</span>
+        </button>
+        <div class="piece-tray picture-pieces feeling-pieces" data-piece-tray="feeling" aria-label="Feeling picture cards">
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="feeling" data-value="happy" data-emoji="😊"><span aria-hidden="true">😊</span><strong>Happy</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="feeling" data-value="excited" data-emoji="🤩"><span aria-hidden="true">🤩</span><strong>Excited</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="feeling" data-value="calm" data-emoji="😌"><span aria-hidden="true">😌</span><strong>Calm</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="feeling" data-value="tired" data-emoji="😴"><span aria-hidden="true">😴</span><strong>Tired</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="feeling" data-value="sad" data-emoji="😢"><span aria-hidden="true">😢</span><strong>Sad</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="feeling" data-value="worried" data-emoji="😟"><span aria-hidden="true">😟</span><strong>Worried</strong></button>
+        </div>
+        <p class="feelings-note"><span aria-hidden="true">♥</span> Every feeling is welcome. Children may point instead of speaking.</p>
+      </section>
+
+      <section class="board-panel season-panel" aria-labelledby="season-title">
+        <div class="panel-heading">
+          <div class="panel-title-wrap"><span class="panel-icon" aria-hidden="true">🌳</span><div><p>Our world</p><h2 id="season-title">What season is it?</h2></div></div>
+          <button class="ask-button" type="button" data-say="What season is it?"><span aria-hidden="true">🔊</span> Ask</button>
+        </div>
+        <button class="board-slot picture-slot season-slot active-slot" type="button" data-slot="season" data-accepts="season" aria-pressed="true">
+          <span class="empty-picture" aria-hidden="true">?</span><span class="slot-value" data-slot-value="season">Choose a season</span>
+        </button>
+        <div class="piece-tray season-pieces" data-piece-tray="season" aria-label="Season picture cards">
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="season" data-value="spring" data-emoji="🌷"><span aria-hidden="true">🌷</span><strong>Spring</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="season" data-value="summer" data-emoji="🏖️"><span aria-hidden="true">🏖️</span><strong>Summer</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="season" data-value="autumn" data-emoji="🍂"><span aria-hidden="true">🍂</span><strong>Autumn</strong></button>
+          <button class="move-piece picture-piece" type="button" draggable="true" data-type="season" data-value="winter" data-emoji="⛄"><span aria-hidden="true">⛄</span><strong>Winter</strong></button>
+        </div>
+        <div class="movement-card">
+          <span class="movement-emoji" id="movement-emoji" aria-hidden="true">🙆</span>
+          <div><small>Circle-time movement</small><strong id="movement-text">Reach up high, then touch your toes.</strong></div>
+          <button id="new-movement" type="button"><span aria-hidden="true">🎲</span> New action</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="today-sentence" aria-labelledby="sentence-title">
+      <div class="sentence-mascot" aria-hidden="true">🗣️</div>
+      <div>
+        <p>Say it together</p>
+        <h2 id="sentence-title">Our circle-time sentence</h2>
+        <div class="sentence-preview" id="sentence-preview">Build the board to make today’s sentence.</div>
+      </div>
+      <button id="say-sentence" type="button"><span aria-hidden="true">🔊</span><strong>Hear and repeat</strong></button>
+    </section>
+  </main>
+
+  <dialog class="circle-dialog" id="circle-info-dialog" aria-labelledby="circle-info-title">
+    <form method="dialog"><button class="circle-dialog-close" type="submit" aria-label="Close teacher information">×</button></form>
+    <p class="circle-kicker">Teacher information</p>
+    <h2 id="circle-info-title">Use the board to start real talk.</h2>
+    <div class="info-grid">
+      <article><span aria-hidden="true">☝️</span><h3>Choose together</h3><p>Invite one child to select or drag each card. Tap a filled space or the speaker buttons to hear a clear model.</p></article>
+      <article><span aria-hidden="true">🗣️</span><h3>Model, then repeat</h3><p>Accept pointing, a single word or a full sentence. Expand gently: “rainy” can become “It is rainy today.”</p></article>
+      <article><span aria-hidden="true">👣</span><h3>Leave the screen</h3><p>Look through the window, feel the air, act out a feeling, find the date and complete the movement prompt.</p></article>
+      <article><span aria-hidden="true">🤝</span><h3>Assistant role</h3><p>Hold up matching real cards, support turn-taking and quietly rehearse the vocabulary with children who need it.</p></article>
+    </div>
+    <p class="privacy-note">Today’s choices stay in this browser only and reset automatically when a new day begins.</p>
+  </dialog>
+
+  <script type="module" src="../scripts/circle-time.js"></script>
+</body>
+</html>

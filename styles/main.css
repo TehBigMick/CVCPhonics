@@ -661,6 +661,40 @@ h3 {
 
 .featured-path-link { color: var(--coral-dark); }
 
+.circle-home-card {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  align-items: center;
+  gap: clamp(30px, 6vw, 76px);
+  margin-top: 6px;
+  margin-bottom: 75px;
+  padding: clamp(28px, 5vw, 55px);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-large);
+  background: linear-gradient(125deg, #ddf5ff, #fff4bf);
+  box-shadow: 8px 9px 0 var(--ink);
+}
+
+.circle-home-card h2 { margin: 8px 0 10px; font-size: clamp(34px, 4vw, 51px); }
+.circle-home-card > div:last-child > p:not(.kicker) { max-width: 730px; color: var(--ink-soft); font-size: 17px; }
+.circle-home-art { position: relative; min-height: 270px; }
+.circle-home-art span,.circle-home-art i {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--ink);
+  background: #fff;
+  box-shadow: 5px 6px 0 var(--ink);
+  font-style: normal;
+  font-weight: 950;
+}
+.circle-art-day { top: 18px; left: 5%; width: 66%; min-height: 83px; border-radius: 19px; color: #166f90; font-size: clamp(20px, 2.5vw, 31px); transform: rotate(-3deg); }
+.circle-art-weather { top: 95px; right: 2%; width: 118px; height: 118px; border-radius: 50%; font-size: 61px; transform: rotate(5deg); }
+.circle-art-feeling { bottom: 0; left: 17%; width: 105px; height: 105px; border-radius: 24px; font-size: 55px; transform: rotate(-5deg); }
+.circle-home-art i { right: 13%; bottom: 8px; width: 82px; height: 72px; border-radius: 17px; background: var(--yellow); font-family: var(--hand); font-size: 45px; transform: rotate(3deg); }
+.circle-home-features { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+.circle-home-features span { padding: 7px 11px; border: 1px solid rgba(36,48,46,.22); border-radius: 999px; background: rgba(255,255,255,.64); font-size: 12px; font-weight: 850; }
+
 .practice-band {
   padding-block: 90px;
   background: var(--ink);
@@ -2187,12 +2221,15 @@ kbd { padding: 2px 5px; border: 1px solid #b8c1bb; border-bottom-width: 2px; bor
 .check-in-active .development-workspace { padding-top: 55px; }
 
 @media (max-width: 920px) {
+  .circle-home-card { grid-template-columns: .8fr 1.2fr; }
   .development-home-card { grid-template-columns: 0.7fr 1.3fr; }
   .development-intro { grid-template-columns: 1fr 0.82fr; gap: 35px; }
   .development-visual { min-height: 410px; }
 }
 
 @media (max-width: 780px) {
+  .circle-home-card { grid-template-columns: 1fr; }
+  .circle-home-art { width: min(430px, 100%); margin-inline: auto; }
   .development-home-card { grid-template-columns: 1fr; margin-top: -10px; }
   .development-home-art { min-height: 320px; }
   .development-intro { min-height: auto; grid-template-columns: 1fr; gap: 30px; padding-block: 50px 65px; }
@@ -2206,6 +2243,11 @@ kbd { padding: 2px 5px; border: 1px solid #b8c1bb; border-bottom-width: 2px; bor
 }
 
 @media (max-width: 600px) {
+  .circle-home-card { width: min(100% - 24px, 1180px); margin-bottom: 65px; padding: 27px 20px; box-shadow: 5px 6px 0 var(--ink); }
+  .circle-home-art { min-height: 235px; }
+  .circle-art-weather { width: 100px; height: 100px; font-size: 52px; }
+  .circle-art-feeling { width: 90px; height: 90px; font-size: 48px; }
+  .circle-home-card .button { width: 100%; }
   .development-workspace { width: min(100% - 24px, 980px); padding-bottom: 70px; }
   .development-home-card { margin-bottom: 75px; }
   .development-home-art { min-height: 270px; }
