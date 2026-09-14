@@ -28,7 +28,8 @@ let rounds = [];
 let roundIndex = 0;
 let selected = false;
 let locked = false;
-let preferredVoice = null;
+let activeAudio = null;
+let audioGeneration = 0;
 let dragState = null;
 let suppressObjectClick = false;
 
@@ -41,33 +42,94 @@ function shuffle(values) {
   return copy;
 }
 
-function chooseVoice() {
-  if (!('speechSynthesis' in window)) return;
-  const voices = window.speechSynthesis.getVoices().filter(voice => /^en/i.test(voice.lang));
-  const score = voice => {
-    let points = 0;
-    if (/^en-GB/i.test(voice.lang)) points += 12;
-    else if (/^en/i.test(voice.lang)) points += 5;
-    if (/natural|neural|sonia|libby|serena|susan|google uk/i.test(voice.name)) points += 9;
-    if (voice.default) points += 2;
-    return points;
-  };
-  preferredVoice = [...voices].sort((a, b) => score(b) - score(a))[0] || null;
+const audioRoot = '../assets/audio/weekly';
+const audioCache = new Map();
+
+function audioFor(source) {
+  if (!audioCache.has(source)) {
+    const audio = new Audio(source);
+    audio.preload = 'auto';
+    audioCache.set(source, audio);
+  }
+  return audioCache.get(source);
 }
 
-function speak(text, statusTarget = speechStatus) {
+function stopAudio() {
+  audioGeneration += 1;
+  if (!activeAudio) return;
+  activeAudio.onended = null;
+  activeAudio.onerror = null;
+  activeAudio.pause();
+  activeAudio.currentTime = 0;
+  activeAudio = null;
+}
+
+function showAudioFallback(text, statusTarget) {
+  if (statusTarget) statusTarget.textContent = `Audio unavailable. Say together: “${text}”`;
+}
+
+function playAudio(source, text, statusTarget = speechStatus) {
+  stopAudio();
   if (statusTarget) statusTarget.textContent = `Listen: “${text}”`;
-  if (!('speechSynthesis' in window)) {
-    if (statusTarget) statusTarget.textContent = `Say together: “${text}”`;
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-GB';
-  utterance.rate = 0.84;
-  utterance.pitch = 1.02;
-  if (preferredVoice) utterance.voice = preferredVoice;
-  window.speechSynthesis.speak(utterance);
+  const audio = audioFor(source);
+  activeAudio = audio;
+  audio.currentTime = 0;
+  audio.onended = () => {
+    if (activeAudio === audio) activeAudio = null;
+  };
+  audio.onerror = () => showAudioFallback(text, statusTarget);
+  const playback = audio.play();
+  if (playback?.catch) playback.catch(() => showAudioFallback(text, statusTarget));
+}
+
+function playAudioSequence(sources, text, statusTarget = speechStatus) {
+  stopAudio();
+  if (statusTarget) statusTarget.textContent = `Listen: “${text}”`;
+  const generation = audioGeneration;
+  let index = 0;
+
+  const playNext = () => {
+    if (generation !== audioGeneration) return;
+    if (index >= sources.length) {
+      activeAudio = null;
+      return;
+    }
+
+    const audio = audioFor(sources[index]);
+    index += 1;
+    activeAudio = audio;
+    audio.currentTime = 0;
+    audio.onended = playNext;
+    audio.onerror = playNext;
+    const playback = audio.play();
+    if (playback?.catch) playback.catch(() => showAudioFallback(text, statusTarget));
+  };
+
+  playNext();
+}
+
+function wordAudioPath(word) {
+  return `${audioRoot}/words/${word}.m4a`;
+}
+
+function instructionAudioPath(round) {
+  return `${audioRoot}/instructions/give-${round.object.word}-to-${round.character.name.toLowerCase()}.m4a`;
+}
+
+function playWord(word, statusTarget = speechStatus) {
+  playAudio(wordAudioPath(word), word, statusTarget);
+}
+
+function playInstruction(round = currentRound(), statusTarget = null) {
+  if (!round) return;
+  playAudio(instructionAudioPath(round), instructionText(round), statusTarget);
+}
+
+function preloadAudioFiles() {
+  vocabulary.forEach(({ word }) => audioFor(wordAudioPath(word)));
+  vocabulary.forEach(object => {
+    characters.forEach(character => audioFor(instructionAudioPath({ object, character })));
+  });
 }
 
 function createRounds() {
@@ -84,8 +146,7 @@ function currentRound() {
   return rounds[roundIndex];
 }
 
-function instructionText() {
-  const round = currentRound();
+function instructionText(round = currentRound()) {
   return round ? `Give the ${round.object.word} to ${round.character.name}.` : '';
 }
 
@@ -142,7 +203,7 @@ function renderRound(announce = false) {
   nextButton.innerHTML = 'Next round <span aria-hidden="true">→</span>';
   renderStars();
   attachCharacterEvents();
-  if (announce) speak(instructionText(), null);
+  if (announce) playInstruction(round);
 }
 
 function selectObject(announce = true) {
@@ -151,14 +212,14 @@ function selectObject(announce = true) {
   objectCard.classList.add('selected');
   objectCard.setAttribute('aria-pressed', 'true');
   feedback.textContent = `${currentRound().object.word[0].toUpperCase()}${currentRound().object.word.slice(1)} is ready. Choose a friend.`;
-  if (announce) speak(currentRound().object.word, null);
+  if (announce) playWord(currentRound().object.word, null);
 }
 
 function tryGiving(characterName, card) {
   if (locked) return;
   if (!selected) {
     feedback.textContent = 'Choose or drag the object first.';
-    speak(`Choose the ${currentRound().object.word} first.`, null);
+    playWord(currentRound().object.word, null);
     return;
   }
   const round = currentRound();
@@ -167,7 +228,7 @@ function tryGiving(characterName, card) {
     void card.offsetWidth;
     card.classList.add('gentle-try');
     feedback.textContent = `Good try. ${round.character.name} is waiting for the ${round.object.word}.`;
-    speak(`Try again. ${instructionText()}`, null);
+    playInstruction(round);
     return;
   }
   locked = true;
@@ -175,7 +236,6 @@ function tryGiving(characterName, card) {
   card.insertAdjacentHTML('beforeend', `<span class="gift-badge" aria-hidden="true">${round.object.picture}</span>`);
   objectCard.classList.add('delivered');
   feedback.textContent = `Well done! You gave the ${round.object.word} to ${round.character.name}.`;
-  speak(feedback.textContent, null);
   renderStars(roundIndex + 1);
   nextButton.hidden = false;
   if (roundIndex === rounds.length - 1) nextButton.innerHTML = 'Finish the game <span aria-hidden="true">★</span>';
@@ -191,7 +251,6 @@ function showFinish() {
   nextButton.hidden = false;
   nextButton.innerHTML = 'Play again <span aria-hidden="true">↻</span>';
   renderStars();
-  speak('Brilliant sharing! You helped every friend.', null);
 }
 
 function startGame() {
@@ -211,20 +270,22 @@ document.querySelectorAll('[data-vocabulary]').forEach(card => {
     const word = card.dataset.vocabulary;
     card.classList.add('is-speaking');
     window.setTimeout(() => card.classList.remove('is-speaking'), 260);
-    speak(word);
+    playWord(word);
   });
 });
 
-document.getElementById('hear-all-words').addEventListener('click', () => speak('Bag. Pencil. Chair. Book.'));
-document.getElementById('repeat-give-instruction').addEventListener('click', () => speak(instructionText() || 'Brilliant sharing!', null));
+document.getElementById('hear-all-words').addEventListener('click', () => {
+  playAudioSequence(vocabulary.map(({ word }) => wordAudioPath(word)), 'Bag. Pencil. Chair. Book.');
+});
+document.getElementById('repeat-give-instruction').addEventListener('click', () => playInstruction());
 document.getElementById('shuffle-characters').addEventListener('click', () => {
   if (locked) return;
   charactersGrid.innerHTML = shuffle(characters).map(characterCard).join('');
   attachCharacterEvents();
   feedback.textContent = 'The friends have moved. Listen again!';
-  speak(instructionText(), null);
+  playInstruction();
 });
-document.getElementById('hear-real-prompt').addEventListener('click', () => speak('Find a classroom object. Give it to a friend. Say, here you are.'));
+document.getElementById('hear-real-prompt').addEventListener('click', () => playInstruction());
 
 objectCard.addEventListener('click', () => {
   if (suppressObjectClick) return;
@@ -283,9 +344,5 @@ nextButton.addEventListener('click', () => {
   renderRound(true);
 });
 
-if ('speechSynthesis' in window) {
-  chooseVoice();
-  window.speechSynthesis.addEventListener?.('voiceschanged', chooseVoice);
-}
-
+preloadAudioFiles();
 startGame();
