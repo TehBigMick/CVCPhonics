@@ -297,6 +297,18 @@ h3 {
   color: #162f2e;
 }
 
+.button-weekly {
+  border-color: var(--ink);
+  background: var(--yellow);
+  box-shadow: 4px 5px 0 var(--ink);
+  color: #162f2e;
+}
+
+.button-weekly:hover {
+  background: #ffdd7e;
+  box-shadow: 2px 3px 0 var(--ink);
+}
+
 .button-primary:hover {
   background: #f8806b;
   box-shadow: 2px 3px 0 var(--ink);

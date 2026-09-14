@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="This week’s classroom-object vocabulary: bag, pencil, chair and book, with a playful listening and sharing game.">
+  <meta name="theme-color" content="#ffcf56">
+  <title>This Week: Classroom Objects | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/weekly.css">
+</head>
+<body class="weekly-page">
+  <a class="skip-link" href="#weekly-main">Skip to this week’s activities</a>
+
+  <header class="weekly-header">
+    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
+      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
+      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
+    </a>
+    <nav aria-label="Weekly page navigation">
+      <a href="../index.html">Home</a>
+      <a href="../circle-time/index.html">Circle time</a>
+      <a class="active" href="index.html">This week</a>
+    </nav>
+  </header>
+
+  <main id="weekly-main">
+    <section class="weekly-hero weekly-shell" aria-labelledby="weekly-title">
+      <div class="weekly-hero-copy">
+        <a class="back-link" href="../index.html">← Back to all activities</a>
+        <p class="weekly-kicker">This week’s content</p>
+        <h1 id="weekly-title">Classroom <em>objects</em></h1>
+        <p>Look, listen and practise giving familiar classroom objects to Polly, Leo, Gina and Mike.</p>
+        <div class="weekly-goals" aria-label="Learning goals">
+          <span><b aria-hidden="true">👂</b> Listen</span>
+          <span><b aria-hidden="true">☝️</b> Choose</span>
+          <span><b aria-hidden="true">🤲</b> Give</span>
+        </div>
+      </div>
+      <div class="weekly-hero-art" aria-hidden="true">
+        <span class="hero-object hero-bag">🎒</span>
+        <span class="hero-object hero-pencil">✏️</span>
+        <span class="hero-object hero-chair">🪑</span>
+        <span class="hero-object hero-book">📘</span>
+        <div class="hero-speech">Give me the book, please!</div>
+      </div>
+    </section>
+
+    <section class="vocabulary-section weekly-shell" aria-labelledby="vocabulary-title">
+      <div class="weekly-section-heading">
+        <div><p class="weekly-kicker">Look and listen</p><h2 id="vocabulary-title">Tap a picture to hear the word.</h2></div>
+        <button class="weekly-audio-button" id="hear-all-words" type="button"><span aria-hidden="true">🔊</span> Hear all four</button>
+      </div>
+      <div class="vocabulary-grid">
+        <button class="vocabulary-card bag-card" type="button" data-vocabulary="bag">
+          <span class="vocabulary-picture" aria-hidden="true">🎒</span><strong>bag</strong><small><span aria-hidden="true">🔊</span> Tap and say</small>
+        </button>
+        <button class="vocabulary-card pencil-card" type="button" data-vocabulary="pencil">
+          <span class="vocabulary-picture" aria-hidden="true">✏️</span><strong>pencil</strong><small><span aria-hidden="true">🔊</span> Tap and say</small>
+        </button>
+        <button class="vocabulary-card chair-card" type="button" data-vocabulary="chair">
+          <span class="vocabulary-picture" aria-hidden="true">🪑</span><strong>chair</strong><small><span aria-hidden="true">🔊</span> Tap and say</small>
+        </button>
+        <button class="vocabulary-card book-card" type="button" data-vocabulary="book">
+          <span class="vocabulary-picture" aria-hidden="true">📘</span><strong>book</strong><small><span aria-hidden="true">🔊</span> Tap and say</small>
+        </button>
+      </div>
+      <p class="speech-status" id="speech-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="give-game-section" aria-labelledby="give-game-title">
+      <div class="weekly-shell">
+        <div class="game-heading">
+          <div><p class="weekly-kicker weekly-kicker-light">Listen · move · share</p><h2 id="give-game-title">Give It to a Friend</h2></div>
+          <p>Drag the object to the right friend, or tap the object and then tap a character.</p>
+        </div>
+
+        <div class="give-game" id="give-game">
+          <div class="game-topbar">
+            <div class="round-progress"><span id="round-label">Round 1 of 8</span><div id="round-stars" class="round-stars" aria-label="0 completed rounds"></div></div>
+            <div class="game-tools">
+              <button id="repeat-give-instruction" type="button"><span aria-hidden="true">🔊</span> Repeat</button>
+              <button id="shuffle-characters" type="button"><span aria-hidden="true">🔀</span> Shuffle</button>
+            </div>
+          </div>
+
+          <div class="instruction-card">
+            <span class="instruction-speaker" aria-hidden="true">🗣️</span>
+            <div><small>Listen and help</small><h3 id="give-instruction">Give the bag to Polly.</h3></div>
+          </div>
+
+          <div class="object-shelf">
+            <p>Your object</p>
+            <button class="game-object" id="game-object" type="button" draggable="true" aria-pressed="false">
+              <span id="game-object-picture" aria-hidden="true">🎒</span><strong id="game-object-word">bag</strong><small>Drag me!</small>
+            </button>
+            <p class="tap-direction" id="tap-direction">Tap or drag the object, then choose a friend.</p>
+          </div>
+
+          <div class="characters-grid" id="characters-grid" aria-label="Choose a character"></div>
+
+          <div class="game-feedback" id="give-feedback" role="status" aria-live="polite">Who needs the object?</div>
+          <button class="next-round-button" id="next-give-round" type="button" hidden>Next round <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="real-world-practice weekly-shell" aria-labelledby="real-practice-title">
+      <div class="real-practice-icon" aria-hidden="true">🏫</div>
+      <div><p class="weekly-kicker">Away from the screen</p><h2 id="real-practice-title">Now use the real objects.</h2><p>Put a bag, pencil, chair and book around the room. Ask one child to find an object and give it to a friend. Model “Here you are” and “Thank you”.</p></div>
+      <button id="hear-real-prompt" type="button"><span aria-hidden="true">🔊</span><strong>Hear the class prompt</strong></button>
+    </section>
+
+    <p class="artwork-note weekly-shell">Character names are used for classroom practice. The animal symbols are generic representations, not official Cambridge artwork.</p>
+  </main>
+
+  <footer class="site-footer"><div class="page-shell footer-inner"><p>Michael's Phonics Hub</p><p>Read · build · grow</p></div></footer>
+  <script type="module" src="../scripts/weekly.js"></script>
+</body>
+</html>
