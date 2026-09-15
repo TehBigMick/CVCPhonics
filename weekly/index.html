@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="This week’s classroom-object vocabulary: bag, pencil, chair and book, with a playful listening and sharing game.">
+  <meta name="description" content="This week’s classroom-object vocabulary and playful Aa and Bb first-sound games for young learners.">
   <meta name="theme-color" content="#ffcf56">
   <title>This Week: Classroom Objects | Michael's Phonics Hub</title>
   <link rel="stylesheet" href="../styles/main.css">
@@ -101,6 +101,88 @@
 
           <div class="game-feedback" id="give-feedback" role="status" aria-live="polite">Who needs the object?</div>
           <button class="next-round-button" id="next-give-round" type="button" hidden>Next round <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="weekly-phonics-section" aria-labelledby="weekly-phonics-title">
+      <div class="weekly-shell">
+        <div class="weekly-section-heading phonics-section-heading">
+          <div>
+            <p class="weekly-kicker">Phonics focus</p>
+            <h2 id="weekly-phonics-title">Meet <em>Aa</em> and <em>Bb</em></h2>
+            <p>Say the picture names, stretch the first sound and find the four words that belong to each letter.</p>
+          </div>
+          <div class="phonics-method" aria-label="How to play">
+            <span><b>1</b> Say it</span><span><b>2</b> Hear it</span><span><b>3</b> Tap it</span>
+          </div>
+        </div>
+
+        <div class="letter-focus-grid">
+          <article class="letter-focus-card letter-focus-a">
+            <div class="letter-focus-copy">
+              <span class="letter-pair" aria-hidden="true">Aa</span>
+              <div><p>Short a sound</p><h3>Open wide: <strong>/a/</strong></h3><small>/a/ /a/ apple</small></div>
+            </div>
+            <div class="letter-word-list" aria-label="Aa words">
+              <span><b aria-hidden="true">🍎</b> apple</span>
+              <span><b aria-hidden="true">🪓</b> axe</span>
+              <span><b aria-hidden="true">🐜</b> ant</span>
+              <span><b aria-hidden="true">🐊</b> alligator</span>
+            </div>
+            <button type="button" data-start-letter-hunt="a">Play the Aa game <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="letter-focus-card letter-focus-b">
+            <div class="letter-focus-copy">
+              <span class="letter-pair" aria-hidden="true">Bb</span>
+              <div><p>Bouncy b sound</p><h3>Bring lips together: <strong>/b/</strong></h3><small>/b/ /b/ bear</small></div>
+            </div>
+            <div class="letter-word-list" aria-label="Bb words">
+              <span><b aria-hidden="true">🐻</b> bear</span>
+              <span><b aria-hidden="true">🛏️</b> bed</span>
+              <span><b aria-hidden="true">🐦</b> bird</span>
+              <span><b aria-hidden="true">🍌</b> banana</span>
+            </div>
+            <button type="button" data-start-letter-hunt="b">Play the Bb game <span aria-hidden="true">→</span></button>
+          </article>
+        </div>
+
+        <div class="letter-hunt" id="letter-hunt" hidden>
+          <div class="letter-hunt-topbar">
+            <div><p class="weekly-kicker" id="hunt-kicker">Short a sound</p><h3 id="hunt-title">Aa Apple Orchard</h3></div>
+            <button class="hunt-close" id="close-letter-hunt" type="button">Close <span aria-hidden="true">×</span></button>
+          </div>
+
+          <div class="hunt-progress-row">
+            <span id="hunt-progress-label">0 of 4 found</span>
+            <div class="hunt-progress-track" aria-hidden="true"><span id="hunt-progress-fill"></span></div>
+          </div>
+
+          <div class="hunt-task">
+            <span class="hunt-letter" id="hunt-letter-badge" aria-hidden="true">Aa</span>
+            <div>
+              <p class="hunt-action" id="hunt-action">Open wide for /a/.</p>
+              <h4 id="hunt-instruction">Say each picture. Tap the four words that begin with Aa.</h4>
+            </div>
+          </div>
+
+          <div class="hunt-collection-wrap">
+            <p id="hunt-collection-label">Your Aa collection</p>
+            <div class="hunt-collection" id="hunt-collection" aria-label="Words found"></div>
+          </div>
+
+          <div class="letter-hunt-grid" id="hunt-options" role="group" aria-label="Choose words beginning with Aa"></div>
+          <p class="hunt-feedback" id="hunt-feedback" role="status" aria-live="polite">Say a picture name and listen to its first sound.</p>
+
+          <div class="hunt-finish" id="hunt-finish" hidden>
+            <span aria-hidden="true">★</span>
+            <div><h4 id="hunt-finish-title">Amazing Aa!</h4><p id="hunt-finish-copy">You found all four Aa words.</p></div>
+            <div class="hunt-finish-actions">
+              <button id="replay-letter-hunt" type="button">Play again</button>
+              <button id="switch-letter-hunt" type="button">Try Bb next <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

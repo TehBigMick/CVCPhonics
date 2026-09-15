@@ -112,6 +112,91 @@ body.weekly-page {
 .give-game.game-complete .instruction-card { background: var(--week-purple); }
 .give-game.game-complete .characters-grid,.give-game.game-complete .object-shelf { display: none; }
 
+
+/* Weekly Aa and Bb sound hunts */
+.weekly-phonics-section {
+  padding-block: 82px 90px;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.5) 0 5px, transparent 6px),
+    linear-gradient(145deg, #dff3ee, #dceffc);
+  background-size: 58px 58px, auto;
+}
+.phonics-section-heading { align-items: end; }
+.phonics-section-heading h2 { margin: 0 0 8px; font-size: clamp(39px,5vw,60px); }
+.phonics-section-heading h2 em { color: #c74835; }
+.phonics-section-heading > div:first-child > p:last-child { max-width: 690px; margin: 0; color: #536769; font-weight: 750; }
+.phonics-method { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.phonics-method span { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 2px solid var(--week-ink); border-radius: 999px; background: #fff; font-size: 12px; font-weight: 900; }
+.phonics-method b { display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; background: var(--week-yellow); }
+
+.letter-focus-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; margin-top: 30px; }
+.letter-focus-card { display: flex; min-height: 405px; flex-direction: column; gap: 22px; padding: clamp(22px,3vw,32px); border: 3px solid var(--week-ink); border-radius: 28px; background: #fff8cf; box-shadow: 6px 7px 0 var(--week-ink); }
+.letter-focus-b { background: #e3f2ff; }
+.letter-focus-copy { display: flex; align-items: center; gap: 20px; }
+.letter-pair { display: grid; width: 118px; aspect-ratio: 1; flex: 0 0 auto; place-items: center; border: 3px solid var(--week-ink); border-radius: 25px; background: var(--week-yellow); box-shadow: 4px 5px 0 var(--week-ink); font-family: var(--hand); font-size: 66px; line-height: 1; }
+.letter-focus-b .letter-pair { background: var(--week-blue); }
+.letter-focus-copy p { margin: 0 0 5px; color: #657476; font-size: 11px; font-weight: 950; letter-spacing: .1em; text-transform: uppercase; }
+.letter-focus-copy h3 { margin: 0 0 5px; font-size: clamp(23px,2.8vw,33px); }
+.letter-focus-copy h3 strong { color: #ba4432; }
+.letter-focus-b .letter-focus-copy h3 strong { color: #17668a; }
+.letter-focus-copy small { color: #536769; font-size: 14px; font-weight: 850; }
+.letter-word-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+.letter-word-list span { display: flex; min-height: 55px; align-items: center; gap: 9px; padding: 8px 11px; border: 2px solid rgba(36,58,60,.24); border-radius: 15px; background: rgba(255,255,255,.72); font-size: 15px; font-weight: 900; }
+.letter-word-list b { font-size: 28px; line-height: 1; }
+.letter-focus-card > button { display: flex; width: 100%; min-height: 59px; align-items: center; justify-content: space-between; margin-top: auto; padding: 12px 17px; border: 3px solid var(--week-ink); border-radius: 17px; background: var(--week-ink); color: #fff; cursor: pointer; font-weight: 950; }
+.letter-focus-card > button:hover { transform: translateY(-2px); }
+.letter-focus-card > button span { font-size: 24px; }
+
+.letter-hunt { margin-top: 34px; padding: clamp(20px,4vw,38px); border: 3px solid var(--week-ink); border-radius: 30px; background: #fffdf6; box-shadow: 7px 8px 0 var(--week-ink); scroll-margin-top: 18px; }
+.letter-hunt[hidden],.hunt-finish[hidden] { display: none; }
+.letter-hunt[data-letter="a"] { --hunt-accent: var(--week-yellow); --hunt-deep: #b94835; }
+.letter-hunt[data-letter="b"] { --hunt-accent: var(--week-blue); --hunt-deep: #17668a; }
+.letter-hunt-topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.letter-hunt-topbar h3 { margin: 0; font-size: clamp(31px,4vw,46px); }
+.hunt-close { padding: 8px 12px; border: 2px solid var(--week-ink); border-radius: 999px; background: #fff; cursor: pointer; font-size: 13px; font-weight: 900; }
+.hunt-close span { font-size: 18px; }
+.hunt-progress-row { display: grid; grid-template-columns: auto minmax(120px,1fr); align-items: center; gap: 13px; margin: 22px 0; color: #536769; font-size: 13px; font-weight: 900; }
+.hunt-progress-track { height: 13px; overflow: hidden; border: 2px solid var(--week-ink); border-radius: 999px; background: #fff; }
+.hunt-progress-track span { display: block; width: 0; height: 100%; background: var(--hunt-accent); transition: width 240ms ease; }
+
+.hunt-task { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 19px; padding: 20px; border-radius: 23px; background: #f7edd0; background: color-mix(in srgb,var(--hunt-accent) 35%,white); }
+.hunt-letter { display: grid; width: 106px; aspect-ratio: 1; place-items: center; border: 3px solid var(--week-ink); border-radius: 23px; background: var(--hunt-accent); box-shadow: 4px 5px 0 var(--week-ink); font-family: var(--hand); font-size: 61px; line-height: 1; }
+.hunt-action { margin: 0 0 5px; color: var(--hunt-deep); font-weight: 950; }
+.hunt-task h4 { margin: 0; font-size: clamp(21px,3vw,30px); line-height: 1.2; }
+
+.hunt-collection-wrap { margin: 22px 0; }
+.hunt-collection-wrap > p { margin: 0 0 9px; color: #536769; font-size: 12px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+.hunt-collection { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 9px; }
+.collection-space,.collection-word { display: flex; min-height: 66px; align-items: center; justify-content: center; gap: 7px; border: 2px dashed #9dabab; border-radius: 15px; background: #fff; }
+.collection-space { color: #a0adad; font-size: 22px; font-weight: 950; }
+.collection-word { border-style: solid; border-color: var(--week-ink); background: #eef5db; background: color-mix(in srgb,var(--hunt-accent) 28%,white); animation: collection-pop 280ms ease; }
+.collection-word b { font-size: 29px; }.collection-word strong { font-size: 14px; }
+
+.letter-hunt-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+.hunt-option { display: flex; min-height: 175px; flex-direction: column; align-items: center; justify-content: center; gap: 7px; padding: 12px; border: 3px solid var(--week-ink); border-radius: 21px; background: #fff; box-shadow: 4px 5px 0 var(--week-ink); cursor: pointer; transition: transform 150ms ease,opacity 150ms ease; }
+.hunt-option:hover { transform: translateY(-4px); }
+.hunt-option > span { font-size: clamp(56px,7vw,76px); line-height: 1; }
+.hunt-option strong { font-size: 18px; }
+.hunt-option mark { background: transparent; color: var(--hunt-deep); font-size: 24px; }
+.hunt-option small { color: #718080; font-size: 10px; font-weight: 850; }
+.hunt-option.found { background: #e7f2d7; background: color-mix(in srgb,var(--hunt-accent) 42%,white); box-shadow: 2px 3px 0 var(--week-ink); opacity: .72; transform: scale(.96); }
+.hunt-option.found::after { content: "✓ found"; color: #21673d; font-size: 11px; font-weight: 950; text-transform: uppercase; }
+.hunt-option.try-again { animation: hunt-wobble 330ms ease; }
+.hunt-feedback { min-height: 54px; margin: 18px 0 0; padding: 13px 16px; border-radius: 14px; background: #edf2f0; color: #536769; font-weight: 850; text-align: center; }
+.success-feedback { background: #dbf4e5; color: #25643d; }
+.try-feedback { background: #fff0c8; color: #79581b; }
+
+.hunt-finish { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 17px; margin-top: 17px; padding: 17px; border: 3px solid var(--week-ink); border-radius: 19px; background: var(--hunt-accent); animation: finish-arrive 330ms ease; }
+.hunt-finish > span { color: #fff; font-size: 55px; -webkit-text-stroke: 2px var(--week-ink); }
+.hunt-finish h4 { margin: 0 0 3px; font-size: 25px; }.hunt-finish p { margin: 0; font-weight: 750; }
+.hunt-finish-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.hunt-finish-actions button { min-height: 43px; padding: 8px 12px; border: 2px solid var(--week-ink); border-radius: 12px; background: #fff; cursor: pointer; font-size: 12px; font-weight: 950; }
+.hunt-finish-actions button:last-child { background: var(--week-ink); color: #fff; }
+
+@keyframes hunt-wobble { 25% { transform: translateX(-7px) rotate(-1deg); } 75% { transform: translateX(7px) rotate(1deg); } }
+@keyframes collection-pop { 50% { transform: translateY(-6px) scale(1.03); } }
+@keyframes finish-arrive { from { opacity: 0; transform: translateY(12px); } }
+
 .real-world-practice { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 25px; margin-block: 78px; padding: clamp(24px,4vw,40px); border: 3px solid var(--week-ink); border-radius: 28px; background: #dff5e7; box-shadow: 7px 8px 0 var(--week-ink); }
 .real-practice-icon { display: grid; width: 85px; height: 85px; place-items: center; border: 3px solid var(--week-ink); border-radius: 22px; background: #fff; font-size: 47px; }
 .real-world-practice h2 { margin: 0 0 7px; font-size: clamp(27px,3.5vw,40px); }
@@ -123,6 +208,9 @@ body.weekly-page {
 @media (max-width: 900px) {
   .weekly-hero { grid-template-columns: 1fr .82fr; }
   .vocabulary-grid,.characters-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .letter-hunt-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .hunt-finish { grid-template-columns: auto 1fr; }
+  .hunt-finish-actions { grid-column: 1 / -1; justify-content: center; }
   .game-heading { align-items: flex-start; flex-direction: column; }
   .real-world-practice { grid-template-columns: auto 1fr; }
   .real-world-practice button { grid-column: 1 / -1; justify-content: center; }
@@ -138,6 +226,16 @@ body.weekly-page {
   .weekly-hero-art { width: min(430px,100%); min-height: 340px; margin-inline: auto; }
   .hero-object { width: 110px; height: 103px; font-size: 57px; }
   .weekly-section-heading { align-items: stretch; flex-direction: column; }
+  .phonics-method { justify-content: flex-start; }
+  .letter-focus-grid { grid-template-columns: 1fr; }
+  .letter-focus-card { min-height: 365px; }
+  .hunt-task { grid-template-columns: 1fr; text-align: center; }
+  .hunt-letter { width: 92px; margin-inline: auto; }
+  .hunt-collection { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .hunt-finish { grid-template-columns: 1fr; text-align: center; }
+  .hunt-finish > span { margin-inline: auto; }
+  .hunt-finish-actions { grid-column: auto; }
+  .hunt-option { min-height: 155px; }
   .weekly-audio-button { justify-content: center; }
   .vocabulary-card { min-height: 210px; padding: 14px; }
   .give-game-section { padding-block: 65px 80px; }
@@ -158,6 +256,15 @@ body.weekly-page {
 
 @media (max-width: 430px) {
   .vocabulary-grid { gap: 10px; }
+  .letter-focus-copy { align-items: flex-start; flex-direction: column; }
+  .letter-pair { width: 96px; font-size: 57px; }
+  .letter-word-list { grid-template-columns: 1fr; }
+  .letter-hunt { padding: 17px 10px 22px; }
+  .letter-hunt-topbar { align-items: flex-start; flex-direction: column; }
+  .hunt-progress-row { grid-template-columns: 1fr; }
+  .letter-hunt-grid { gap: 9px; }
+  .hunt-option { min-height: 145px; padding: 9px 5px; box-shadow: 3px 4px 0 var(--week-ink); }
+  .hunt-option > span { font-size: 52px; }
   .vocabulary-card { min-height: 180px; }
   .vocabulary-picture { font-size: 61px; }
   .characters-grid { gap: 9px; }

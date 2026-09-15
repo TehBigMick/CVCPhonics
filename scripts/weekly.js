@@ -12,6 +12,37 @@ const characters = [
   { name: 'Mike', animal: 'monkey', picture: '🐒' }
 ];
 
+const phonicsSets = {
+  a: {
+    pair: 'Aa',
+    sound: '/a/',
+    kicker: 'Short a sound',
+    title: 'Aa Apple Orchard',
+    action: 'Open wide for /a/.',
+    finishTitle: 'Amazing Aa!',
+    words: [
+      { word: 'apple', picture: '🍎', letter: 'a' },
+      { word: 'axe', picture: '🪓', letter: 'a' },
+      { word: 'ant', picture: '🐜', letter: 'a' },
+      { word: 'alligator', picture: '🐊', letter: 'a' }
+    ]
+  },
+  b: {
+    pair: 'Bb',
+    sound: '/b/',
+    kicker: 'Bouncy b sound',
+    title: 'Bb Bear’s Picnic',
+    action: 'Bring your lips together for /b/.',
+    finishTitle: 'Brilliant Bb!',
+    words: [
+      { word: 'bear', picture: '🐻', letter: 'b' },
+      { word: 'bed', picture: '🛏️', letter: 'b' },
+      { word: 'bird', picture: '🐦', letter: 'b' },
+      { word: 'banana', picture: '🍌', letter: 'b' }
+    ]
+  }
+};
+
 const game = document.getElementById('give-game');
 const instruction = document.getElementById('give-instruction');
 const objectCard = document.getElementById('game-object');
@@ -23,6 +54,22 @@ const nextButton = document.getElementById('next-give-round');
 const roundLabel = document.getElementById('round-label');
 const roundStars = document.getElementById('round-stars');
 const speechStatus = document.getElementById('speech-status');
+const letterHunt = document.getElementById('letter-hunt');
+const huntKicker = document.getElementById('hunt-kicker');
+const huntTitle = document.getElementById('hunt-title');
+const huntLetterBadge = document.getElementById('hunt-letter-badge');
+const huntAction = document.getElementById('hunt-action');
+const huntInstruction = document.getElementById('hunt-instruction');
+const huntProgressLabel = document.getElementById('hunt-progress-label');
+const huntProgressFill = document.getElementById('hunt-progress-fill');
+const huntCollectionLabel = document.getElementById('hunt-collection-label');
+const huntCollection = document.getElementById('hunt-collection');
+const huntOptions = document.getElementById('hunt-options');
+const huntFeedback = document.getElementById('hunt-feedback');
+const huntFinish = document.getElementById('hunt-finish');
+const huntFinishTitle = document.getElementById('hunt-finish-title');
+const huntFinishCopy = document.getElementById('hunt-finish-copy');
+const switchLetterHuntButton = document.getElementById('switch-letter-hunt');
 
 let rounds = [];
 let roundIndex = 0;
@@ -32,6 +79,8 @@ let activeAudio = null;
 let audioGeneration = 0;
 let dragState = null;
 let suppressObjectClick = false;
+let activePhonicsLetter = 'a';
+let foundPhonicsWords = new Set();
 
 function shuffle(values) {
   const copy = [...values];
@@ -342,6 +391,105 @@ nextButton.addEventListener('click', () => {
   if (roundIndex >= rounds.length) return startGame();
   roundIndex += 1;
   renderRound(true);
+});
+
+
+function allPhonicsWords() {
+  return Object.values(phonicsSets).flatMap(set => set.words);
+}
+
+function phonicsOptionCard(item, targetLetter) {
+  const isTarget = item.letter === targetLetter;
+  const firstLetter = item.word.charAt(0).toUpperCase();
+  const restOfWord = item.word.slice(1);
+  return `<button class="hunt-option" type="button" data-hunt-word="${item.word}" data-hunt-letter="${item.letter}" aria-label="${item.word}">
+    <span aria-hidden="true">${item.picture}</span>
+    <strong><mark>${firstLetter}</mark>${restOfWord}</strong>
+    <small>${isTarget ? 'Say me, then tap' : 'Check my first sound'}</small>
+  </button>`;
+}
+
+function renderHuntCollection() {
+  const set = phonicsSets[activePhonicsLetter];
+  const found = set.words.filter(item => foundPhonicsWords.has(item.word));
+  const filled = found.map(item => `<span class="collection-word"><b aria-hidden="true">${item.picture}</b><strong>${item.word}</strong></span>`);
+  const empty = Array.from({ length: set.words.length - found.length }, () => '<span class="collection-space" aria-hidden="true">?</span>');
+  huntCollection.innerHTML = [...filled, ...empty].join('');
+  huntCollection.setAttribute('aria-label', `${found.length} of 4 ${set.pair} words found`);
+  huntProgressLabel.textContent = `${found.length} of 4 found`;
+  huntProgressFill.style.width = `${(found.length / set.words.length) * 100}%`;
+}
+
+function preferredScrollBehaviour() {
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ? 'auto' : 'smooth';
+}
+
+function startLetterHunt(letter, shouldScroll = true) {
+  const set = phonicsSets[letter];
+  if (!set) return;
+  activePhonicsLetter = letter;
+  foundPhonicsWords = new Set();
+  letterHunt.dataset.letter = letter;
+  huntKicker.textContent = set.kicker;
+  huntTitle.textContent = set.title;
+  huntLetterBadge.textContent = set.pair;
+  huntAction.textContent = set.action;
+  huntInstruction.textContent = `Say each picture. Tap the four words that begin with ${set.pair}.`;
+  huntCollectionLabel.textContent = `Your ${set.pair} collection`;
+  huntOptions.setAttribute('aria-label', `Choose words beginning with ${set.pair}`);
+  huntOptions.innerHTML = shuffle(allPhonicsWords()).map(item => phonicsOptionCard(item, letter)).join('');
+  huntFeedback.textContent = 'Say a picture name and listen to its first sound.';
+  huntFeedback.className = 'hunt-feedback';
+  huntFinish.hidden = true;
+  switchLetterHuntButton.innerHTML = `Try ${letter === 'a' ? 'Bb' : 'Aa'} next <span aria-hidden="true">→</span>`;
+  renderHuntCollection();
+  letterHunt.hidden = false;
+  if (shouldScroll) letterHunt.scrollIntoView({ behavior: preferredScrollBehaviour(), block: 'start' });
+}
+
+function choosePhonicsWord(button) {
+  const set = phonicsSets[activePhonicsLetter];
+  const word = button.dataset.huntWord;
+  const wordLetter = button.dataset.huntLetter;
+  if (wordLetter !== activePhonicsLetter) {
+    button.classList.remove('try-again');
+    void button.offsetWidth;
+    button.classList.add('try-again');
+    huntFeedback.className = 'hunt-feedback try-feedback';
+    huntFeedback.textContent = `That is ${word}. It begins with ${phonicsSets[wordLetter].pair}. Try another picture.`;
+    return;
+  }
+  if (foundPhonicsWords.has(word)) return;
+
+  foundPhonicsWords.add(word);
+  button.classList.add('found');
+  button.disabled = true;
+  huntFeedback.className = 'hunt-feedback success-feedback';
+  huntFeedback.textContent = `Yes — ${word}! ${set.sound} ${set.sound} ${word}.`;
+  renderHuntCollection();
+
+  if (foundPhonicsWords.size === set.words.length) {
+    huntOptions.querySelectorAll('button').forEach(option => { option.disabled = true; });
+    huntInstruction.textContent = `You found all four ${set.pair} words!`;
+    huntFinishTitle.textContent = set.finishTitle;
+    huntFinishCopy.textContent = `You said and sorted ${set.words.map(item => item.word).join(', ')}.`;
+    huntFinish.hidden = false;
+    huntFinish.scrollIntoView({ behavior: preferredScrollBehaviour(), block: 'nearest' });
+  }
+}
+
+document.querySelectorAll('[data-start-letter-hunt]').forEach(button => {
+  button.addEventListener('click', () => startLetterHunt(button.dataset.startLetterHunt));
+});
+huntOptions.addEventListener('click', event => {
+  const button = event.target.closest('[data-hunt-word]');
+  if (button && !button.disabled) choosePhonicsWord(button);
+});
+document.getElementById('replay-letter-hunt').addEventListener('click', () => startLetterHunt(activePhonicsLetter, false));
+switchLetterHuntButton.addEventListener('click', () => startLetterHunt(activePhonicsLetter === 'a' ? 'b' : 'a', false));
+document.getElementById('close-letter-hunt').addEventListener('click', () => {
+  letterHunt.hidden = true;
+  document.getElementById('weekly-phonics-title').scrollIntoView({ behavior: preferredScrollBehaviour(), block: 'start' });
 });
 
 preloadAudioFiles();
