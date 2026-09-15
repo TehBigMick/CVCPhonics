@@ -44,16 +44,16 @@ const phonicsSets = {
 };
 
 const farmAnimalPages = [
-  { image: 'page-01.webp', label: 'Cover', words: ['Farm', 'Animals'], narration: 'Farm Animals.', animal: 'chorus', alt: 'Farm Animals book cover with a group of farm animals', picturePrompt: 'Tap the picture to hear the animals' },
-  { image: 'page-02.webp', label: 'Title page', words: ['Farm', 'Animals'], narration: 'Farm Animals.', animal: 'goat', alt: 'Farm Animals title page with a goat', picturePrompt: 'Tap the picture to hear the goat' },
-  { image: 'page-03.webp', label: 'The dog', words: ['The', 'dog.'], narration: 'The dog.', animal: 'dog', alt: 'A golden dog sitting on grass', picturePrompt: 'Tap the picture to hear the dog' },
-  { image: 'page-04.webp', label: 'The pig', words: ['The', 'pig.'], narration: 'The pig.', animal: 'pig', alt: 'A pink pig standing on grass', picturePrompt: 'Tap the picture to hear the pig' },
-  { image: 'page-05.webp', label: 'The chicken', words: ['The', 'chicken.'], narration: 'The chicken.', animal: 'chicken', alt: 'A chicken standing beside its nest', picturePrompt: 'Tap the picture to hear the chicken' },
-  { image: 'page-06.webp', label: 'The goat', words: ['The', 'goat.'], narration: 'The goat.', animal: 'goat', alt: 'A goat jumping over grass', picturePrompt: 'Tap the picture to hear the goat' },
-  { image: 'page-07.webp', label: 'The cow', words: ['The', 'cow.'], narration: 'The cow.', animal: 'cow', alt: 'A black and white cow standing on grass', picturePrompt: 'Tap the picture to hear the cow' },
-  { image: 'page-08.webp', label: 'The duck', words: ['The', 'duck.'], narration: 'The duck.', animal: 'duck', alt: 'A yellow duck standing on grass', picturePrompt: 'Tap the picture to hear the duck' },
-  { image: 'page-09.webp', label: 'The sheep', words: ['The', 'sheep.'], narration: 'The sheep.', animal: 'sheep', alt: 'A grey sheep standing on grass', picturePrompt: 'Tap the picture to hear the sheep' },
-  { image: 'page-10.webp', label: 'The animals', words: ['The', 'animals.'], narration: 'The animals.', animal: 'chorus', alt: 'A group of farm animals together', picturePrompt: 'Tap the picture to hear the animals' }
+  { image: 'page-01.webp', audio: 'farm-animals.m4a', label: 'Cover', words: ['Farm', 'Animals'], narration: 'Farm Animals.', animal: 'chorus', alt: 'Farm Animals book cover with a group of farm animals', picturePrompt: 'Tap the picture to hear the animals' },
+  { image: 'page-02.webp', audio: 'farm-animals.m4a', label: 'Title page', words: ['Farm', 'Animals'], narration: 'Farm Animals.', animal: 'goat', alt: 'Farm Animals title page with a goat', picturePrompt: 'Tap the picture to hear the goat' },
+  { image: 'page-03.webp', audio: 'the-dog.m4a', label: 'The dog', words: ['The', 'dog.'], narration: 'The dog.', animal: 'dog', alt: 'A golden dog sitting on grass', picturePrompt: 'Tap the picture to hear the dog' },
+  { image: 'page-04.webp', audio: 'the-pig.m4a', label: 'The pig', words: ['The', 'pig.'], narration: 'The pig.', animal: 'pig', alt: 'A pink pig standing on grass', picturePrompt: 'Tap the picture to hear the pig' },
+  { image: 'page-05.webp', audio: 'the-chicken.m4a', label: 'The chicken', words: ['The', 'chicken.'], narration: 'The chicken.', animal: 'chicken', alt: 'A chicken standing beside its nest', picturePrompt: 'Tap the picture to hear the chicken' },
+  { image: 'page-06.webp', audio: 'the-goat.m4a', label: 'The goat', words: ['The', 'goat.'], narration: 'The goat.', animal: 'goat', alt: 'A goat jumping over grass', picturePrompt: 'Tap the picture to hear the goat' },
+  { image: 'page-07.webp', audio: 'the-cow.m4a', label: 'The cow', words: ['The', 'cow.'], narration: 'The cow.', animal: 'cow', alt: 'A black and white cow standing on grass', picturePrompt: 'Tap the picture to hear the cow' },
+  { image: 'page-08.webp', audio: 'the-duck.m4a', label: 'The duck', words: ['The', 'duck.'], narration: 'The duck.', animal: 'duck', alt: 'A yellow duck standing on grass', picturePrompt: 'Tap the picture to hear the duck' },
+  { image: 'page-09.webp', audio: 'the-sheep.m4a', label: 'The sheep', words: ['The', 'sheep.'], narration: 'The sheep.', animal: 'sheep', alt: 'A grey sheep standing on grass', picturePrompt: 'Tap the picture to hear the sheep' },
+  { image: 'page-10.webp', audio: 'the-animals.m4a', label: 'The animals', words: ['The', 'animals.'], narration: 'The animals.', animal: 'chorus', alt: 'A group of farm animals together', picturePrompt: 'Tap the picture to hear the animals' }
 ];
 
 const game = document.getElementById('give-game');
@@ -187,6 +187,10 @@ function playAudioSequence(sources, text, statusTarget = speechStatus) {
 
 function wordAudioPath(word) {
   return `${audioRoot}/words/${word}.m4a`;
+}
+
+function bookPageAudioPath(filename) {
+  return `${audioRoot}/book/pages/${filename}`;
 }
 
 function instructionAudioPath(round) {
@@ -651,11 +655,14 @@ function renderBookDots() {
 }
 function preloadBookNeighbours() {
   [bookPageIndex - 1, bookPageIndex + 1].filter(index => farmAnimalPages[index]).forEach(index => {
+    const page = farmAnimalPages[index];
     const image = new Image();
-    image.src = `../assets/books/farm-animals/${farmAnimalPages[index].image}`;
+    image.src = `../assets/books/farm-animals/${page.image}`;
+    audioFor(bookPageAudioPath(page.audio));
   });
 }
 function renderBookPage(direction = 'forward') {
+  stopAudio();
   stopBookAudio();
   const page = farmAnimalPages[bookPageIndex];
   bookPageFrame.classList.remove('turn-forward', 'turn-back');
@@ -685,7 +692,11 @@ nextBookPage.addEventListener('click', () => {
   bookPageIndex += 1;
   renderBookPage('forward');
 });
-readBookPageButton.addEventListener('click', () => speakBookText(farmAnimalPages[bookPageIndex].narration));
+readBookPageButton.addEventListener('click', () => {
+  const page = farmAnimalPages[bookPageIndex];
+  stopBookAudio();
+  playAudio(bookPageAudioPath(page.audio), page.narration, bookAudioStatus);
+});
 bookPictureButton.addEventListener('click', () => playAnimalSound(farmAnimalPages[bookPageIndex].animal));
 bookSentence.addEventListener('click', event => {
   const button = event.target.closest('[data-book-word]');
