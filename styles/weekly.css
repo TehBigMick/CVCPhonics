@@ -197,6 +197,47 @@ body.weekly-page {
 @keyframes collection-pop { 50% { transform: translateY(-6px) scale(1.03); } }
 @keyframes finish-arrive { from { opacity: 0; transform: translateY(12px); } }
 
+
+/* Farm Animals read-along */
+.read-along-section { padding-block: 84px 92px; background: radial-gradient(circle at 12% 16%,rgba(255,255,255,.13) 0 5px,transparent 6px),#214f45; background-size: 68px 68px,auto; color: #fff; }
+.read-along-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 28px; }
+.read-along-heading h2 { margin: 0 0 9px; color: #fff; font-size: clamp(39px,5vw,61px); }
+.read-along-heading h2 em { color: var(--week-yellow); }
+.read-along-heading > div:first-child > p:last-child { max-width: 690px; margin: 0; color: #d4e5df; font-weight: 750; }
+.book-skill-chips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.book-skill-chips span { padding: 8px 11px; border: 2px solid rgba(255,255,255,.42); border-radius: 999px; background: rgba(255,255,255,.1); font-size: 12px; font-weight: 900; }
+.book-reader { padding: clamp(16px,3vw,30px); border: 3px solid #102d27; border-radius: 31px; background: #f4efd9; box-shadow: 8px 9px 0 #102d27; color: var(--week-ink); }
+.book-reader-topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 19px; }
+.book-reader-topbar > div { display: flex; flex-direction: column; gap: 3px; }
+.book-level { color: #667774; font-size: 11px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+.book-reader-topbar strong { font-size: 17px; }
+.book-reader-topbar button { display: inline-flex; min-height: 49px; align-items: center; gap: 8px; padding: 9px 14px; border: 3px solid var(--week-ink); border-radius: 14px; background: var(--week-yellow); box-shadow: 3px 4px 0 var(--week-ink); cursor: pointer; font-weight: 950; }
+.book-stage { display: grid; grid-template-columns: 72px minmax(0,520px) 72px; align-items: center; justify-content: center; gap: 18px; perspective: 1500px; }
+.book-turn { display: grid; width: 67px; height: 67px; place-items: center; border: 3px solid var(--week-ink); border-radius: 50%; background: #fff; box-shadow: 4px 5px 0 var(--week-ink); cursor: pointer; }
+.book-turn span { font-family: Georgia,serif; font-size: 55px; line-height: .8; transform: translateY(-3px); }
+.book-turn:disabled { cursor: not-allowed; opacity: .25; box-shadow: none; }
+.book-page-frame { position: relative; width: 100%; overflow: hidden; border: 3px solid var(--week-ink); border-radius: 8px 22px 22px 8px; background: #fff; box-shadow: 10px 11px 0 rgba(16,45,39,.34); transform-style: preserve-3d; }
+.book-page-frame::after { position: absolute; inset: 0 auto 0 0; width: 19px; pointer-events: none; background: linear-gradient(90deg,rgba(36,58,60,.19),transparent); content: ""; }
+.book-picture-button { position: relative; display: block; width: 100%; padding: 0; overflow: hidden; border: 0; background: #fff; cursor: pointer; }
+.book-picture-button img { display: block; width: 100%; height: auto; aspect-ratio: 1200/1855; object-fit: cover; }
+.book-picture-hint { position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px; max-width: calc(100% - 24px); padding: 8px 11px; border: 2px solid var(--week-ink); border-radius: 999px; background: rgba(255,255,255,.94); box-shadow: 2px 3px 0 var(--week-ink); font-size: 11px; font-weight: 950; }
+.book-picture-hint b { font-size: 18px; }
+.book-page-frame.turn-forward { animation: book-turn-forward 420ms cubic-bezier(.2,.72,.2,1); transform-origin: left center; }
+.book-page-frame.turn-back { animation: book-turn-back 420ms cubic-bezier(.2,.72,.2,1); transform-origin: right center; }
+.book-reading-panel { max-width: 800px; margin: 26px auto 0; text-align: center; }
+.book-reading-panel > p { margin: 0 0 9px; color: #6a7775; font-size: 11px; font-weight: 950; letter-spacing: .09em; text-transform: uppercase; }
+.book-sentence { display: flex; min-height: 84px; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; padding: 12px; border: 3px dashed #a3afaa; border-radius: 20px; background: #fffdf7; }
+.book-word { padding: 5px 8px 8px; border: 0; border-bottom: 5px solid transparent; border-radius: 10px; background: transparent; cursor: pointer; font-family: var(--hand); font-size: clamp(43px,7vw,68px); line-height: 1; transition: background 130ms ease,transform 130ms ease; }
+.book-word:hover { background: #fff1bb; transform: translateY(-2px); }
+.book-word.is-speaking { border-bottom-color: #c54835; background: var(--week-yellow); transform: translateY(-4px) scale(1.04); }
+.book-audio-status { min-height: 47px; max-width: 800px; margin: 13px auto 0; padding: 11px 14px; border-radius: 13px; background: #e5ece9; color: #4c625d; font-size: 13px; font-weight: 850; text-align: center; }
+.book-page-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin-top: 16px; }
+.book-page-dots button { width: 13px; height: 13px; padding: 0; border: 2px solid var(--week-ink); border-radius: 50%; background: #fff; cursor: pointer; }
+.book-page-dots button[aria-current="page"] { background: var(--week-coral); transform: scale(1.26); }
+.book-credit { margin: 18px 0 0; color: #c5d9d2; font-size: 11px; text-align: center; }
+@keyframes book-turn-forward { 0% { opacity: .45; transform: rotateY(-18deg) translateX(20px); } 100% { opacity: 1; transform: rotateY(0) translateX(0); } }
+@keyframes book-turn-back { 0% { opacity: .45; transform: rotateY(18deg) translateX(-20px); } 100% { opacity: 1; transform: rotateY(0) translateX(0); } }
+
 .real-world-practice { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 25px; margin-block: 78px; padding: clamp(24px,4vw,40px); border: 3px solid var(--week-ink); border-radius: 28px; background: #dff5e7; box-shadow: 7px 8px 0 var(--week-ink); }
 .real-practice-icon { display: grid; width: 85px; height: 85px; place-items: center; border: 3px solid var(--week-ink); border-radius: 22px; background: #fff; font-size: 47px; }
 .real-world-practice h2 { margin: 0 0 7px; font-size: clamp(27px,3.5vw,40px); }
@@ -212,6 +253,8 @@ body.weekly-page {
   .hunt-finish { grid-template-columns: auto 1fr; }
   .hunt-finish-actions { grid-column: 1 / -1; justify-content: center; }
   .game-heading { align-items: flex-start; flex-direction: column; }
+  .read-along-heading { align-items: flex-start; flex-direction: column; }
+  .book-skill-chips { justify-content: flex-start; }
   .real-world-practice { grid-template-columns: auto 1fr; }
   .real-world-practice button { grid-column: 1 / -1; justify-content: center; }
 }
@@ -250,12 +293,24 @@ body.weekly-page {
   .character-portrait { width: 88px; height: 88px; font-size: 56px; }
   .character-card strong { font-size: 29px; }
   .gift-badge { width: 39px; height: 39px; font-size: 21px; }
+  .book-reader-topbar { align-items: stretch; flex-direction: column; }
+  .book-reader-topbar button { justify-content: center; }
+  .book-stage { grid-template-columns: 45px minmax(0,1fr) 45px; gap: 7px; }
+  .book-turn { width: 43px; height: 56px; border-radius: 14px; box-shadow: 2px 3px 0 var(--week-ink); }
+  .book-turn span { font-size: 43px; }
+  .book-picture-hint { right: 7px; bottom: 7px; padding: 6px 8px; font-size: 9px; }
+  .book-picture-hint b { font-size: 15px; }
   .real-world-practice { grid-template-columns: 1fr; text-align: center; }
   .real-practice-icon { margin-inline: auto; }
 }
 
 @media (max-width: 430px) {
   .vocabulary-grid { gap: 10px; }
+  .book-reader { padding-inline: 8px; }
+  .book-stage { grid-template-columns: 38px minmax(0,1fr) 38px; gap: 4px; }
+  .book-turn { width: 36px; height: 50px; border-width: 2px; }
+  .book-picture-hint { max-width: calc(100% - 14px); }
+  .book-word { font-size: 42px; }
   .letter-focus-copy { align-items: flex-start; flex-direction: column; }
   .letter-pair { width: 96px; font-size: 57px; }
   .letter-word-list { grid-template-columns: 1fr; }

@@ -43,6 +43,19 @@ const phonicsSets = {
   }
 };
 
+const farmAnimalPages = [
+  { image: 'page-01.webp', label: 'Cover', words: ['Farm', 'Animals'], narration: 'Farm Animals.', animal: 'chorus', alt: 'Farm Animals book cover with a group of farm animals', picturePrompt: 'Tap the picture to hear the animals' },
+  { image: 'page-02.webp', label: 'Title page', words: ['Farm', 'Animals'], narration: 'Farm Animals.', animal: 'goat', alt: 'Farm Animals title page with a goat', picturePrompt: 'Tap the picture to hear the goat' },
+  { image: 'page-03.webp', label: 'The dog', words: ['The', 'dog.'], narration: 'The dog.', animal: 'dog', alt: 'A golden dog sitting on grass', picturePrompt: 'Tap the picture to hear the dog' },
+  { image: 'page-04.webp', label: 'The pig', words: ['The', 'pig.'], narration: 'The pig.', animal: 'pig', alt: 'A pink pig standing on grass', picturePrompt: 'Tap the picture to hear the pig' },
+  { image: 'page-05.webp', label: 'The chicken', words: ['The', 'chicken.'], narration: 'The chicken.', animal: 'chicken', alt: 'A chicken standing beside its nest', picturePrompt: 'Tap the picture to hear the chicken' },
+  { image: 'page-06.webp', label: 'The goat', words: ['The', 'goat.'], narration: 'The goat.', animal: 'goat', alt: 'A goat jumping over grass', picturePrompt: 'Tap the picture to hear the goat' },
+  { image: 'page-07.webp', label: 'The cow', words: ['The', 'cow.'], narration: 'The cow.', animal: 'cow', alt: 'A black and white cow standing on grass', picturePrompt: 'Tap the picture to hear the cow' },
+  { image: 'page-08.webp', label: 'The duck', words: ['The', 'duck.'], narration: 'The duck.', animal: 'duck', alt: 'A yellow duck standing on grass', picturePrompt: 'Tap the picture to hear the duck' },
+  { image: 'page-09.webp', label: 'The sheep', words: ['The', 'sheep.'], narration: 'The sheep.', animal: 'sheep', alt: 'A grey sheep standing on grass', picturePrompt: 'Tap the picture to hear the sheep' },
+  { image: 'page-10.webp', label: 'The animals', words: ['The', 'animals.'], narration: 'The animals.', animal: 'chorus', alt: 'A group of farm animals together', picturePrompt: 'Tap the picture to hear the animals' }
+];
+
 const game = document.getElementById('give-game');
 const instruction = document.getElementById('give-instruction');
 const objectCard = document.getElementById('game-object');
@@ -70,6 +83,17 @@ const huntFinish = document.getElementById('hunt-finish');
 const huntFinishTitle = document.getElementById('hunt-finish-title');
 const huntFinishCopy = document.getElementById('hunt-finish-copy');
 const switchLetterHuntButton = document.getElementById('switch-letter-hunt');
+const bookPageLabel = document.getElementById('book-page-label');
+const bookPageFrame = document.getElementById('book-page-frame');
+const bookPageImage = document.getElementById('book-page-image');
+const bookPictureButton = document.getElementById('book-picture-button');
+const bookPictureHint = document.getElementById('book-picture-hint');
+const bookSentence = document.getElementById('book-sentence');
+const bookAudioStatus = document.getElementById('book-audio-status');
+const bookPageDots = document.getElementById('book-page-dots');
+const previousBookPage = document.getElementById('previous-book-page');
+const nextBookPage = document.getElementById('next-book-page');
+const readBookPageButton = document.getElementById('read-book-page');
 
 let rounds = [];
 let roundIndex = 0;
@@ -81,6 +105,10 @@ let dragState = null;
 let suppressObjectClick = false;
 let activePhonicsLetter = 'a';
 let foundPhonicsWords = new Set();
+let bookPageIndex = 0;
+let preferredBookVoice = null;
+let activeBookWordButton = null;
+let animalAudioContext = null;
 
 function shuffle(values) {
   const copy = [...values];
@@ -491,6 +519,191 @@ document.getElementById('close-letter-hunt').addEventListener('click', () => {
   letterHunt.hidden = true;
   document.getElementById('weekly-phonics-title').scrollIntoView({ behavior: preferredScrollBehaviour(), block: 'start' });
 });
+
+
+function chooseBookVoice() {
+  if (!('speechSynthesis' in window)) return;
+  const voices = window.speechSynthesis.getVoices().filter(voice => /^en/i.test(voice.lang));
+  const score = voice => {
+    let points = /^en-GB/i.test(voice.lang) ? 10 : 0;
+    if (/natural|neural|sonia|libby|serena|susan|google uk/i.test(voice.name)) points += 8;
+    if (voice.default) points += 1;
+    return points;
+  };
+  preferredBookVoice = [...voices].sort((a, b) => score(b) - score(a))[0] || null;
+}
+function clearBookWordHighlight() {
+  activeBookWordButton?.classList.remove('is-speaking');
+  activeBookWordButton = null;
+}
+function stopAnimalSound() {
+  if (!animalAudioContext) return;
+  animalAudioContext.close().catch(() => {});
+  animalAudioContext = null;
+}
+function stopBookAudio() {
+  clearBookWordHighlight();
+  window.speechSynthesis?.cancel();
+  stopAnimalSound();
+}
+function speakBookText(text, wordButton = null) {
+  stopAudio();
+  stopBookAudio();
+  if (!('speechSynthesis' in window)) {
+    bookAudioStatus.textContent = `Say together: “${text}”`;
+    return;
+  }
+  if (wordButton) {
+    activeBookWordButton = wordButton;
+    wordButton.classList.add('is-speaking');
+  }
+  bookAudioStatus.textContent = `Listen: “${text}”`;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-GB';
+  utterance.rate = wordButton ? 0.68 : 0.72;
+  utterance.pitch = 1.02;
+  if (preferredBookVoice) utterance.voice = preferredBookVoice;
+  utterance.onend = clearBookWordHighlight;
+  utterance.onerror = clearBookWordHighlight;
+  window.speechSynthesis.speak(utterance);
+}
+function animalPattern(animal) {
+  const patterns = {
+    dog: [
+      { start: 0, duration: .18, frequency: 185, endFrequency: 105, type: 'square', gain: .1 },
+      { start: .28, duration: .2, frequency: 175, endFrequency: 95, type: 'square', gain: .1 }
+    ],
+    pig: [
+      { start: 0, duration: .28, frequency: 155, endFrequency: 82, type: 'sawtooth', gain: .08 },
+      { start: .32, duration: .16, frequency: 95, endFrequency: 150, type: 'square', gain: .07 }
+    ],
+    chicken: [
+      { start: 0, duration: .09, frequency: 720, endFrequency: 360, type: 'square', gain: .055 },
+      { start: .13, duration: .08, frequency: 660, endFrequency: 330, type: 'square', gain: .055 },
+      { start: .25, duration: .11, frequency: 760, endFrequency: 300, type: 'square', gain: .055 }
+    ],
+    goat: [
+      { start: 0, duration: .2, frequency: 285, endFrequency: 225, type: 'sawtooth', gain: .06 },
+      { start: .18, duration: .21, frequency: 340, endFrequency: 245, type: 'sawtooth', gain: .06 },
+      { start: .37, duration: .24, frequency: 300, endFrequency: 215, type: 'sawtooth', gain: .06 }
+    ],
+    cow: [
+      { start: 0, duration: .9, frequency: 138, endFrequency: 88, type: 'sine', gain: .16 },
+      { start: 0, duration: .9, frequency: 184, endFrequency: 118, type: 'triangle', gain: .065 }
+    ],
+    duck: [
+      { start: 0, duration: .15, frequency: 430, endFrequency: 205, type: 'sawtooth', gain: .07 },
+      { start: .22, duration: .14, frequency: 400, endFrequency: 190, type: 'sawtooth', gain: .07 }
+    ],
+    sheep: [
+      { start: 0, duration: .28, frequency: 315, endFrequency: 245, type: 'triangle', gain: .09 },
+      { start: .24, duration: .3, frequency: 355, endFrequency: 255, type: 'triangle', gain: .09 }
+    ]
+  };
+  return patterns[animal] || [];
+}
+function scheduleAnimalCall(context, animal, delay = 0) {
+  const now = context.currentTime;
+  animalPattern(animal).forEach(note => {
+    const oscillator = context.createOscillator();
+    const volume = context.createGain();
+    const start = now + delay + note.start;
+    const end = start + note.duration;
+    oscillator.type = note.type;
+    oscillator.frequency.setValueAtTime(note.frequency, start);
+    oscillator.frequency.exponentialRampToValueAtTime(note.endFrequency, end);
+    volume.gain.setValueAtTime(.0001, start);
+    volume.gain.exponentialRampToValueAtTime(note.gain, start + Math.min(.025, note.duration / 3));
+    volume.gain.exponentialRampToValueAtTime(.0001, end);
+    oscillator.connect(volume).connect(context.destination);
+    oscillator.start(start);
+    oscillator.stop(end + .02);
+  });
+}
+function playAnimalSound(animal) {
+  stopAudio();
+  stopBookAudio();
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) {
+    bookAudioStatus.textContent = 'Animal sounds are not supported in this browser.';
+    return;
+  }
+  animalAudioContext = new AudioContextClass();
+  if (animal === 'chorus') {
+    scheduleAnimalCall(animalAudioContext, 'cow');
+    scheduleAnimalCall(animalAudioContext, 'dog', .25);
+    scheduleAnimalCall(animalAudioContext, 'duck', .58);
+    bookAudioStatus.textContent = 'Moo, woof and quack — the farm animals are saying hello!';
+  } else {
+    scheduleAnimalCall(animalAudioContext, animal);
+    const calls = { dog: 'Woof', pig: 'Oink', chicken: 'Cluck', goat: 'Bleat', cow: 'Moo', duck: 'Quack', sheep: 'Baa' };
+    bookAudioStatus.textContent = `${calls[animal]}! That is the ${animal}.`;
+  }
+}
+function bookWordButton(word) {
+  const spokenWord = word.replace(/[.?!,]/g, '');
+  return `<button class="book-word" type="button" data-book-word="${spokenWord}" aria-label="Hear the word ${spokenWord}">${word}</button>`;
+}
+function renderBookDots() {
+  bookPageDots.innerHTML = farmAnimalPages.map((page, index) =>
+    `<button type="button" data-book-page="${index}" aria-label="Go to ${page.label}" ${index === bookPageIndex ? 'aria-current="page"' : ''}></button>`
+  ).join('');
+}
+function preloadBookNeighbours() {
+  [bookPageIndex - 1, bookPageIndex + 1].filter(index => farmAnimalPages[index]).forEach(index => {
+    const image = new Image();
+    image.src = `../assets/books/farm-animals/${farmAnimalPages[index].image}`;
+  });
+}
+function renderBookPage(direction = 'forward') {
+  stopBookAudio();
+  const page = farmAnimalPages[bookPageIndex];
+  bookPageFrame.classList.remove('turn-forward', 'turn-back');
+  void bookPageFrame.offsetWidth;
+  bookPageFrame.classList.add(direction === 'back' ? 'turn-back' : 'turn-forward');
+  window.setTimeout(() => bookPageFrame.classList.remove('turn-forward', 'turn-back'), 430);
+  bookPageLabel.textContent = `${page.label} · ${bookPageIndex + 1} of ${farmAnimalPages.length}`;
+  bookPageImage.src = `../assets/books/farm-animals/${page.image}`;
+  bookPageImage.alt = page.alt;
+  bookPictureButton.setAttribute('aria-label', page.picturePrompt);
+  bookPictureHint.innerHTML = `<b aria-hidden="true">🐾</b> ${page.picturePrompt}`;
+  bookSentence.innerHTML = page.words.map(bookWordButton).join('');
+  bookSentence.setAttribute('aria-label', page.narration);
+  bookAudioStatus.textContent = `Ready to read “${page.narration}”`;
+  previousBookPage.disabled = bookPageIndex === 0;
+  nextBookPage.disabled = bookPageIndex === farmAnimalPages.length - 1;
+  renderBookDots();
+  preloadBookNeighbours();
+}
+previousBookPage.addEventListener('click', () => {
+  if (bookPageIndex === 0) return;
+  bookPageIndex -= 1;
+  renderBookPage('back');
+});
+nextBookPage.addEventListener('click', () => {
+  if (bookPageIndex === farmAnimalPages.length - 1) return;
+  bookPageIndex += 1;
+  renderBookPage('forward');
+});
+readBookPageButton.addEventListener('click', () => speakBookText(farmAnimalPages[bookPageIndex].narration));
+bookPictureButton.addEventListener('click', () => playAnimalSound(farmAnimalPages[bookPageIndex].animal));
+bookSentence.addEventListener('click', event => {
+  const button = event.target.closest('[data-book-word]');
+  if (button) speakBookText(button.dataset.bookWord, button);
+});
+bookPageDots.addEventListener('click', event => {
+  const button = event.target.closest('[data-book-page]');
+  if (!button) return;
+  const nextIndex = Number(button.dataset.bookPage);
+  const direction = nextIndex < bookPageIndex ? 'back' : 'forward';
+  bookPageIndex = nextIndex;
+  renderBookPage(direction);
+});
+if ('speechSynthesis' in window) {
+  chooseBookVoice();
+  window.speechSynthesis.addEventListener?.('voiceschanged', chooseBookVoice);
+}
+renderBookPage();
 
 preloadAudioFiles();
 startGame();

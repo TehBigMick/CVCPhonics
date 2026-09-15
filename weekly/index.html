@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="This week’s classroom-object vocabulary and playful Aa and Bb first-sound games for young learners.">
+  <meta name="description" content="This week’s classroom-object vocabulary, Aa and Bb sound games, and an interactive Farm Animals read-along book.">
   <meta name="theme-color" content="#ffcf56">
   <title>This Week: Classroom Objects | Michael's Phonics Hub</title>
   <link rel="stylesheet" href="../styles/main.css">
@@ -184,6 +184,50 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="read-along-section" aria-labelledby="read-along-title">
+      <div class="weekly-shell">
+        <div class="read-along-heading">
+          <div>
+            <p class="weekly-kicker weekly-kicker-light">Picture-book time</p>
+            <h2 id="read-along-title">Read along with <em>Farm Animals</em></h2>
+            <p>Turn the pages, tap each word to hear it and tap the illustration to hear the animal.</p>
+          </div>
+          <div class="book-skill-chips" aria-label="Reading skills">
+            <span>👆 Track print</span><span>👂 Listen</span><span>🗣️ Join in</span>
+          </div>
+        </div>
+
+        <div class="book-reader" id="farm-animals-reader">
+          <div class="book-reader-topbar">
+            <div>
+              <span class="book-level">Reading A-Z · Level aa</span>
+              <strong id="book-page-label">Cover · 1 of 10</strong>
+            </div>
+            <button id="read-book-page" type="button"><span aria-hidden="true">🔊</span> Read this page</button>
+          </div>
+
+          <div class="book-stage">
+            <button class="book-turn book-previous" id="previous-book-page" type="button" aria-label="Previous page"><span aria-hidden="true">‹</span></button>
+            <div class="book-page-frame" id="book-page-frame">
+              <button class="book-picture-button" id="book-picture-button" type="button" aria-label="Hear the farm animals">
+                <img id="book-page-image" src="../assets/books/farm-animals/page-01.webp" alt="Farm Animals book cover" width="1200" height="1855">
+                <span class="book-picture-hint" id="book-picture-hint"><b aria-hidden="true">🐾</b> Tap the picture to hear the animals</span>
+              </button>
+            </div>
+            <button class="book-turn book-next" id="next-book-page" type="button" aria-label="Next page"><span aria-hidden="true">›</span></button>
+          </div>
+
+          <div class="book-reading-panel">
+            <p>Tap one word at a time</p>
+            <div class="book-sentence" id="book-sentence" aria-label="Words on this page"></div>
+          </div>
+          <p class="book-audio-status" id="book-audio-status" role="status" aria-live="polite">Ready to read “Farm Animals”.</p>
+          <div class="book-page-dots" id="book-page-dots" aria-label="Choose a book page"></div>
+        </div>
+        <p class="book-credit">Written by Cheryl Ryan · Illustrated by Nora Voutas · Classroom copy supplied by the teacher</p>
       </div>
     </section>
 
