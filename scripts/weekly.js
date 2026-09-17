@@ -56,6 +56,16 @@ const farmAnimalPages = [
   { image: 'page-10.webp', audio: 'the-animals.m4a', label: 'The animals', words: ['The', 'animals.'], narration: 'The animals.', alt: 'A group of farm animals together' }
 ];
 
+const animalSoundChoices = [
+  { word: 'dog', picture: '🐶' },
+  { word: 'chicken', picture: '🐔' },
+  { word: 'cow', picture: '🐄' },
+  { word: 'duck', picture: '🦆' },
+  { word: 'goat', picture: '🐐' },
+  { word: 'pig', picture: '🐷' },
+  { word: 'sheep', picture: '🐑' }
+];
+
 const game = document.getElementById('give-game');
 const instruction = document.getElementById('give-instruction');
 const objectCard = document.getElementById('game-object');
@@ -93,6 +103,15 @@ const bookPageDots = document.getElementById('book-page-dots');
 const previousBookPage = document.getElementById('previous-book-page');
 const nextBookPage = document.getElementById('next-book-page');
 const readBookPageButton = document.getElementById('read-book-page');
+const animalSoundRoundLabel = document.getElementById('animal-sound-round-label');
+const animalSoundStars = document.getElementById('animal-sound-stars');
+const playAnimalSoundButton = document.getElementById('play-animal-sound');
+const animalAnswerGrid = document.getElementById('animal-answer-grid');
+const animalAudioStatus = document.getElementById('animal-audio-status');
+const animalGameFeedback = document.getElementById('animal-game-feedback');
+const nextAnimalRoundButton = document.getElementById('next-animal-round');
+const animalGameFinish = document.getElementById('animal-game-finish');
+const replayAnimalGameButton = document.getElementById('replay-animal-game');
 
 let rounds = [];
 let roundIndex = 0;
@@ -105,6 +124,10 @@ let suppressObjectClick = false;
 let activePhonicsLetter = 'a';
 let foundPhonicsWords = new Set();
 let bookPageIndex = 0;
+let animalSoundRounds = [];
+let animalSoundRoundIndex = 0;
+let animalSoundStarted = false;
+let animalSoundLocked = true;
 
 function shuffle(values) {
   const copy = [...values];
@@ -141,7 +164,7 @@ function showAudioFallback(text, statusTarget) {
   if (statusTarget) statusTarget.textContent = `Audio unavailable. Say together: “${text}”`;
 }
 
-function playAudio(source, text, statusTarget = speechStatus) {
+function playAudio(source, text, statusTarget = speechStatus, unavailableText = '') {
   stopAudio();
   if (statusTarget) statusTarget.textContent = `Listen: “${text}”`;
   const audio = audioFor(source);
@@ -150,9 +173,13 @@ function playAudio(source, text, statusTarget = speechStatus) {
   audio.onended = () => {
     if (activeAudio === audio) activeAudio = null;
   };
-  audio.onerror = () => showAudioFallback(text, statusTarget);
+  const handlePlaybackError = () => {
+    if (unavailableText && statusTarget) statusTarget.textContent = unavailableText;
+    else showAudioFallback(text, statusTarget);
+  };
+  audio.onerror = handlePlaybackError;
   const playback = audio.play();
-  if (playback?.catch) playback.catch(() => showAudioFallback(text, statusTarget));
+  if (playback?.catch) playback.catch(handlePlaybackError);
 }
 
 function playAudioSequence(sources, text, statusTarget = speechStatus) {
@@ -187,6 +214,10 @@ function wordAudioPath(word) {
 
 function bookPageAudioPath(filename) {
   return `${audioRoot}/book/pages/${filename}`;
+}
+
+function animalCallAudioPath(word) {
+  return `${audioRoot}/animal-game/sounds/${word}.m4a`;
 }
 
 function instructionAudioPath(round) {
@@ -583,7 +614,120 @@ bookPageDots.addEventListener('click', event => {
   bookPageIndex = nextIndex;
   renderBookPage(direction);
 });
+
+
+function currentAnimalSoundRound() {
+  return animalSoundRounds[animalSoundRoundIndex];
+}
+function renderAnimalSoundStars(completed = animalSoundRoundIndex) {
+  animalSoundStars.innerHTML = animalSoundChoices.map((_, index) =>
+    `<span class="${index < completed ? 'complete' : ''}" aria-hidden="true">★</span>`
+  ).join('');
+  animalSoundStars.setAttribute('aria-label', `${completed} of ${animalSoundChoices.length} animals found`);
+}
+function animalAnswerCard(animal, disabled = false) {
+  return `<button class="animal-answer-card" type="button" data-animal-answer="${animal.word}" ${disabled ? 'disabled' : ''} aria-label="Choose ${animal.word}">
+    <span aria-hidden="true">${animal.picture}</span><strong>${animal.word}</strong><small>Tap and listen</small>
+  </button>`;
+}
+function renderAnimalAnswerCards(disabled = false) {
+  animalAnswerGrid.innerHTML = animalSoundChoices.map(animal => animalAnswerCard(animal, disabled)).join('');
+}
+function playCurrentAnimalSound() {
+  const animal = currentAnimalSoundRound();
+  if (!animal || animalSoundLocked) return;
+  playAudio(
+    animalCallAudioPath(animal.word),
+    'Which animal is it?',
+    animalAudioStatus,
+    'This animal-call recording has not been added yet.'
+  );
+  playAnimalSoundButton.innerHTML = '<span aria-hidden="true">🔊</span> Hear the sound again';
+}
+function renderAnimalSoundRound(playSound = true) {
+  animalSoundLocked = false;
+  const roundNumber = animalSoundRoundIndex + 1;
+  animalSoundRoundLabel.textContent = `Sound ${roundNumber} of ${animalSoundChoices.length}`;
+  renderAnimalSoundStars(animalSoundRoundIndex);
+  renderAnimalAnswerCards(false);
+  animalGameFinish.hidden = true;
+  nextAnimalRoundButton.hidden = true;
+  playAnimalSoundButton.disabled = false;
+  animalAudioStatus.textContent = 'Listen carefully, then choose an animal.';
+  animalGameFeedback.className = 'animal-game-feedback';
+  animalGameFeedback.textContent = 'Tap a picture. You can hear the sound again whenever you need to.';
+  if (playSound) playCurrentAnimalSound();
+}
+function startAnimalSoundGame() {
+  animalSoundRounds = shuffle(animalSoundChoices);
+  animalSoundRoundIndex = 0;
+  animalSoundStarted = true;
+  renderAnimalSoundRound(true);
+}
+function chooseAnimalAnswer(button) {
+  if (!animalSoundStarted || animalSoundLocked) return;
+  const chosenWord = button.dataset.animalAnswer;
+  const target = currentAnimalSoundRound();
+  playAudio(
+    bookPageAudioPath(`the-${chosenWord}.m4a`),
+    chosenWord,
+    animalAudioStatus,
+    `The recorded name for ${chosenWord} is unavailable.`
+  );
+
+  if (chosenWord !== target.word) {
+    button.classList.remove('try-again');
+    void button.offsetWidth;
+    button.classList.add('try-again');
+    animalGameFeedback.className = 'animal-game-feedback retry';
+    animalGameFeedback.textContent = `That is the ${chosenWord}. Listen again and choose another animal.`;
+    return;
+  }
+
+  animalSoundLocked = true;
+  button.classList.add('correct');
+  animalAnswerGrid.querySelectorAll('button').forEach(answer => { answer.disabled = true; });
+  animalGameFeedback.className = 'animal-game-feedback success';
+  animalGameFeedback.textContent = `Yes — the ${chosenWord}! Great listening.`;
+  renderAnimalSoundStars(animalSoundRoundIndex + 1);
+  nextAnimalRoundButton.hidden = false;
+  nextAnimalRoundButton.innerHTML = animalSoundRoundIndex === animalSoundRounds.length - 1
+    ? 'Finish the game <span aria-hidden="true">★</span>'
+    : 'Next sound <span aria-hidden="true">→</span>';
+}
+function finishAnimalSoundGame() {
+  stopAudio();
+  animalSoundLocked = true;
+  animalSoundRoundLabel.textContent = 'All 7 sounds complete';
+  renderAnimalSoundStars(animalSoundChoices.length);
+  renderAnimalAnswerCards(true);
+  animalAudioStatus.textContent = 'You listened to every farm animal.';
+  animalGameFeedback.className = 'animal-game-feedback success';
+  animalGameFeedback.textContent = 'Brilliant listening and matching!';
+  nextAnimalRoundButton.hidden = true;
+  playAnimalSoundButton.disabled = true;
+  playAnimalSoundButton.innerHTML = '<span aria-hidden="true">✓</span> All sounds complete';
+  animalGameFinish.hidden = false;
+}
+
+playAnimalSoundButton.addEventListener('click', () => {
+  if (!animalSoundStarted) startAnimalSoundGame();
+  else playCurrentAnimalSound();
+});
+animalAnswerGrid.addEventListener('click', event => {
+  const button = event.target.closest('[data-animal-answer]');
+  if (button && !button.disabled) chooseAnimalAnswer(button);
+});
+nextAnimalRoundButton.addEventListener('click', () => {
+  animalSoundRoundIndex += 1;
+  if (animalSoundRoundIndex >= animalSoundRounds.length) finishAnimalSoundGame();
+  else renderAnimalSoundRound(true);
+});
+replayAnimalGameButton.addEventListener('click', startAnimalSoundGame);
+
 renderBookPage();
+renderAnimalSoundStars(0);
+renderAnimalAnswerCards(true);
 
 preloadAudioFiles();
 startGame();
