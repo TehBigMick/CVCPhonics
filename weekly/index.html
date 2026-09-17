@@ -231,6 +231,47 @@
       </div>
     </section>
 
+    <section class="animal-sound-section" aria-labelledby="animal-sound-title">
+      <div class="weekly-shell">
+        <div class="weekly-section-heading animal-sound-heading">
+          <div>
+            <p class="weekly-kicker">Listen and match</p>
+            <h2 id="animal-sound-title">Who made that <em>sound?</em></h2>
+            <p>Hear an animal, choose its picture and listen to the animal’s name. There is no timer, so listen as many times as you need.</p>
+          </div>
+          <div class="animal-sound-steps" aria-label="How to play">
+            <span><b>1</b> Listen</span><span><b>2</b> Choose</span><span><b>3</b> Say it</span>
+          </div>
+        </div>
+
+        <div class="animal-sound-game" id="animal-sound-game">
+          <div class="animal-sound-topbar">
+            <div>
+              <strong id="animal-sound-round-label">Ready to play</strong>
+              <div class="animal-sound-stars" id="animal-sound-stars" aria-label="0 of 7 animals found"></div>
+            </div>
+            <button id="play-animal-sound" type="button"><span aria-hidden="true">🔊</span> Start the game</button>
+          </div>
+
+          <div class="animal-sound-prompt">
+            <span class="sound-rings" aria-hidden="true"><b>?</b></span>
+            <div><small>Listen carefully</small><h3>Which animal made that sound?</h3></div>
+          </div>
+
+          <div class="animal-answer-grid" id="animal-answer-grid" role="group" aria-label="Choose the animal that made the sound"></div>
+          <p class="animal-audio-status" id="animal-audio-status" role="status" aria-live="polite">Press “Start the game” to hear the first animal.</p>
+          <p class="animal-game-feedback" id="animal-game-feedback" role="status" aria-live="polite">Look at the seven animals while you get ready.</p>
+          <button class="next-animal-button" id="next-animal-round" type="button" hidden>Next sound <span aria-hidden="true">→</span></button>
+
+          <div class="animal-game-finish" id="animal-game-finish" hidden>
+            <span aria-hidden="true">🏆</span>
+            <div><h3>Fantastic farm listening!</h3><p>You matched all seven animal sounds.</p></div>
+            <button id="replay-animal-game" type="button">Play again <span aria-hidden="true">↻</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="real-world-practice weekly-shell" aria-labelledby="real-practice-title">
       <div class="real-practice-icon" aria-hidden="true">🏫</div>
       <div><p class="weekly-kicker">Away from the screen</p><h2 id="real-practice-title">Now use the real objects.</h2><p>Put a bag, pencil, chair and book around the room. Ask one child to find an object and give it to a friend. Model “Here you are” and “Thank you”.</p></div>
