@@ -30,11 +30,6 @@ const abWordChoices = {
   b: { word: 'book', picture: '📘', label: 'Bb /b/' }
 };
 
-const longIPairs = [
-  { short: 'kit', long: 'kite', picture: '🪁' },
-  { short: 'pin', long: 'pine', picture: '🌲' }
-];
-
 const audioRoot = '../assets/audio/weekly';
 const audioCache = new Map();
 let activeAudio = null;
@@ -383,6 +378,109 @@ document.querySelectorAll('[data-play-word]').forEach(button => {
   });
 });
 
+// Phase 1 classroom-word listening game
+const vocabularyListenGame = document.getElementById('vocabulary-listen-game');
+const vocabularyListenProgress = document.getElementById('vocabulary-listen-progress');
+const vocabularyListenPrompt = document.getElementById('vocabulary-listen-prompt');
+const vocabularyListenOptions = document.getElementById('vocabulary-listen-options');
+const vocabularyListenStatus = document.getElementById('vocabulary-listen-status');
+const vocabularyListenFeedback = document.getElementById('vocabulary-listen-feedback');
+const playVocabularyWordButton = document.getElementById('play-vocabulary-word');
+const nextVocabularyWordButton = document.getElementById('next-vocabulary-word');
+let vocabularyListenRounds = [];
+let vocabularyListenRoundIndex = 0;
+let vocabularyListenStarted = false;
+let vocabularyListenLocked = false;
+
+function currentVocabularyListenWord() {
+  return vocabularyListenRounds[vocabularyListenRoundIndex];
+}
+
+function vocabularyListenCard(item) {
+  return `<button type="button" data-vocabulary-choice="${item.word}">
+    <span aria-hidden="true">${item.picture}</span><strong>${item.word}</strong><small>Tap to choose</small>
+  </button>`;
+}
+
+function renderVocabularyListenRound(playPrompt = false) {
+  const target = currentVocabularyListenWord();
+  vocabularyListenLocked = false;
+  vocabularyListenProgress.textContent = `Word ${vocabularyListenRoundIndex + 1} of ${vocabularyListenRounds.length}`;
+  vocabularyListenPrompt.textContent = 'Which classroom word did you hear?';
+  vocabularyListenOptions.innerHTML = shuffle(classroomVocabulary).map(vocabularyListenCard).join('');
+  vocabularyListenFeedback.textContent = 'Look at all four pictures before you choose.';
+  vocabularyListenFeedback.className = 'vocabulary-listen-feedback';
+  playVocabularyWordButton.innerHTML = '<span aria-hidden="true">🔊</span> Hear the word again';
+  nextVocabularyWordButton.hidden = true;
+  if (playPrompt) playWord(target.word, vocabularyListenStatus);
+}
+
+function startVocabularyListenGame() {
+  vocabularyListenRounds = shuffle(classroomVocabulary);
+  vocabularyListenRoundIndex = 0;
+  vocabularyListenStarted = true;
+  vocabularyListenGame.classList.remove('complete');
+  renderVocabularyListenRound(true);
+}
+
+function finishVocabularyListenGame() {
+  vocabularyListenLocked = true;
+  vocabularyListenGame.classList.add('complete');
+  vocabularyListenProgress.textContent = 'All 4 words complete';
+  vocabularyListenPrompt.textContent = 'Brilliant classroom listening!';
+  vocabularyListenOptions.innerHTML = '<div class="vocabulary-listen-celebration" aria-hidden="true">🎒 ✏️ 🪑 📘</div>';
+  vocabularyListenStatus.textContent = 'You matched every classroom word.';
+  vocabularyListenFeedback.textContent = 'Say them together: bag, pencil, chair, book.';
+  vocabularyListenFeedback.className = 'vocabulary-listen-feedback success';
+  playVocabularyWordButton.innerHTML = '<span aria-hidden="true">↻</span> Play again';
+  nextVocabularyWordButton.hidden = true;
+}
+
+playVocabularyWordButton.addEventListener('click', () => {
+  if (!vocabularyListenStarted || vocabularyListenGame.classList.contains('complete')) {
+    startVocabularyListenGame();
+    return;
+  }
+  playWord(currentVocabularyListenWord().word, vocabularyListenStatus);
+});
+
+vocabularyListenOptions.addEventListener('click', event => {
+  const button = event.target.closest('[data-vocabulary-choice]');
+  if (!button || !vocabularyListenStarted || vocabularyListenLocked) return;
+  const chosenWord = button.dataset.vocabularyChoice;
+  const targetWord = currentVocabularyListenWord().word;
+  playWord(chosenWord, vocabularyListenStatus);
+  if (chosenWord !== targetWord) {
+    button.classList.remove('try-again');
+    void button.offsetWidth;
+    button.classList.add('try-again');
+    vocabularyListenFeedback.textContent = `That is ${chosenWord}. Listen again and find ${targetWord}.`;
+    vocabularyListenFeedback.className = 'vocabulary-listen-feedback retry';
+    return;
+  }
+  vocabularyListenLocked = true;
+  button.classList.add('correct');
+  vocabularyListenOptions.querySelectorAll('button').forEach(option => { option.disabled = true; });
+  vocabularyListenFeedback.textContent = `Yes — ${targetWord}! Say it together.`;
+  vocabularyListenFeedback.className = 'vocabulary-listen-feedback success';
+  nextVocabularyWordButton.hidden = false;
+  nextVocabularyWordButton.innerHTML = vocabularyListenRoundIndex === vocabularyListenRounds.length - 1
+    ? 'Finish the game <span aria-hidden="true">★</span>'
+    : 'Next word <span aria-hidden="true">→</span>';
+});
+
+nextVocabularyWordButton.addEventListener('click', () => {
+  vocabularyListenRoundIndex += 1;
+  if (vocabularyListenRoundIndex >= vocabularyListenRounds.length) {
+    finishVocabularyListenGame();
+    return;
+  }
+  renderVocabularyListenRound(true);
+});
+
+vocabularyListenOptions.innerHTML = classroomVocabulary.map(vocabularyListenCard).join('');
+vocabularyListenOptions.querySelectorAll('button').forEach(button => { button.disabled = true; });
+
 // Phase 1 Aa/Bb listening check
 const abGame = document.getElementById('ab-review-game');
 const abProgress = document.getElementById('ab-progress');
@@ -448,86 +546,6 @@ nextAbRoundButton.addEventListener('click', () => {
     return;
   }
   renderAbRound();
-});
-
-// Phase 2 first-letter tool
-document.getElementById('show-name-initial').addEventListener('click', () => {
-  const input = document.getElementById('name-input');
-  const result = document.getElementById('name-initial-result');
-  const cleanName = input.value.trim();
-  const letter = cleanName.match(/[A-Za-z]/)?.[0]?.toUpperCase();
-  if (!letter) {
-    result.textContent = 'Type a first name, then try again.';
-    return;
-  }
-  const displayName = cleanName.slice(0, 24);
-  result.textContent = '';
-  const letterBadge = document.createElement('strong');
-  letterBadge.textContent = `${letter}${letter.toLowerCase()}`;
-  result.append(letterBadge, document.createTextNode(` ${displayName} begins with ${letter}.`));
-});
-
-// Phase 3 long-i game
-const longIGame = document.getElementById('long-i-game');
-const longIProgress = document.getElementById('long-i-progress');
-const longIOptions = document.getElementById('long-i-options');
-const longIFeedback = document.getElementById('long-i-feedback');
-const nextLongIRoundButton = document.getElementById('next-long-i-round');
-let longIRounds = [];
-let longIRoundIndex = 0;
-let longILocked = false;
-
-function renderLongIRound() {
-  const pair = longIRounds[longIRoundIndex];
-  longILocked = false;
-  longIProgress.textContent = `Pair ${longIRoundIndex + 1} of ${longIRounds.length}`;
-  longIOptions.innerHTML = shuffle([pair.short, pair.long]).map(word => `
-    <button type="button" data-long-i-word="${word}"><span aria-hidden="true">${word === pair.long ? pair.picture : '🔤'}</span><strong>${word}</strong><small>Tap to hear</small></button>`).join('');
-  longIFeedback.textContent = 'Listen to both words before you choose.';
-  longIFeedback.className = '';
-  nextLongIRoundButton.hidden = true;
-}
-
-function startLongIGame() {
-  longIRounds = shuffle(longIPairs);
-  longIRoundIndex = 0;
-  longIGame.hidden = false;
-  renderLongIRound();
-  longIGame.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-document.getElementById('start-long-i-game').addEventListener('click', startLongIGame);
-longIOptions.addEventListener('click', event => {
-  const button = event.target.closest('[data-long-i-word]');
-  if (!button || longILocked) return;
-  const chosenWord = button.dataset.longIWord;
-  const pair = longIRounds[longIRoundIndex];
-  playWord(chosenWord);
-  if (chosenWord !== pair.long) {
-    button.classList.add('try-again');
-    longIFeedback.textContent = `${chosenWord} has short i. Look for silent e and try again.`;
-    return;
-  }
-  longILocked = true;
-  button.classList.add('correct');
-  longIOptions.querySelectorAll('button').forEach(option => { option.disabled = true; });
-  longIFeedback.textContent = `Yes — ${pair.long} has long i!`;
-  longIFeedback.className = 'success';
-  nextLongIRoundButton.hidden = false;
-  nextLongIRoundButton.innerHTML = longIRoundIndex === longIRounds.length - 1
-    ? 'Finish <span aria-hidden="true">★</span>'
-    : 'Next pair <span aria-hidden="true">→</span>';
-});
-nextLongIRoundButton.addEventListener('click', () => {
-  longIRoundIndex += 1;
-  if (longIRoundIndex >= longIRounds.length) {
-    longIProgress.textContent = 'Both pairs complete';
-    longIOptions.innerHTML = '<span class="mini-game-celebration" aria-hidden="true">🪁 ★ 🌲</span>';
-    longIFeedback.textContent = 'You found kite and pine.';
-    nextLongIRoundButton.hidden = true;
-    return;
-  }
-  renderLongIRound();
 });
 
 // My Family page-turning reader

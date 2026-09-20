@@ -2,34 +2,15 @@
 
 Record each line as a separate `.m4a` file. Use a warm, natural voice and leave a short pause before and after the spoken words.
 
-## New vocabulary and phonics words
+## Phase 1 vocabulary and phonics words
 
 Store these files in `assets/audio/weekly/words/`.
 
 | Filename | Say |
 |---|---|
-| `medal.m4a` | Medal. |
-| `class.m4a` | Class. |
-| `friend.m4a` | Friend. |
-| `help.m4a` | Help. |
-| `mum.m4a` | Mum. |
-| `dad.m4a` | Dad. |
-| `brother.m4a` | Brother. |
-| `sister.m4a` | Sister. |
 | `apple.m4a` | Apple. |
-| `can.m4a` | Can. |
-| `see.m4a` | See. |
-| `kit.m4a` | Kit. |
-| `kite.m4a` | Kite. |
-| `pin.m4a` | Pin. |
-| `pine.m4a` | Pine. |
-| `in.m4a` | In. |
-| `is.m4a` | Is. |
-| `it.m4a` | It. |
-| `jump.m4a` | Jump. |
-| `little.m4a` | Little. |
 
-The existing recordings for `bag`, `pencil`, `chair` and `book` are reused.
+The existing recordings for `bag`, `pencil`, `chair` and `book` are reused by the vocabulary cards, both classroom games and the Bb activity. Phase 2 and Phase 3 recordings are not needed.
 
 ## My Family book pages
 
