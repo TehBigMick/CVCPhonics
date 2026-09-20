@@ -417,6 +417,7 @@ body.weekly-page {
 .apple-listen-button { width: 100%; min-height: 105px; flex-direction: row; }
 .apple-listen-button strong { font-size: 20px; }
 .phase-game-start { display: flex; width: 100%; min-height: 56px; align-items: center; justify-content: space-between; margin-top: auto; padding: 10px 14px; border: 3px solid var(--week-ink); border-radius: 15px; background: var(--week-ink); color: #fff; cursor: pointer; font-weight: 950; text-align: left; }
+.weekly-page .phase-game-start { color: #fff; }
 .mini-phonics-game { padding: 15px; border: 2px solid var(--week-ink); border-radius: 18px; background: rgba(255,255,255,.8); }
 .mini-phonics-game[hidden] { display: none; }
 .mini-game-progress { color: #607170; font-size: 11px; font-weight: 950; letter-spacing: .07em; text-transform: uppercase; }
