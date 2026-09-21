@@ -378,6 +378,17 @@ document.querySelectorAll('[data-play-word]').forEach(button => {
   });
 });
 
+// Keep the two phonics songs and recorded word audio from playing over one another.
+const phonicsVideos = [...document.querySelectorAll('.phonics-video-card video')];
+phonicsVideos.forEach(video => {
+  video.addEventListener('play', () => {
+    stopAudio();
+    phonicsVideos.forEach(otherVideo => {
+      if (otherVideo !== video) otherVideo.pause();
+    });
+  });
+});
+
 // Phase 1 classroom-word listening game
 const vocabularyListenGame = document.getElementById('vocabulary-listen-game');
 const vocabularyListenProgress = document.getElementById('vocabulary-listen-progress');

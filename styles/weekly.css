@@ -438,6 +438,17 @@ body.weekly-page {
 .next-vocabulary-button[hidden] { display: none; }
 .vocabulary-listen-celebration { display: grid; min-height: 175px; grid-column: 1 / -1; place-items: center; font-size: clamp(47px,8vw,78px); letter-spacing: .08em; }
 
+.phonics-video-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; margin-top: 31px; }
+.phonics-video-card { overflow: hidden; border: 3px solid var(--week-ink); border-radius: 26px; background: #fff; box-shadow: 5px 6px 0 var(--week-ink); }
+.phonics-video-a { background: #fff2a9; }
+.phonics-video-b { background: #dceffa; }
+.phonics-video-copy { display: flex; align-items: center; gap: 14px; padding: 17px 20px; }
+.phonics-video-copy p { margin: 0 0 3px; color: #607170; font-size: 10px; font-weight: 950; letter-spacing: .1em; text-transform: uppercase; }
+.phonics-video-copy h3 { margin: 0; font-size: clamp(24px,3vw,34px); }
+.phonics-video-letter { display: grid; width: 67px; height: 67px; flex: 0 0 auto; place-items: center; border: 3px solid var(--week-ink); border-radius: 18px; background: #fff; font-family: var(--hand); font-size: 34px; line-height: 1; transform: rotate(-3deg); }
+.phonics-video-b .phonics-video-letter { transform: rotate(3deg); }
+.phonics-video-card video { display: block; width: 100%; aspect-ratio: 16 / 9; border-top: 3px solid var(--week-ink); background: #142526; object-fit: contain; }
+
 .phase-learning-grid { display: grid; grid-template-columns: minmax(0,620px); justify-content: center; margin-top: 31px; }
 .phase-learning-card { display: flex; min-width: 0; flex-direction: column; gap: 16px; padding: clamp(20px,2.6vw,32px); border: 3px solid var(--week-ink); border-radius: 26px; background: #fff; box-shadow: 5px 6px 0 var(--week-ink); }
 .phase-one-card { background: #fff8cf; }
@@ -480,6 +491,9 @@ body.weekly-page {
   .vocabulary-listen-steps { justify-content: flex-start; }
   .vocabulary-listen-options { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
   .vocabulary-listen-options button { min-height: 152px; }
+  .phonics-video-grid { grid-template-columns: 1fr; gap: 18px; }
+  .phonics-video-copy { padding: 14px 16px; }
+  .phonics-video-letter { width: 58px; height: 58px; font-size: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
