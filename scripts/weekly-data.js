@@ -8,7 +8,7 @@ export const REVIEW_VIDEOS = [
 
 export const COLOURS = [
   { word: 'red', colour: '#e94845' }, { word: 'blue', colour: '#2581c2' },
-  { word: 'yellow', colour: '#f7cb37' }, { word: 'green', colour: '#32966c' }
+  { word: 'yellow', colour: '#ffff00' }, { word: 'green', colour: '#32966c' }
 ];
 
 export const COURSES = {

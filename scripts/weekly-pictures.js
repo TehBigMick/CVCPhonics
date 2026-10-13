@@ -19,7 +19,7 @@ const drawings = {
   search: '<circle cx="42" cy="40" r="26" fill="#bde4ef"/><circle cx="42" cy="40" r="18" fill="#fff"/><path d="M62 61 L88 88" stroke="#edab79" stroke-width="14" stroke-linecap="round"/>',
   basket: '<path d="M26 48 Q24 10 50 10 Q76 10 74 48" fill="none" stroke-width="6"/><path d="M14 43 L86 43 L76 86 L24 86 Z" fill="#edab79"/><path d="M14 43 L86 43 M25 55 L76 55 M28 70 L72 70 M35 45 L40 83 M50 45 L50 83 M65 45 L60 83" fill="none"/>',
   blocks: '<rect x="12" y="49" width="34" height="34" rx="5" fill="#f7cb55"/><rect x="52" y="49" width="34" height="34" rx="5" fill="#b7dcdf"/><rect x="33" y="9" width="34" height="34" rx="5" fill="#e8889b"/><path d="M23 60 L35 60 M63 61 L75 61 M45 21 L55 21" fill="none" stroke-linecap="round"/>',
-  palette: '<path d="M51 9 Q10 11 8 52 Q7 90 46 89 Q62 89 54 75 Q43 60 65 60 Q90 65 92 44 Q92 9 51 9" fill="#f7d5b4"/><circle cx="31" cy="31" r="8" fill="#e94845"/><circle cx="58" cy="25" r="8" fill="#2581c2"/><circle cx="76" cy="43" r="8" fill="#f7cb37"/><circle cx="25" cy="59" r="8" fill="#32966c"/>'
+  palette: '<path d="M51 9 Q10 11 8 52 Q7 90 46 89 Q62 89 54 75 Q43 60 65 60 Q90 65 92 44 Q92 9 51 9" fill="#f7d5b4"/><circle cx="31" cy="31" r="8" fill="#e94845"/><circle cx="58" cy="25" r="8" fill="#2581c2"/><circle cx="76" cy="43" r="8" fill="#ffff00"/><circle cx="25" cy="59" r="8" fill="#32966c"/>'
 };
 
 export function pictureIcon(name) {

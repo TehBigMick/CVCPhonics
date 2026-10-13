@@ -1,6 +1,6 @@
-import { WEEK, COURSES, REVIEW_VIDEOS, COLOURS } from './weekly-data.js?v=20261013-1';
+import { WEEK, COURSES, REVIEW_VIDEOS, COLOURS } from './weekly-data.js?v=20261013-2';
 import { shuffle } from './utils.js';
-import { pictureIcon } from './weekly-pictures.js?v=20261013-1';
+import { pictureIcon } from './weekly-pictures.js?v=20261013-2';
 
 const courseId = document.body.dataset.course;
 const course = COURSES[courseId];

@@ -39,6 +39,7 @@
 .word-picture { display: grid; place-items: center; height: 75px; width: 100%; font-size: 58px; line-height: 1; }
 .word-picture svg { width: 80px; height: 80px; }
 .colour-block { display: block; width: 72px; height: 66px; border: 2px solid var(--ink); border-radius: 13px; box-shadow: 3px 4px 0 var(--ink); }
+.colour-block, .pattern-token, .hero-blocks span, .course-symbols i { color-scheme: only light; forced-color-adjust: none; }
 .sentence-strips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
 .sentence-strips button, .face-words button { min-height: 48px; padding: 11px 18px; background: var(--week-pale); border: 1px solid #c7d1c8; border-radius: 13px; text-align: left; color: var(--ink); cursor: pointer; font-weight: 750; }
 .face-review { margin-top: 22px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
