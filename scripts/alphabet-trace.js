@@ -5,9 +5,11 @@ const context = canvas.getContext('2d');
 const letterSelect = document.getElementById('trace-letter');
 const caseSelect = document.getElementById('trace-case');
 const word = document.getElementById('trace-word');
-let index = 0, drawing = false, lastPoint = null;
+const requestedLetter = (new URLSearchParams(window.location.search).get('letter') || 'A').toUpperCase();
+let index = Math.max(0, ALPHABET.findIndex(item => item.upper === requestedLetter)), drawing = false, lastPoint = null;
 
 ALPHABET.forEach((item, itemIndex) => { const option = document.createElement('option'); option.value = itemIndex; option.textContent = `${item.upper}${item.lower} — ${item.word}`; letterSelect.append(option); });
+letterSelect.value = index;
 letterSelect.addEventListener('change', () => { index = Number(letterSelect.value); resetBoard(); });
 caseSelect.addEventListener('change', resetBoard);
 document.getElementById('trace-clear').addEventListener('click', resetBoard);

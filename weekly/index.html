@@ -3,257 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Week 4 Phase 1 classroom vocabulary, Aa and Bb phonics, listening games and an interactive My Family read-along book.">
-  <meta name="theme-color" content="#ffcf56">
-  <title>This Week: My Class and Aa/Bb | Michael's Phonics Hub</title>
+  <meta name="description" content="12–16 October 2026: PH1 colours and Cc; PH2 body parts and Jj. Play listening, phonics and early learning games together.">
+  <meta name="theme-color" content="#f7cb55">
+  <title>This Week: PH1 and PH2 | Michael's Phonics Hub</title>
   <link rel="stylesheet" href="../styles/main.css">
-  <link rel="stylesheet" href="../styles/weekly.css?v=20260921-1">
+  <link rel="stylesheet" href="../styles/weekly-learning.css?v=20261013-1">
 </head>
-<body class="weekly-page">
-  <a class="skip-link" href="#weekly-main">Skip to this week’s activities</a>
-
-  <header class="weekly-header">
-    <a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home">
-      <span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span>
-      <span class="brand-name">Michael's <strong>Phonics Hub</strong></span>
-    </a>
-    <nav aria-label="Weekly page navigation">
-      <a href="../index.html">Home</a>
-      <a href="../circle-time/index.html">Circle time</a>
-      <a class="active" href="index.html">This week</a>
-    </nav>
-  </header>
-
-  <main id="weekly-main">
-    <section class="weekly-hero weekly-shell" aria-labelledby="weekly-title">
-      <div class="weekly-hero-copy">
-        <a class="back-link" href="../index.html">← Back to all activities</a>
-        <p class="weekly-kicker">Week 4 · Phase 1</p>
-        <h1 id="weekly-title">My class <em>&amp; Aa/Bb</em></h1>
-        <p>Listen, move and practise bag, pencil, chair and book, then hear the first sounds in apple and book.</p>
-        <div class="weekly-goals" aria-label="Learning goals">
-          <span><b aria-hidden="true">👂</b> Listen</span>
-          <span><b aria-hidden="true">💬</b> Ask and answer</span>
-          <span><b aria-hidden="true">📖</b> Read together</span>
-        </div>
-      </div>
-      <div class="weekly-hero-art week-four-hero" aria-hidden="true">
-        <span class="hero-object hero-bag">🎒</span>
-        <span class="hero-object hero-pencil">✏️</span>
-        <span class="hero-object hero-chair">🪑</span>
-        <span class="hero-object hero-book">📘</span>
-        <div class="hero-speech">Find the book!</div>
-      </div>
-    </section>
-
-    <section class="vocabulary-section weekly-shell" aria-labelledby="vocabulary-title">
-      <div class="weekly-section-heading">
-        <div>
-          <p class="weekly-kicker">Look, listen and say</p>
-          <h2 id="vocabulary-title">Our four classroom words</h2>
-          <p class="section-intro">Tap each picture to hear the word, then say it together.</p>
-        </div>
-      </div>
-
-      <article class="vocabulary-phase-block phase-one-block">
-        <div class="vocabulary-phase-heading">
-          <div><span class="phase-tag">Phase 1 · Yellow</span><h3>My Class</h3></div>
-          <button class="weekly-audio-button" type="button" data-hear-words="bag,pencil,chair,book"><span aria-hidden="true">🔊</span> Hear these words</button>
-        </div>
-        <div class="vocabulary-grid">
-          <button class="vocabulary-card" type="button" data-vocabulary="bag"><span class="vocabulary-picture" aria-hidden="true">🎒</span><strong>bag</strong><small>Tap and say</small></button>
-          <button class="vocabulary-card" type="button" data-vocabulary="pencil"><span class="vocabulary-picture" aria-hidden="true">✏️</span><strong>pencil</strong><small>Tap and say</small></button>
-          <button class="vocabulary-card" type="button" data-vocabulary="chair"><span class="vocabulary-picture" aria-hidden="true">🪑</span><strong>chair</strong><small>Tap and say</small></button>
-          <button class="vocabulary-card" type="button" data-vocabulary="book"><span class="vocabulary-picture" aria-hidden="true">📘</span><strong>book</strong><small>Tap and say</small></button>
-        </div>
-      </article>
-
-      <p class="speech-status" id="speech-status" role="status" aria-live="polite"></p>
-    </section>
-
-    <section class="vocabulary-listen-section" aria-labelledby="vocabulary-listen-title">
-      <div class="weekly-shell">
-        <div class="vocabulary-listen-heading">
-          <div>
-            <p class="weekly-kicker">New game · Listen and find</p>
-            <h2 id="vocabulary-listen-title">Which classroom word?</h2>
-            <p>Hear one word, then tap the matching picture. There is no timer, and children can listen again as often as they need.</p>
-          </div>
-          <div class="vocabulary-listen-steps" aria-label="How to play">
-            <span><b>1</b> Listen</span><span><b>2</b> Find</span><span><b>3</b> Say it</span>
-          </div>
-        </div>
-
-        <div class="vocabulary-listen-game" id="vocabulary-listen-game">
-          <div class="vocabulary-listen-topbar">
-            <strong id="vocabulary-listen-progress">Ready to play</strong>
-            <button id="play-vocabulary-word" type="button"><span aria-hidden="true">🔊</span> Start the game</button>
-          </div>
-          <div class="vocabulary-listen-prompt">
-            <span aria-hidden="true">👂</span>
-            <div><small>Listen carefully</small><h3 id="vocabulary-listen-prompt">Which word did you hear?</h3></div>
-          </div>
-          <div class="vocabulary-listen-options" id="vocabulary-listen-options" aria-label="Choose the classroom word"></div>
-          <p class="vocabulary-listen-status" id="vocabulary-listen-status" role="status" aria-live="polite">Press “Start the game” to hear the first word.</p>
-          <p class="vocabulary-listen-feedback" id="vocabulary-listen-feedback" role="status" aria-live="polite">Look at all four pictures before you choose.</p>
-          <button class="next-vocabulary-button" id="next-vocabulary-word" type="button" hidden>Next word <span aria-hidden="true">→</span></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="give-game-section" aria-labelledby="give-game-title">
-      <div class="weekly-shell">
-        <div class="game-heading">
-          <div><p class="weekly-kicker weekly-kicker-light">Phase 1 · Listen and move</p><h2 id="give-game-title">Give It to a Friend</h2></div>
-          <p>Review bag, pencil, chair and book. Drag the object to the right friend, or tap the object and then tap a character.</p>
-        </div>
-
-        <div class="give-game" id="give-game">
-          <div class="game-topbar">
-            <div class="round-progress"><span id="round-label">Round 1 of 8</span><div id="round-stars" class="round-stars" aria-label="0 completed rounds"></div></div>
-            <div class="game-tools">
-              <button id="repeat-give-instruction" type="button"><span aria-hidden="true">🔊</span> Repeat</button>
-              <button id="shuffle-characters" type="button"><span aria-hidden="true">🔀</span> Shuffle</button>
-            </div>
-          </div>
-
-          <div class="instruction-card">
-            <span class="instruction-speaker" aria-hidden="true">🗣️</span>
-            <div><small>Listen and help</small><h3 id="give-instruction">Give the bag to Polly.</h3></div>
-          </div>
-
-          <div class="object-shelf">
-            <p>Your object</p>
-            <button class="game-object" id="game-object" type="button" draggable="true" aria-pressed="false">
-              <span id="game-object-picture" aria-hidden="true">🎒</span><strong id="game-object-word">bag</strong><small>Drag me!</small>
-            </button>
-            <p class="tap-direction">Tap or drag the object, then choose a friend.</p>
-          </div>
-
-          <div class="characters-grid" id="characters-grid" aria-label="Choose a character"></div>
-          <div class="game-feedback" id="give-feedback" role="status" aria-live="polite">Who needs the object?</div>
-          <button class="next-round-button" id="next-give-round" type="button" hidden>Next round <span aria-hidden="true">→</span></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="weekly-phonics-section" aria-labelledby="weekly-phonics-title">
-      <div class="weekly-shell">
-        <div class="weekly-section-heading phonics-section-heading">
-          <div>
-            <p class="weekly-kicker">Phase 1 phonics</p>
-            <h2 id="weekly-phonics-title">Hear it, notice it, <em>use it</em></h2>
-            <p>Watch the Aa and Bb sound songs, then practise hearing each first sound. There is no timer and children can replay every word.</p>
-          </div>
-          <div class="phonics-method" aria-label="How to learn">
-            <span><b>1</b> Listen</span><span><b>2</b> Choose</span><span><b>3</b> Say it</span>
-          </div>
-        </div>
-
-        <div class="phonics-video-grid" aria-label="Aa and Bb phonics sound songs">
-          <article class="phonics-video-card phonics-video-a">
-            <div class="phonics-video-copy">
-              <span class="phonics-video-letter" aria-hidden="true">Aa</span>
-              <div><p>Watch and join in</p><h3>Aa sound song</h3></div>
-            </div>
-            <video controls playsinline preload="metadata" poster="../assets/videos/OPW-A-poster.webp" aria-label="Play the Aa phonics sound song">
-              <source src="../assets/videos/OPW-A.mp4" type="video/mp4">
-              Your browser does not support MP4 video.
-            </video>
-          </article>
-
-          <article class="phonics-video-card phonics-video-b">
-            <div class="phonics-video-copy">
-              <span class="phonics-video-letter" aria-hidden="true">Bb</span>
-              <div><p>Watch and join in</p><h3>Bb sound song</h3></div>
-            </div>
-            <video controls playsinline preload="metadata" poster="../assets/videos/OPW-B-poster.webp" aria-label="Play the Bb phonics sound song">
-              <source src="../assets/videos/OPW-B.mp4" type="video/mp4">
-              Your browser does not support MP4 video.
-            </video>
-          </article>
-        </div>
-
-        <div class="phase-learning-grid phase-one-only">
-          <article class="phase-learning-card phase-one-card">
-            <span class="phase-tag">Phase 1 · Yellow</span>
-            <h3>Aa or Bb?</h3>
-            <p>Listen for the first sound in <strong>apple</strong> and <strong>book</strong>.</p>
-            <div class="sound-models">
-              <button type="button" data-play-word="apple"><span aria-hidden="true">🍎</span><strong>Aa</strong><small>/a/ apple</small></button>
-              <button type="button" data-play-word="book"><span aria-hidden="true">📘</span><strong>Bb</strong><small>/b/ book</small></button>
-            </div>
-            <button class="phase-game-start" id="start-ab-game" type="button">Start the Aa/Bb listening check <span aria-hidden="true">→</span></button>
-            <div class="mini-phonics-game" id="ab-review-game" hidden>
-              <div class="mini-game-progress" id="ab-progress">Sound 1 of 4</div>
-              <h4 id="ab-prompt">Find the word that starts with Aa /a/.</h4>
-              <div class="mini-game-options" id="ab-options"></div>
-              <p id="ab-feedback" role="status" aria-live="polite">Say both words, then choose.</p>
-              <button id="next-ab-round" type="button" hidden>Next sound <span aria-hidden="true">→</span></button>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="read-along-section" aria-labelledby="read-along-title">
-      <div class="weekly-shell">
-        <div class="read-along-heading">
-          <div>
-            <p class="weekly-kicker weekly-kicker-light">Picture-book time</p>
-            <h2 id="read-along-title">Read along with <em>My Family</em></h2>
-            <p>Turn the pages, then tap anywhere on the page—or any word below—to hear that page read aloud.</p>
-          </div>
-          <div class="book-skill-chips" aria-label="Reading skills">
-            <span>👆 Track print</span><span>👂 Listen</span><span>🗣️ Join in</span>
-          </div>
-        </div>
-
-        <div class="book-reader" id="my-family-reader">
-          <div class="book-reader-topbar">
-            <div>
-              <span class="book-level">Reading A-Z · Level aa</span>
-              <strong id="book-page-label">Cover · 1 of 10</strong>
-            </div>
-            <button id="read-book-page" type="button"><span aria-hidden="true">🔊</span> Read this page</button>
-          </div>
-
-          <div class="book-stage">
-            <button class="book-turn book-previous" id="previous-book-page" type="button" aria-label="Previous page"><span aria-hidden="true">‹</span></button>
-            <div class="book-page-frame" id="book-page-frame">
-              <button class="book-picture-button" id="book-picture-button" type="button" aria-label="Read this page aloud">
-                <img id="book-page-image" src="../assets/books/my-family/page-01.webp" alt="My Family book cover" width="1200" height="1855">
-                <span class="book-picture-hint"><b aria-hidden="true">🔊</b> Tap the page to hear it read</span>
-              </button>
-            </div>
-            <button class="book-turn book-next" id="next-book-page" type="button" aria-label="Next page"><span aria-hidden="true">›</span></button>
-          </div>
-
-          <div class="book-reading-panel">
-            <p>Tap the words to hear the page</p>
-            <div class="book-sentence" id="book-sentence" aria-label="Words on this page"></div>
-          </div>
-          <p class="book-audio-status" id="book-audio-status" role="status" aria-live="polite">Ready to read “My Family”.</p>
-          <div class="book-page-dots" id="book-page-dots" aria-label="Choose a book page"></div>
-        </div>
-        <p class="book-credit">Written by Cheryl Ryan · Illustrated by Nora Voutas · Classroom copy supplied by the teacher</p>
-      </div>
-    </section>
-
-    <section class="real-world-practice weekly-shell" aria-labelledby="real-practice-title">
-      <div class="real-practice-icon" aria-hidden="true">🔎</div>
-      <div>
-        <p class="weekly-kicker">Away from the screen</p>
-        <h2 id="real-practice-title">Go on a classroom word hunt.</h2>
-        <p>Ask the child to find a bag, pencil, chair and book. Say each word together, then sort the objects by their first sound.</p>
-      </div>
-    </section>
-
-    <p class="artwork-note weekly-shell">Character names are used for classroom practice. Book artwork remains the property of its publisher and is displayed from the teacher-supplied classroom copy.</p>
+<body class="weekly-learning">
+  <a class="skip-link" href="#weekly-main">Skip to this week’s content</a>
+  <header class="week-header page-shell"><a class="brand" href="../index.html" aria-label="Michael's Phonics Hub home"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a><nav aria-label="Weekly navigation"><a href="../index.html">Home</a><a href="index.html">This week</a><a href="../circle-time/index.html">Circle time</a></nav></header>
+  <main id="weekly-main" class="page-shell week-hub">
+    <p class="week-kicker">This week’s content · 12–16 October 2026</p>
+    <h1>A little practice.<br>A lot of <em>discovery.</em></h1>
+    <p class="week-hub-intro">Choose your class for this week’s words, phonics and games. Listen, say it and have a go together.</p>
+    <div class="course-grid">
+      <a class="course-card" href="ph1.html">
+        <span class="course-phase">PH1 · Phase 1 · Yellow</span>
+        <h2>My Colours</h2>
+        <p>Super Safari 1 · Unit 2</p>
+        <div class="course-symbols" aria-hidden="true"><i style="background:#e94845"></i><i style="background:#2581c2"></i><i style="background:#f7cb37"></i><i style="background:#32966c"></i><span>Cc</span></div>
+        <p>Red, blue, yellow and green. Practise Cc with cat, car, computer and cup, then revisit Aa and Bb.</p>
+        <p>Play Colour Detective, Cc Picture Picnic and Colour Patterns.</p>
+        <strong>Open PH1’s week →</strong>
+      </a>
+      <a class="course-card ph2-card" href="ph2.html">
+        <span class="course-phase">PH2 · Phase 2 · Pink</span>
+        <h2>My Body</h2>
+        <p>Super Safari 2 · Unit 3</p>
+        <div class="course-symbols" aria-hidden="true"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg"><g fill="#b7466c" stroke="#173c3a" stroke-width="3" stroke-linejoin="round"><path d="M48 80 L44 123 L33 134 L55 134 L60 87 L65 134 L87 134 L76 123 L72 80"/><path d="M40 49 L19 89 L28 94 L45 64 M80 49 L101 89 L92 94 L75 64"/><rect x="40" y="47" width="40" height="40" rx="10"/><circle cx="60" cy="25" r="20"/><path d="M53 24 L53 25 M67 24 L67 25 M54 33 Q60 38 66 33" fill="none" stroke-linecap="round"/></g></svg><span>Jj</span></div>
+        <p>Name body parts, try action sentences and practise Jj with juice, jam, jet and jacket.</p>
+        <p>Play Body Detective, Jj Sound Hunt and Little Word Builders.</p>
+        <strong>Open PH2’s week →</strong>
+      </a>
+    </div>
+    <p class="week-parent-note">Start with one game. Five to ten minutes of shared practice is plenty. The Cc and Jj video spaces are ready for the new classroom videos; Aa and Bb songs are available now.</p>
+    <p class="week-archive">Looking for earlier practice? <a href="week4.html">My Class, Aa/Bb and the My Family read-along →</a></p>
   </main>
-
   <footer class="site-footer"><div class="page-shell footer-inner"><p>Michael's Phonics Hub</p><p>Read · build · grow</p></div></footer>
-  <script type="module" src="../scripts/weekly.js?v=20260921-1"></script>
 </body>
 </html>
