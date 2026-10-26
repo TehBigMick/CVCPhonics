@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practise blending short-i CVC words: read first, reveal pictures, then match. A calm early phonics game.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Short-i Picture Quest | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/short-i.css">
+  <script defer src="../scripts/short-i.js"></script>
+</head>
+<body class="short-i-page">
+  <a class="skip-link" href="#main">Skip to reading game</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a>
+    <a class="exit-link" href="games.html">All phonics games</a>
+  </header>
+  <main id="main" class="short-i-shell">
+    <div class="quest-heading"><p class="kicker">Read it. Blend it. Find it.</p><h1>Short-<em>i</em> Picture Quest</h1><p>A little word. A big reading adventure.</p></div>
+    <section id="quest-menu" class="quest-card" aria-labelledby="menu-title">
+      <div class="intro-tiles" aria-hidden="true"><span>s</span><span>i</span><span>t</span></div>
+      <h2 id="menu-title">Let’s read short-i words!</h2>
+      <p>Look at each letter. Say the sounds, then blend them together.<br>Try reading the word before you see the pictures.</p>
+      <div class="quest-set-buttons"><button type="button" class="button button-primary" data-set="first">Start with 6 words <small>sit · pin · pig · dig · bin · lid</small></button><button type="button" class="button button-secondary" data-set="all">Try all 10 words <small>Plus fin · lip · zip · wig</small></button></div>
+      <p class="teacher-tip">For grown-ups: the middle <strong>i</strong> says /ɪ/, as in <strong>sit</strong>. Model pure sounds without an extra “uh”. The audio button reads the whole word; the blending guide is visual.</p>
+    </section>
+    <section id="quest-play" class="quest-card" aria-labelledby="round-title" hidden>
+      <div class="quest-toolbar"><button type="button" class="quest-link" id="change-set">← Word sets</button><span id="round-label"></span></div>
+      <progress id="quest-progress" value="0" max="6" aria-label="Words completed"></progress>
+      <p class="kicker" id="round-title">Look · sound out · blend</p>
+      <p class="reading-prompt" id="reading-prompt">Can you read this word?</p>
+      <div class="word-tiles" id="word-tiles" role="group" aria-label="Word to read"></div>
+      <div class="blend-track" aria-hidden="true">● <span>⟶</span> ● <span>⟶</span> ● <span>⟶</span></div>
+      <div class="reading-tools"><button type="button" class="button button-secondary" id="blend-guide">Follow the sounds →</button><button type="button" class="button button-secondary" id="hear-word">🔊 Hear the word</button></div>
+      <button type="button" class="button button-primary reveal-button" id="reveal-pictures">I’ve tried! Find the picture →</button>
+      <div id="picture-choices" class="picture-choices" aria-label="Choose the matching picture" hidden></div>
+      <p id="quest-feedback" class="quest-feedback" role="status" aria-live="polite"></p>
+      <p id="quest-audio-status" class="audio-status" role="status"></p>
+      <button type="button" class="button button-primary" id="next-word" hidden>Next word →</button>
+    </section>
+    <section id="quest-finish" class="quest-card" aria-labelledby="finish-title" hidden>
+      <div class="finish-star" aria-hidden="true">★</div><p class="kicker">You kept trying!</p><h2 id="finish-title">Reading adventure complete.</h2><p id="finish-summary"></p><div class="finished-words" id="finished-words"></div><div class="quest-set-buttons"><button type="button" class="button button-primary" id="play-again">Play again ↺</button><button type="button" class="button button-secondary" id="practise-words" hidden>Practise the tricky words</button><button type="button" class="quest-link" id="finish-menu">Choose a word set</button></div>
+    </section>
+    <p class="quest-footer">No timer. No rush. Point to each sound and celebrate the attempt.</p>
+    <noscript><p>Please enable JavaScript to play this reading game.</p></noscript>
+  </main>
+</body>
+</html>
