@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build a friendly monster, count its body parts and practise simple English sentences.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Make a Monster | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/monster.css">
+  <script defer src="../scripts/monster.js"></script>
+</head>
+<body class="monster-page">
+  <a class="skip-link" href="#main">Skip to monster builder</a>
+  <header class="monster-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a>
+    <a class="back-link" href="../index.html">← All activities</a>
+  </header>
+  <main id="main" class="monster-shell">
+    <div class="monster-intro"><p class="kicker">A little counting. A lot of imagination.</p><h1>Make a <em>monster!</em></h1><p>Tap + or − to choose its body parts. What will you make?</p></div>
+    <div class="monster-layout">
+      <section class="monster-controls" aria-labelledby="parts-title">
+        <div class="panel-top"><span class="step-badge">1</span><div><h2 id="parts-title">Pick your parts</h2><p>Count them as you go.</p></div></div>
+        <div id="part-controls"></div>
+        <fieldset class="colour-picker"><legend>Choose a colour</legend><div id="colours"></div></fieldset>
+        <p class="monster-tip">Hands, feet and eyes are totals for the whole monster. Every count is your choice — even zero!</p>
+      </section>
+      <section class="monster-preview" aria-labelledby="preview-title">
+        <div class="preview-top"><span class="pill">Your very own creation</span><h2 id="preview-title">Hello, monster!</h2></div>
+        <div class="monster-stage"><svg id="monster" viewBox="0 0 640 620" role="img" aria-labelledby="monster-title monster-description"><title id="monster-title">My friendly monster</title><desc id="monster-description"></desc><g id="monster-art"></g></svg></div>
+        <div class="monster-actions"><button type="button" class="button button-primary" id="speak-monster">🔊 Hear my monster</button><button type="button" class="button button-secondary" id="random-monster">✦ Surprise me</button><button type="button" class="button button-secondary" id="reset-monster">↺ Start again</button></div>
+        <div class="monster-sentences"><p class="kicker">Point, count and say</p><p id="monster-summary" aria-live="polite" aria-atomic="true"></p></div>
+        <p id="audio-status" role="status"></p>
+      </section>
+    </div>
+    <p class="grown-up-note">Try together: “How many eyes?” → “Three eyes!” → “My monster has three eyes.”</p>
+    <noscript><p>Please enable JavaScript to build your monster.</p></noscript>
+  </main>
+</body>
+</html>

@@ -1,0 +1,282 @@
+.monster-page {
+  background:#f8f4ec;
+  color:#233c36
+}
+.monster-header {
+  max-width:1400px;
+  margin:auto;
+  padding:24px 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px
+}
+.back-link {
+  font-weight:750;
+  color:#285e50;
+  text-decoration:none
+}
+.monster-shell {
+  max-width:1280px;
+  margin:auto;
+  padding:12px 28px 30px
+}
+.monster-intro {
+  text-align:center;
+  margin:12px 0 30px
+}
+.monster-intro h1 {
+  font-size:clamp(2.5rem,5vw,4rem);
+  letter-spacing:-.045em;
+  margin:8px 0
+}
+.monster-intro h1 em {
+  color:#647446;
+  font-style:normal
+}
+.monster-intro>p:last-child {
+  font-size:1.1rem;
+  color:#566861
+}
+.monster-layout {
+  display:grid;
+  grid-template-columns:350px 1fr;
+  gap:24px;
+  align-items:start
+}
+.monster-controls,.monster-preview {
+  border:1px solid #dce3d8;
+  background:#fffefa;
+  border-radius:28px;
+  box-shadow:0 8px 0 #e9e8dd
+}
+.monster-controls {
+  padding:24px
+}
+.panel-top {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px
+}
+.step-badge {
+  background:#f7d873;
+  border-radius:16px;
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  font-size:1.5rem;
+  font-weight:800
+}
+.panel-top h2 {
+  margin:0;
+  font-size:1.35rem
+}
+.panel-top p {
+  margin:3px 0 0;
+  color:#66766b
+}
+.part-row {
+  display:grid;
+  grid-template-columns:1fr 46px 42px 46px;
+  gap:5px;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid #edf0e7
+}
+.part-name {
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-size:1.1rem;
+  font-weight:750
+}
+.part-icon {
+  width:30px;
+  height:30px;
+  display:grid;
+  place-items:center
+}
+.part-icon svg {
+  width:30px;
+  height:30px
+}
+.count-button {
+  border:0;
+  background:#ebf1e8;
+  color:#244d3b;
+  border-radius:14px;
+  min-width:46px;
+  min-height:46px;
+  font-size:1.7rem;
+  cursor:pointer;
+  font-weight:750
+}
+.count-button:hover:not(:disabled) {
+  background:#d5e8ca
+}
+.count-button:disabled {
+  opacity:.35;
+  cursor:default
+}
+.part-row output {
+  font-size:1.5rem;
+  font-weight:850;
+  text-align:center;
+  font-variant-numeric:tabular-nums
+}
+.colour-picker {
+  border:0;
+  padding:0;
+  margin:22px 0 0
+}
+.colour-picker legend {
+  font-weight:750;
+  margin-bottom:12px
+}
+.colour-picker>div {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px
+}
+.colour-swatch {
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:3px solid white;
+  outline:2px solid transparent;
+  cursor:pointer;
+  background:var(--swatch)
+}
+.colour-swatch[aria-pressed=true] {
+  outline-color:#233c36
+}
+.monster-tip {
+  font-size:.82rem;
+  line-height:1.6;
+  color:#66766b;
+  margin:20px 0 0
+}
+.monster-preview {
+  overflow:hidden;
+  padding:24px;
+  text-align:center
+}
+.preview-top h2 {
+  font-size:1.7rem;
+  margin:12px 0 0
+}
+.monster-stage {
+  border-radius:24px;
+  margin:12px 0;
+  background:radial-gradient(ellipse at 50% 50%,#f7f9db,transparent 67%),radial-gradient(#dce6d6 1.5px,transparent 1.5px);
+  background-size:auto,24px 24px
+}
+.monster-stage>svg {
+  width:100%;
+  max-height:520px;
+  display:block
+}
+.monster-actions {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px
+}
+.monster-actions .button {
+  cursor:pointer;
+  font-family:inherit;
+  font-size:.95rem;
+  min-height:48px
+}
+.monster-sentences {
+  background:#eff4e9;
+  border-radius:18px;
+  margin-top:20px;
+  padding:16px 20px
+}
+.monster-sentences .kicker {
+  margin:0 0 8px
+}
+.monster-sentences>p:last-child {
+  margin:0;
+  font-size:1.15rem;
+  line-height:1.8;
+  font-weight:650
+}
+.sentence-chunk {
+  display:inline-block;
+  margin-right:.3em
+}
+#audio-status {
+  font-size:.9rem;
+  color:#5b6b5f;
+  margin:10px 0 0
+}
+.grown-up-note {
+  text-align:center;
+  color:#647367;
+  line-height:1.6;
+  margin:26px 0 0
+}
+button:focus-visible,a:focus-visible {
+  outline:3px solid #1666b0;
+  outline-offset:4px
+}
+@media(min-width:1000px) {
+  .monster-preview {
+  position:sticky;
+  top:16px
+}
+
+}
+@media(max-width:800px) {
+  .monster-layout {
+  grid-template-columns:1fr
+}
+.monster-preview {
+  grid-row:1
+}
+.monster-controls {
+  padding:20px
+}
+.monster-header {
+  padding:18px
+}
+.monster-shell {
+  padding:0 14px 24px
+}
+.monster-intro {
+  margin-bottom:20px
+}
+.monster-stage>svg {
+  max-height:390px
+}
+.monster-preview {
+  padding:18px
+}
+.monster-intro .kicker {
+  font-size:.7rem
+}
+.monster-header .brand-name {
+  font-size:.9rem
+}
+.back-link {
+  font-size:.85rem
+}
+.monster-actions .button {
+  padding:12px
+}
+.part-row {
+  grid-template-columns:1fr 50px 48px 50px
+}
+
+}
+@media(prefers-reduced-motion:reduce) {
+  * {
+  scroll-behavior:auto!important
+}
+
+}
+
