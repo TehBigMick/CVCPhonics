@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Shake along with a friendly monster. Press six action buttons to shake its arms, feet, legs, hands, head and body.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Shake Along, Monster! | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/shake-monster.css">
+  <script defer src="../scripts/shake-monster.js"></script>
+</head>
+<body class="shake-page">
+  <a class="skip-link" href="#main">Skip to monster actions</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a>
+    <a class="exit-link" href="index.html">Make a Monster →</a>
+  </header>
+  <main id="main" class="shake-shell">
+    <div class="shake-heading"><p class="kicker">Listen. Watch. Move together.</p><h1>Shake along, <em>monster!</em></h1><p>Press an action and copy the monster. Use it alongside your song!</p></div>
+    <div class="shake-layout">
+      <section class="shake-stage-panel" aria-labelledby="shake-caption">
+        <p id="shake-caption" class="shake-caption" aria-live="polite" aria-atomic="true">Ready to shake?</p>
+        <svg id="shake-monster" viewBox="0 0 640 620" role="img" aria-labelledby="shake-title shake-description">
+          <title id="shake-title">A friendly dancing monster</title>
+          <desc id="shake-description">A green monster waiting for an action.</desc>
+          <ellipse cx="320" cy="568" rx="180" ry="17" fill="#dce7cd"/>
+          <g class="monster-drawing" stroke="#365343" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="#9cca77">
+            <g transform="translate(266 434)"><g class="leg leg-left"><path d="M0 0L-4 89" stroke="#365343" stroke-width="34"/><path d="M0 0L-4 89" stroke="#9cca77" stroke-width="26"/><g transform="translate(-4 89)"><g class="foot foot-left"><path d="M-15 -6Q-28 -1 -31 20Q-31 30 16 28Q34 26 27 12Q20 4 14 4V-6Z" fill="#e9bd6e"/></g></g></g></g>
+            <g transform="translate(374 434)"><g class="leg leg-right"><path d="M0 0L4 89" stroke="#365343" stroke-width="34"/><path d="M0 0L4 89" stroke="#9cca77" stroke-width="26"/><g transform="translate(4 89)"><g class="foot foot-right"><path d="M-14 -6V4Q-20 4 -27 12Q-34 26 -16 28Q31 30 31 20Q28 -1 15 -6Z" fill="#e9bd6e"/></g></g></g></g>
+            <g class="body-motion">
+              <path class="torso" d="M229 281Q191 310 204 393Q204 461 320 465Q436 461 436 393Q449 310 411 281Q320 249 229 281Z"/>
+              <ellipse cx="320" cy="380" rx="66" ry="55" fill="#e1ecb6" stroke="none"/>
+              <g fill="#7ca95b" stroke="none"><circle cx="237" cy="340" r="10"/><circle cx="399" cy="387" r="12"/><circle cx="250" cy="420" r="7"/></g>
+              <g transform="translate(217 305)"><g class="arm arm-left"><path d="M0 0Q-45 -3 -82 45" fill="none" stroke="#365343" stroke-width="30"/><path d="M0 0Q-45 -3 -82 45" fill="none" stroke="#9cca77" stroke-width="22"/><g transform="translate(-82 45)"><g class="hand hand-left"><path d="M-11 -2L-25 -15Q-35 -19 -34 -10L-21 5L-42 0Q-51 1 -46 8L-24 16L-43 21Q-50 27 -42 31L-21 26L-29 41Q-31 49 -23 48L-7 29Q14 20 9 5L2 -13Q-4 -22 -8 -14Z" fill="#b7d899" stroke-width="3"/></g></g></g></g>
+              <g transform="translate(423 305)"><g class="arm arm-right"><path d="M0 0Q45 -3 82 45" fill="none" stroke="#365343" stroke-width="30"/><path d="M0 0Q45 -3 82 45" fill="none" stroke="#9cca77" stroke-width="22"/><g transform="translate(82 45)"><g class="hand hand-right"><path d="M11 -2L25 -15Q35 -19 34 -10L21 5L42 0Q51 1 46 8L24 16L43 21Q50 27 42 31L21 26L29 41Q31 49 23 48L7 29Q-14 20 -9 5L-2 -13Q4 -22 8 -14Z" fill="#b7d899" stroke-width="3"/></g></g></g></g>
+              <g transform="translate(320 207)"><g class="head-motion">
+                <path d="M-61 -58Q-93 -94 -70 -120Q-66 -92 -40 -78M61 -58Q93 -94 70 -120Q66 -92 40 -78" fill="#f5d46a"/>
+                <path d="M-84 -13Q-81 -88 0 -87Q81 -88 84 -13Q91 77 0 80Q-91 77 -84 -13Z"/>
+                <g fill="#fffdf5"><ellipse cx="-31" cy="-12" rx="23" ry="27"/><ellipse cx="31" cy="-12" rx="23" ry="27"/></g>
+                <g fill="#365343" stroke="none"><circle cx="-28" cy="-8" r="10"/><circle cx="28" cy="-8" r="10"/></g>
+                <g fill="white" stroke="none"><circle cx="-24" cy="-13" r="3.5"/><circle cx="32" cy="-13" r="3.5"/></g>
+                <path d="M-29 31Q0 42 29 31Q28 64 0 65Q-28 64 -29 31Z" fill="#704653"/>
+                <path d="M-16 35V46H-3V38M4 38V46H17V35" fill="#fffdf5" stroke="none"/>
+                <g fill="#e2b5a0" stroke="none"><ellipse cx="-58" cy="24" rx="12" ry="7"/><ellipse cx="58" cy="24" rx="12" ry="7"/></g>
+              </g></g>
+            </g>
+          </g>
+        </svg>
+        <p class="shake-stage-note">Watch the monster, then have a go!</p>
+      </section>
+      <section class="shake-controls" aria-labelledby="actions-title">
+        <p class="kicker">You choose the move</p><h2 id="actions-title">Let’s shake!</h2>
+        <div class="shake-buttons">
+          <button type="button" data-action="arms" aria-pressed="false"><span aria-hidden="true">💪</span><span>Shake your <strong>arms</strong></span></button>
+          <button type="button" data-action="feet" aria-pressed="false"><span aria-hidden="true">🦶</span><span>Shake your <strong>feet</strong></span></button>
+          <button type="button" data-action="legs" aria-pressed="false"><span aria-hidden="true">🦵</span><span>Shake your <strong>legs</strong></span></button>
+          <button type="button" data-action="hands" aria-pressed="false"><span aria-hidden="true">👐</span><span>Shake your <strong>hands</strong></span></button>
+          <button type="button" data-action="head" aria-pressed="false"><span aria-hidden="true">🙂</span><span>Shake your <strong>head</strong></span></button>
+          <button type="button" data-action="body" aria-pressed="false"><span aria-hidden="true">🕺</span><span>Shake your <strong>body</strong></span></button>
+        </div>
+        <div class="shake-transport"><button type="button" id="shake-play-all" class="button button-primary" aria-pressed="false">▶ Play all actions</button><button type="button" id="shake-stop" class="button button-secondary">■ Stop</button></div>
+        <label class="shake-voice"><input type="checkbox" id="shake-voice" checked> Say the instructions</label>
+        <p id="shake-audio-status" class="shake-audio-status" role="status"></p>
+        <p class="shake-teacher-note">Each move lasts about five seconds. Switch off the voice when you play your song. “Play all” follows the six actions above.</p>
+      </section>
+    </div>
+    <noscript><p>Please enable JavaScript to make the monster move.</p></noscript>
+  </main>
+</body>
+</html>
