@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose red, yellow, blue or green, then tap a book, chair, pencil or bag to colour it. A simple classroom colouring game.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>Colour the Classroom | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/colour-classroom.css">
+  <script defer src="../scripts/colour-classroom.js"></script>
+</head>
+<body class="colour-page">
+  <a class="skip-link" href="#main">Skip to colouring game</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a>
+    <a class="exit-link" href="../index.html">← All activities</a>
+  </header>
+  <main id="main" class="colour-shell">
+    <div class="colour-heading"><p class="kicker">Choose. Tap. Colour!</p><h1>Colour the <em>classroom.</em></h1><p>Pick a colour, then tap a picture. You can change it as many times as you like!</p></div>
+    <div class="colour-layout">
+      <section class="colour-palette-panel" aria-labelledby="palette-title">
+        <div class="colour-step"><span aria-hidden="true">1</span><h2 id="palette-title">Pick a colour</h2></div>
+        <div class="colour-palette" role="group" aria-label="Choose a paint colour">
+          <button type="button" data-colour="red" aria-pressed="false"><span class="paint-swatch swatch-red" aria-hidden="true"><span>✓</span></span><strong>Red</strong></button>
+          <button type="button" data-colour="yellow" aria-pressed="false"><span class="paint-swatch swatch-yellow" aria-hidden="true"><span>✓</span></span><strong>Yellow</strong></button>
+          <button type="button" data-colour="blue" aria-pressed="false"><span class="paint-swatch swatch-blue" aria-hidden="true"><span>✓</span></span><strong>Blue</strong></button>
+          <button type="button" data-colour="green" aria-pressed="false"><span class="paint-swatch swatch-green" aria-hidden="true"><span>✓</span></span><strong>Green</strong></button>
+        </div>
+        <p id="selected-colour" class="selected-colour">Choose a colour to begin.</p>
+        <button type="button" id="clear-colours" class="button button-secondary">↺ Start again</button>
+      </section>
+      <section class="colour-pictures-panel" aria-labelledby="pictures-title">
+        <div class="colour-step"><span aria-hidden="true">2</span><h2 id="pictures-title">Tap a picture</h2></div>
+        <div class="classroom-pictures">
+          <button type="button" class="classroom-picture" data-object="book" aria-label="Book, uncoloured. Tap to colour.">
+            <svg viewBox="0 0 260 230" aria-hidden="true" focusable="false"><g stroke="#354d44" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path data-paint fill="#ffffff" d="M65 43H208V185H65Q39 185 39 165V63Q39 43 65 43Z"/><path data-paint fill="#ffffff" d="M65 43V185Q39 185 39 165V63Q39 43 65 43Z"/><path fill="#ffffff" d="M65 156H208V185H65Q40 185 40 171Q40 156 65 156Z"/><path d="M68 170H194" fill="none" stroke-width="3"/><path fill="#ffffff" d="M91 70H180V114H91Z"/><path d="M107 86H164M107 99H149" fill="none" stroke-width="3"/></g></svg>
+            <strong>book</strong><span class="object-colour" data-caption="book">Tap to colour</span>
+          </button>
+          <button type="button" class="classroom-picture" data-object="chair" aria-label="Chair, uncoloured. Tap to colour.">
+            <svg viewBox="0 0 260 230" aria-hidden="true" focusable="false"><g stroke="#354d44" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path data-paint fill="#ffffff" d="M64 39H81V194H64Z"/><path data-paint fill="#ffffff" d="M179 39H196V194H179Z"/><path data-paint fill="#ffffff" d="M80 135H96V199H80Z"/><path data-paint fill="#ffffff" d="M164 135H180V199H164Z"/><rect data-paint fill="#ffffff" x="60" y="30" width="140" height="69" rx="12"/><path data-paint fill="#ffffff" d="M61 118H199V143H61Z"/><path d="M87 54H173M87 73H173" stroke-width="3" fill="none"/></g></svg>
+            <strong>chair</strong><span class="object-colour" data-caption="chair">Tap to colour</span>
+          </button>
+          <button type="button" class="classroom-picture" data-object="pencil" aria-label="Pencil, uncoloured. Tap to colour.">
+            <svg viewBox="0 0 260 230" aria-hidden="true" focusable="false"><g transform="rotate(37 130 115)" stroke="#354d44" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path data-paint fill="#ffffff" d="M108 39H152V160H108Z"/><path data-paint fill="#ffffff" d="M108 39V29Q130 9 152 29V39Z"/><path fill="#ffffff" d="M108 160L130 204L152 160Z"/><path fill="#354d44" d="M120 184L130 204L140 184Z"/><path d="M122 48V149M138 48V149M109 44H151" fill="none" stroke-width="3"/></g></svg>
+            <strong>pencil</strong><span class="object-colour" data-caption="pencil">Tap to colour</span>
+          </button>
+          <button type="button" class="classroom-picture" data-object="bag" aria-label="Bag, uncoloured. Tap to colour.">
+            <svg viewBox="0 0 260 230" aria-hidden="true" focusable="false"><g stroke="#354d44" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path data-paint fill="#ffffff" d="M94 71V49Q130 4 166 49V71H151V53Q130 24 109 53V71Z"/><path data-paint fill="#ffffff" d="M72 63H188L208 193H52Z"/><rect data-paint fill="#ffffff" x="87" y="106" width="86" height="61" rx="8"/><path d="M88 123H172" fill="none" stroke-width="3"/><circle cx="130" cy="134" r="4" fill="#354d44"/></g></svg>
+            <strong>bag</strong><span class="object-colour" data-caption="bag">Tap to colour</span>
+          </button>
+        </div>
+      </section>
+    </div>
+    <p id="colour-feedback" class="colour-feedback" role="status" aria-live="polite" aria-atomic="true">Let’s add some colour!</p>
+    <p class="colour-teacher-note">Try saying: “It is a red book.” “It is a blue chair.”</p>
+    <noscript><p>Please enable JavaScript to colour the pictures.</p></noscript>
+  </main>
+</body>
+</html>

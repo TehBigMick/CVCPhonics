@@ -1,0 +1,51 @@
+.colour-page { background: #f8f4ec; }
+.colour-shell { max-width: 1180px; margin: auto; padding: 6px 24px 30px; }
+.colour-heading { text-align: center; margin: 8px 0 28px; }
+.colour-heading h1 { margin: 8px 0; font-size: clamp(2.2rem, 4.8vw, 3.5rem); letter-spacing: -.04em; }
+.colour-heading h1 em { color: #477c60; font-style: normal; }
+.colour-heading > p:last-child { color: #5a6e63; }
+.colour-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 24px; align-items: start; }
+.colour-palette-panel, .colour-pictures-panel { padding: 24px; border: 1px solid #dce3d7; border-radius: 28px; background: #fffefa; box-shadow: 0 7px 0 #e8e9df; }
+.colour-step { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.colour-step > span { display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: #eaf0df; font-weight: 800; color: #527047; }
+.colour-step h2 { margin: 0; font-size: 1.3rem; }
+.colour-palette { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.colour-palette button { padding: 10px 5px; border: 2px solid transparent; background: transparent; border-radius: 18px; color: #2c493e; cursor: pointer; }
+.colour-palette button:hover { background: #f0f3e9; }
+.colour-palette button[aria-pressed="true"] { border-color: #375743; background: #eef3e7; }
+.paint-swatch { display: grid; place-items: center; width: 66px; height: 66px; margin: 0 auto 8px; border: 2px solid #203d3433; border-radius: 50%; }
+.swatch-red { background: #ed3b3b; }
+.swatch-yellow { background: #ffdf24; }
+.swatch-blue { background: #327be8; }
+.swatch-green { background: #2fa951; }
+.paint-swatch > span { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: #fffefa; color: #254a37; font-size: 1.1rem; font-weight: 850; visibility: hidden; }
+[aria-pressed="true"] .paint-swatch > span { visibility: visible; }
+.selected-colour { margin: 20px 0; text-align: center; font-weight: 700; color: #45634f; min-height: 3.2em; }
+#clear-colours { width: 100%; cursor: pointer; min-height: 48px; font-size: .95rem; }
+.classroom-pictures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.classroom-picture { padding: 12px; border: 2px solid #e2e6dc; border-radius: 23px; background: #f9f8f1; cursor: pointer; color: #304f3e; }
+.classroom-picture:hover { background: #f0f3e9; border-color: #8ea47c; }
+.classroom-picture svg { display: block; width: 100%; max-width: 240px; max-height: 205px; margin: 0 auto; }
+.classroom-picture > strong { font-family: var(--hand); font-size: 2rem; line-height: 1.2; font-weight: 400; display: block; margin-top: 3px; }
+.object-colour { display: block; min-height: 1.6em; font-size: .85rem; margin: 5px 0 0; color: #536b5b; }
+.classroom-picture.is-coloured { border-color: #91b17c; }
+.colour-feedback { text-align: center; font-size: 1.25rem; font-weight: 750; color: #38664b; margin: 30px 0 8px; min-height: 1.6em; }
+.colour-teacher-note { text-align: center; color: #647363; font-size: .9rem; margin: 0; }
+@media (min-width: 801px) { .colour-palette-panel { position: sticky; top: 20px; } }
+@media (max-width: 800px) {
+  .colour-shell { padding: 0 12px 24px; }
+  .colour-layout { grid-template-columns: 1fr; gap: 18px; }
+  .colour-palette-panel { padding: 16px; position: sticky; top: 0; z-index: 2; border-radius: 20px; }
+  .colour-palette-panel .colour-step { margin-bottom: 8px; }
+  .colour-palette { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .paint-swatch { width: 44px; height: 44px; margin-bottom: 4px; }
+  .colour-palette button { padding: 6px 3px; font-size: .85rem; }
+  .selected-colour { min-height: 0; margin: 8px 0; font-size: .9rem; }
+  #clear-colours { min-height: 44px; padding: 7px; }
+  .colour-pictures-panel { padding: 16px; }
+  .classroom-pictures { gap: 10px; }
+  .classroom-picture { padding: 10px 5px; border-radius: 18px; scroll-margin-top: 285px; }
+  .classroom-picture svg { max-height: 160px; }
+  .classroom-picture > strong { font-size: 1.8rem; }
+  .object-colour { font-size: .8rem; }
+}
