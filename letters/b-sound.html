@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A beginner listening game: hear three picture words and find the one that starts with the b sound. Bear, bird, bed, banana, ball and bag.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>B Sound Detective | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/short-i.css">
+  <link rel="stylesheet" href="../styles/b-sound.css">
+  <script defer src="../scripts/b-sound.js"></script>
+</head>
+<body class="short-i-page b-sound-page">
+  <a class="skip-link" href="#main">Skip to listening game</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a>
+    <a class="exit-link" href="index.html">Alphabet playroom</a>
+  </header>
+  <main id="main" class="short-i-shell">
+    <div class="quest-heading"><p class="kicker">Little ears. Big discoveries.</p><h1><em>B</em> Sound Detective</h1><p>Listen to the beginning of each word.</p></div>
+    <section id="b-menu" class="quest-card" aria-labelledby="b-menu-title">
+      <div class="b-badge" aria-hidden="true">B b</div><h2 id="b-menu-title">Can you find the /b/ sound?</h2>
+      <p>Three pictures. One word beginning with /b/.<br>Tap each picture to hear its word, then choose your answer.</p>
+      <button class="button button-primary" id="b-start" type="button">Let’s play →</button>
+      <p class="teacher-tip">No reading needed. We’ll find <strong>bear, bird, bed, banana, ball</strong> and <strong>bag</strong>. Model a short, pure /b/ sound, without adding “uh”. The buttons speak whole picture words. If your browser has no English voice, say the words for your child.</p>
+    </section>
+    <section id="b-play" class="quest-card" aria-labelledby="b-question" hidden>
+      <div class="quest-toolbar"><button type="button" class="quest-link" id="b-home">← Start again</button><span id="b-round"></span></div>
+      <progress id="b-progress" value="0" max="6" aria-label="Words found"></progress>
+      <div class="b-prompt"><span class="b-badge" aria-hidden="true">B b</span><div><h2 id="b-question">Which word begins with /b/?</h2><p>Listen first. Then choose!</p></div></div>
+      <button type="button" class="button button-secondary" id="b-hear-all">🔊 Hear all three</button>
+      <div id="b-choices" class="b-choices" role="group" aria-label="Three picture words"></div>
+      <p id="b-feedback" class="quest-feedback" role="status" aria-live="polite"></p>
+      <p id="b-audio-status" class="audio-status" role="status"></p>
+      <button type="button" class="button button-primary" id="b-next" hidden>Next pictures →</button>
+      <div id="b-stars" class="b-stars" aria-hidden="true"></div>
+    </section>
+    <section id="b-finish" class="quest-card" aria-labelledby="b-finish-title" hidden>
+      <div class="finish-star" aria-hidden="true">★</div><p class="kicker">Super listening!</p><h2 id="b-finish-title">You found all six /b/ words!</h2><p>Tap a picture to hear its word again.</p><div id="b-collection" class="b-collection"></div><button type="button" class="button button-primary" id="b-replay">Play again ↺</button><p id="b-finish-audio" class="audio-status" role="status"></p>
+    </section>
+    <p class="quest-footer">Listen, point and try. There is no timer.</p>
+    <noscript><p>Please enable JavaScript to play this game.</p></noscript>
+  </main>
+</body>
+</html>

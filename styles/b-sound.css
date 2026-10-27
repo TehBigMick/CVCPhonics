@@ -1,0 +1,36 @@
+.b-badge { display: inline-grid; place-items: center; background: #f9dfa0; color: #744c32; border-radius: 24px; font-family: var(--hand); font-size: 4rem; line-height: 1.1; min-width: 120px; min-height: 100px; padding: 12px; }
+#b-start { margin-top: 16px; }
+#b-progress { display: block; width: 100%; height: 12px; margin: 15px 0 25px; accent-color: #699476; }
+.b-prompt { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 10px 0 24px; }
+.b-prompt h2 { margin: 0; }
+.b-prompt p { margin: 6px 0 0; color: #5a6d64; }
+.b-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 25px 0 10px; }
+.b-choice { border: 3px solid #dce5d5; background: #faf8ef; border-radius: 24px; padding: 12px; position: relative; }
+.b-listen { display: block; width: 100%; background: transparent; border: 0; color: #38584c; border-radius: 16px; padding: 8px 0; }
+.b-listen:hover { background: #edf1e4; }
+.b-listen svg { display: block; width: 100%; max-width: 200px; margin: auto; }
+.b-listen-label { font-size: .9rem; font-weight: 700; }
+.b-number { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #e7eddc; color: #4f6755; font-weight: 750; }
+.b-choose { width: 100%; border: 0; border-radius: 14px; padding: 12px 5px; background: #dfecd6; color: #2a5844; font-weight: 750; }
+.b-choose:hover:not(:disabled) { background: #c4deb3; }
+.b-choice.correct { background: #eaf4de; border-color: #5c986a; }
+.b-choice.try-again .b-choose { opacity: .45; }
+.b-answer { margin: 6px 0 10px; font-size: 1.8rem; font-family: var(--hand); }
+.b-answer strong { color: #a2543a; font-weight: inherit; }
+.b-stars { display: flex; justify-content: center; gap: 14px; font-size: 2rem; color: #d6ddce; margin: 18px 0 0; }
+.b-stars .found { color: #d9a72e; }
+.b-collection { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 25px 0; }
+.b-collection button { border: 2px solid #dce5d5; border-radius: 20px; padding: 10px; background: #faf8ef; color: #2c5547; }
+.b-collection svg { width: 100%; max-width: 130px; display: block; margin: auto; }
+.b-collection span { font-size: 1.8rem; font-family: var(--hand); }
+@media (max-width: 600px) {
+  .b-choices { gap: 8px; }
+  .b-choice { border-radius: 16px; padding: 6px; }
+  .b-prompt { gap: 12px; }
+  .b-prompt .b-badge { min-width: 72px; min-height: 75px; font-size: 2.8rem; border-radius: 18px; }
+  .b-prompt h2 { font-size: 1.25rem; }
+  .b-listen-label { font-size: .75rem; }
+  .b-choose { font-size: .8rem; }
+  .b-number { width: 26px; height: 26px; }
+  .b-collection { gap: 8px; }
+}
