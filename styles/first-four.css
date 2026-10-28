@@ -1,0 +1,40 @@
+.four-shell { max-width: 860px; margin: auto; padding: 8px 24px 32px; }
+.four-heading { text-align: center; margin: 10px 0 24px; }
+.four-heading h1 { margin: 8px 0; font-size: clamp(2.1rem, 4.8vw, 3.3rem); letter-spacing: -.04em; }
+.four-heading h1 em { color: #927031; font-style: normal; }
+.four-heading > p:last-child { color: #5d7064; }
+.four-card { background: #fffefa; border: 1px solid #dce3d5; border-radius: 28px; padding: 28px; text-align: center; box-shadow: 0 7px 0 #e7e9dd; }
+.four-card h2 { margin: 10px 0; font-size: clamp(1.5rem, 3vw, 2rem); }
+.four-big-star { display: block; color: #e9bb43; font-size: 4.2rem; line-height: 1.2; }
+.four-word-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 600px; margin: 26px auto; }
+.four-word-grid button { border: 3px solid #dce4d2; border-radius: 22px; background: #eef3e4; padding: 12px 10px 18px; color: #284f3e; cursor: pointer; min-height: 120px; }
+.four-word-grid button > span { display: block; font-size: clamp(3.3rem, 8vw, 5rem); font-family: var(--hand); line-height: 1.15; }
+.four-word-grid small { display: block; font-family: var(--sans); font-size: .85rem; margin-top: 8px; }
+.four-word-grid button:hover:not(:disabled) { border-color: #8ba875; }
+.four-word-grid button.correct { border-color: #5f8d58; background: #e0f0cf; }
+.four-word-grid button.tried { opacity: .45; }
+.four-word-grid button.word-hint { border-color: #c99c3d; background: #fbe5a8; }
+.four-word-grid button:disabled { cursor: default; }
+.four-note, .four-footer { color: #62705d; font-size: .9rem; }
+.four-note { margin: 22px 0 0; }
+.four-footer { text-align: center; margin: 22px 0 0; }
+.four-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #536954; font-size: .9rem; }
+.four-link { border: 0; background: transparent; color: #2f654b; text-decoration: underline; text-underline-offset: 4px; font-weight: 650; cursor: pointer; min-height: 44px; }
+#four-progress { display: block; width: 100%; height: 12px; accent-color: #7d9b5b; margin: 14px 0 22px; }
+.four-card .button { cursor: pointer; min-height: 48px; }
+.four-hint-word { font-family: var(--hand); font-size: 2.8rem; margin: 6px 0; color: #8c682a; }
+.four-feedback { min-height: 1.6em; color: #3f7050; font-size: 1.15rem; font-weight: 750; margin: 14px 0; }
+.four-phrase { background: #f4edda; border-radius: 14px; padding: 12px; margin: 12px auto 20px; max-width: 400px; font-size: 1.3rem; }
+.four-phrase strong { color: #876421; }
+.four-stars { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; color: #d9e0d0; font-size: 1.8rem; margin-top: 22px; }
+.four-stars .collected { color: #dfaf37; }
+.four-audio-status { text-align: center; color: #7d613c; font-size: .9rem; }
+.four-finish-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 550px) {
+  .four-shell { padding: 0 12px 24px; }
+  .four-card { padding: 20px 14px; }
+  .four-word-grid { gap: 12px; margin: 22px auto; }
+  .four-word-grid button { min-height: 105px; }
+  .four-toolbar { font-size: .8rem; }
+  .four-stars { gap: 8px; }
+}

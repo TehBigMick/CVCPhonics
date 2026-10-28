@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Listen and find the first four words in our pre-primer selection: the, of, and, a. An untimed sight-word game for beginners.">
+  <meta name="theme-color" content="#f8f4ec">
+  <title>First Four Word Stars | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/first-four.css">
+  <script type="module" src="../scripts/first-four.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to sight-word game</a>
+  <header class="activity-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a>
+    <a class="exit-link" href="index.html">← Sight words</a>
+  </header>
+  <main id="main" class="four-shell">
+    <div class="four-heading"><p class="kicker">Little words. Bright stars.</p><h1>First Four <em>Word Stars</em></h1><p>Listen carefully. Find the word. Collect a star!</p></div>
+    <section id="four-menu" class="four-card" aria-labelledby="menu-title">
+      <span class="four-big-star" aria-hidden="true">★</span><p class="kicker">Pre-primer · first four words</p><h2 id="menu-title">Meet your four words</h2><p>Tap each word to hear it. Then let’s play!</p>
+      <div id="four-practice" class="four-word-grid" aria-label="Listen to the four words"></div>
+      <button type="button" class="button button-primary" id="four-start">Start the star hunt →</button>
+      <p class="four-note">Eight gentle rounds. Each word appears twice. There is no timer.</p>
+    </section>
+    <section id="four-play" class="four-card" aria-labelledby="play-title" hidden>
+      <div class="four-toolbar"><button type="button" class="four-link" id="four-menu-button">← Meet the words</button><span id="four-round"></span></div>
+      <progress id="four-progress" value="0" max="8" aria-label="Words matched"></progress>
+      <h2 id="play-title">Which word did you hear?</h2>
+      <button type="button" class="button button-primary" id="four-listen">🔊 Listen again</button>
+      <div id="four-choices" class="four-word-grid" role="group" aria-label="Choose the word you heard"></div>
+      <button type="button" class="four-link" id="four-hint">Show me the word</button>
+      <p id="four-hint-word" class="four-hint-word" hidden></p>
+      <p id="four-feedback" class="four-feedback" role="status" aria-live="polite"></p>
+      <p id="four-phrase" class="four-phrase" hidden></p>
+      <button type="button" class="button button-primary" id="four-next" hidden>Next word →</button>
+      <div id="four-stars" class="four-stars" aria-hidden="true"></div>
+    </section>
+    <section id="four-finish" class="four-card" aria-labelledby="finish-title" hidden>
+      <span class="four-big-star" aria-hidden="true">★</span><p class="kicker">You kept trying!</p><h2 id="finish-title">Eight word stars!</h2><p>You matched all four words twice. Tap a word to hear it again.</p><div id="four-review" class="four-word-grid"></div><div class="four-finish-actions"><button type="button" class="button button-primary" id="four-replay">Play again ↺</button><button type="button" class="four-link" id="four-back">Meet the words</button></div>
+    </section>
+    <p id="four-audio-status" class="four-audio-status" role="status"></p>
+    <p class="four-footer">For grown-ups: these follow the order in this site’s pre-primer list. Read the short phrases together after each match.</p>
+    <noscript><p>Please enable JavaScript to play this word game.</p></noscript>
+  </main>
+</body>
+</html>
