@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A friendly Halloween listening game for young learners: pumpkin, magic hat, candy and Trick or treat! Hear a word and choose its picture.">
+  <meta name="theme-color" content="#fff5e9"><title>Halloween Picture Party | Michael's Phonics Hub</title>
+  <link rel="stylesheet" href="../styles/main.css"><link rel="stylesheet" href="../styles/halloween.css">
+  <script defer src="../scripts/halloween.js"></script>
+</head>
+<body class="halloween-page">
+  <a class="skip-link" href="#main">Skip to Halloween game</a>
+  <header class="activity-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span>M</span><span>P</span><span>H</span></span><span class="brand-name">Michael's <strong>Phonics Hub</strong></span></a><a class="exit-link" href="../index.html">← All activities</a></header>
+  <main id="main" class="halloween-shell">
+    <div class="halloween-heading"><p class="kicker">Little ears. Halloween cheer!</p><h1>Halloween <em>Picture Party</em></h1><p>Listen, find the picture and fill your treat bag!</p></div>
+    <section id="party-menu" class="party-card" aria-labelledby="menu-title"><span class="party-symbol" aria-hidden="true">🎃</span><h2 id="menu-title">Meet our Halloween words</h2><p>Tap each picture to listen. Say it together!</p><div id="party-practice" class="practice-pictures"></div><button type="button" class="button button-primary" id="party-start">Let’s play →</button><p class="party-note">Eight gentle rounds. Three pictures to choose from. No timer!</p></section>
+    <section id="party-play" class="party-card" aria-labelledby="play-title" hidden>
+      <div class="party-toolbar"><button type="button" class="party-link" id="party-menu-button">← Practise the words</button><span id="party-round"></span></div>
+      <progress id="party-progress" value="0" max="8" aria-label="Pictures matched"></progress><h2 id="play-title">Which picture did you hear?</h2>
+      <button type="button" class="button button-primary" id="party-listen">🔊 Listen again</button><div id="party-choices" class="party-choices" role="group" aria-label="Choose the matching Halloween picture"></div>
+      <button type="button" class="party-link" id="party-hint">Show me a clue</button><p id="party-feedback" class="party-feedback" role="status" aria-live="polite"></p><button type="button" class="button button-primary" id="party-next" hidden>Next picture →</button>
+      <div class="treat-bag"><span aria-hidden="true">🛍️</span><div><p id="treat-count">0 of 8 treats collected</p><div id="party-treats" class="party-treats" aria-hidden="true"></div></div></div>
+    </section>
+    <section id="party-finish" class="party-card" aria-labelledby="finish-title" hidden><span class="party-symbol" aria-hidden="true">🍬</span><p class="kicker">Lovely listening!</p><h2 id="finish-title">Your treat bag is full!</h2><p>You matched all four Halloween pictures twice. Tap a picture and say it again.</p><div id="party-review" class="practice-pictures"></div><button type="button" class="button button-primary" id="party-replay">Play again ↺</button></section>
+    <p id="party-audio-status" class="party-audio-status" role="status"></p><p class="party-footer">For grown-ups: practise “Trick or treat!” by pretending to knock on a door together.</p>
+    <noscript><p>Please enable JavaScript to play this game.</p></noscript>
+  </main>
+</body>
+</html>
