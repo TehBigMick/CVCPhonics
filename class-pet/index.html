@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f1">
+  <meta name="description" content="A class pet that grows with the points your class earns.">
+  <title>Class Pet | CVC Phonics</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="brand"><span class="brand-icon" aria-hidden="true">✦</span> Class Pet</div>
+      <form class="class-picker">
+        <label for="class-select">Class</label>
+        <select id="class-select"></select>
+        <button class="new-class" id="new-class" type="button" aria-label="Add class" title="Add class">+</button>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <section class="game" aria-label="Class pet and points">
+      <div class="habitat" id="habitat" data-stage="1" data-phase="choose">
+        <div class="egg-choices" id="egg-choices" aria-label="Choose an egg">
+          <button type="button" data-egg-choice="green" data-egg="green"><span class="egg-icon" aria-hidden="true"></span>Green egg</button>
+          <button type="button" data-egg-choice="blue" data-egg="blue"><span class="egg-icon" aria-hidden="true"></span>Blue egg</button>
+          <button type="button" data-egg-choice="red" data-egg="red"><span class="egg-icon" aria-hidden="true"></span>Red egg</button>
+          <button type="button" data-egg-choice="yellow" data-egg="yellow"><span class="egg-icon" aria-hidden="true"></span>Yellow egg</button>
+        </div>
+        <div class="egg-life" id="egg-life" role="img" hidden>
+          <div class="egg-whole egg-icon"></div>
+          <div class="egg-piece egg-top egg-icon"></div>
+          <div class="egg-piece egg-bottom egg-icon"></div>
+          <span class="hatch-spark" aria-hidden="true">✦</span>
+          <span class="hatch-spark hatch-spark-right" aria-hidden="true">✦</span>
+        </div>
+        <div class="pet-track" id="pet-track" hidden>
+          <div class="pet-shadow" aria-hidden="true"></div>
+          <div class="pet-flight">
+            <div class="pet-jump" id="pet-jump" data-pose="idle" role="img">
+              <img class="rest-pose" data-frame="idle" alt="" draggable="false" width="600" height="596">
+              <img class="pet-frame" data-frame="wave-up" alt="" draggable="false" hidden>
+              <img class="pet-frame" data-frame="wave-out" alt="" draggable="false" hidden>
+              <img class="pet-frame" data-frame="smile" alt="" draggable="false" hidden>
+              <img class="pet-frame" data-frame="dance-left" alt="" draggable="false" hidden>
+              <img class="pet-frame" data-frame="dance-up" alt="" draggable="false" hidden>
+              <img class="pet-frame" data-frame="dance-right" alt="" draggable="false" hidden>
+              <div class="point-sparkles" id="point-sparkles" aria-hidden="true">
+                <span>✦</span><span>✦</span><span>✦</span><span>✦</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="habitat-heading">
+          <div class="level-tag"><span aria-hidden="true">✦</span> Level <span id="level"></span></div>
+          <h1 id="pet-name">Choose an egg</h1>
+          <div class="stage" id="stage"></div>
+        </div>
+        <button class="motion-toggle" id="motion-toggle" type="button" hidden>Pause motion</button>
+        <div class="celebration" id="celebration" hidden></div>
+        <div class="unlocked" id="unlocked" hidden><span aria-hidden="true">✦</span></div>
+      </div>
+
+      <section class="points-card" aria-labelledby="points-title">
+        <div class="token-icon" aria-hidden="true"><span>✦</span></div>
+        <h2 id="points-title">Add points</h2>
+        <p class="instructions" id="points-instructions">Choose an egg to start earning points.</p>
+        <div class="award-buttons">
+          <button class="award primary" type="button" data-points="1" disabled>+1 <span>point</span></button>
+          <button class="award secondary" type="button" data-points="5" disabled>+5 <span>points</span></button>
+        </div>
+        <div class="points-summary">
+          <span><strong id="total"></strong> total points</span>
+          <button class="undo" id="undo" type="button"><span aria-hidden="true">↶</span> Undo</button>
+        </div>
+        <button type="button" class="dance-button" id="dance-button" aria-describedby="dance-hint" hidden>Dance with Pip</button>
+        <span class="sr-only" id="dance-hint" hidden>Plays a five-second dance with music.</span>
+        <p id="sound-status" role="status" hidden>The music couldn’t play.</p>
+        <audio id="dance-audio" src="./pip-dance.wav" preload="auto"></audio>
+        <p id="save-error" role="alert" hidden>Progress could not be saved in this browser.</p>
+      </section>
+    </section>
+
+    <section class="progress-card" aria-labelledby="progress-title">
+      <div class="progress-heading">
+        <h2 id="progress-title">Next level</h2>
+        <p><strong id="towards"></strong> <span id="goal"></span></p>
+      </div>
+      <progress id="progress" max="5" value="0" aria-labelledby="progress-title"></progress>
+      <div class="progress-caption">
+        <span id="remaining"></span>
+        <span id="next-level"></span>
+      </div>
+    </section>
+    <div id="announcement" class="sr-only" role="status" aria-atomic="true"></div>
+  </main>
+
+  <dialog id="class-dialog">
+    <form id="add-class">
+      <h2>Add a class</h2>
+      <label for="class-name">Class name</label>
+      <input id="class-name" name="class-name" required maxlength="35" placeholder="e.g. Class 2A" autocomplete="off">
+      <div class="dialog-actions">
+        <button class="cancel" id="cancel" type="button">Cancel</button>
+        <button class="primary" type="submit">Add class</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
