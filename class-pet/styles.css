@@ -385,8 +385,47 @@ dialog input { width: 100%; border: 1px solid #9caf9f; border-radius: 9px; paddi
 .prize-dialog button:disabled { opacity: .55; }
 .reward-effects { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
 .reward-effects > div { display: none; }
-[data-reward="bubbles"] .reward-bubbles, [data-reward="toys"] .reward-toys, [data-reward="party"] .reward-notes { display: block; }
+[data-prize-scene="stickers"] .reward-sticker,
+[data-prize-scene="bubbles"] .reward-bubbles,
+[data-prize-scene="toys"] .reward-toys,
+[data-prize-scene="party"] .reward-notes { display: block; }
 [data-motion="on"][data-reward] .pet-track, [data-motion="on"][data-reward] .pet-flight { animation: none; }
+[data-motion="on"]:is([data-prize-scene="story"], [data-prize-scene="stickers"]) .pet-track { animation: none; }
+[data-motion="on"][data-prize-scene="stickers"] .pet-flight { animation: none; }
+[data-prize-scene="story"] .pet-flight, .story-pose { display: none; }
+.habitat[data-prize-scene="story"] .pet-track { bottom: 76px; width: clamp(205px, 60%, 315px); }
+.habitat[data-prize-scene="story"] .story-pose {
+  display: block; position: relative; width: 100%; height: auto; filter: none; transform: none;
+}
+.game:has([data-prize-scene="story"]) :is(#dance-button, #dance-hint) { display: none; }
+.reward-sticker {
+  position: absolute; bottom: 31%; right: 12%; width: clamp(76px, 16vw, 136px);
+  aspect-ratio: 1; transform: rotate(13deg);
+  filter: drop-shadow(0 5px 8px #5a3c2260);
+}
+.sticker-star,
+.sticker-star::before {
+  clip-path: polygon(50% 0, 65% 32%, 100% 38%, 75% 63%, 80% 99%, 50% 82%, 20% 99%, 25% 63%, 0 38%, 35% 32%);
+}
+.sticker-star {
+  position: absolute; inset: 0; background: #fffdf5;
+}
+.sticker-star::before {
+  content: ""; position: absolute; inset: 7%;
+  background: linear-gradient(148deg, #fff6bd 10%, #ffe270 39%, #ffcd43 70%, #ed9b28);
+}
+.sticker-sparkle {
+  position: absolute; top: 19%; right: -12%; color: #fff9bc; font-size: clamp(25px, 5vw, 39px);
+}
+[data-motion="on"][data-prize-scene="stickers"] .reward-sticker { animation: sticker-pop 470ms cubic-bezier(.19,1,.45,1); }
+@keyframes sticker-pop {
+  0% { opacity: 0; transform: scale(.4) rotate(-15deg); }
+  65% { transform: scale(1.1) rotate(18deg); }
+}
+@media (max-width: 480px) {
+  .habitat[data-prize-scene="story"] { min-height: 405px; }
+  .reward-sticker { right: 5%; bottom: 28%; }
+}
 [data-motion="on"][data-reward="party"] .pet-jump { animation: dance-bob 500ms ease-in-out infinite; }
 [data-motion="on"]:is([data-reward="toys"], [data-reward="bubbles"]) .pet-jump { animation: wave-bob 850ms ease-in-out infinite; }
 .reward-bubbles i {
@@ -401,7 +440,7 @@ dialog input { width: 100%; border: 1px solid #9caf9f; border-radius: 9px; paddi
 .reward-bubbles i:nth-child(5) { --left: 21%; --top: 70%; --size: 23px; --delay: -4.1s; }
 .reward-bubbles i:nth-child(6) { --left: 70%; --top: 72%; --size: 25px; --delay: -2.7s; }
 .reward-bubbles i:nth-child(7) { --left: 43%; --top: 60%; --size: 20px; --delay: -3.1s; }
-[data-motion="on"] .reward-bubbles i { animation: bubble-rise 4.8s var(--delay) linear infinite; }
+[data-motion="on"][data-reward="bubbles"] .reward-bubbles i { animation: bubble-rise 4.8s var(--delay) linear infinite; }
 @keyframes bubble-rise {
   0% { transform: translateY(45px); opacity: 0; }
   20%, 73% { opacity: 1; }
@@ -410,11 +449,11 @@ dialog input { width: 100%; border: 1px solid #9caf9f; border-radius: 9px; paddi
 .reward-toys span, .reward-notes span { position: absolute; font-size: clamp(25px, 5vw, 55px); }
 .reward-toys span { bottom: 20%; left: 18%; }
 .reward-toys span + span { left: auto; right: 18%; }
-[data-motion="on"] .reward-toys span { animation: toy-bob 1.6s ease-in-out infinite alternate; }
+[data-motion="on"][data-reward="toys"] .reward-toys span { animation: toy-bob 1.6s ease-in-out infinite alternate; }
 [data-motion="on"] .reward-toys span + span { animation-delay: -.8s; }
 @keyframes toy-bob { 50% { transform: translateY(-8px) rotate(12deg); } }
 .reward-notes span { color: #6f3f93; left: 20%; top: 47%; }
 .reward-notes span:nth-child(2) { left: auto; right: 20%; top: 43%; color: #b55474; }
 .reward-notes span:nth-child(3) { left: auto; right: 13%; top: 60%; color: #396f7d; }
-[data-motion="on"] .reward-notes span { animation: toy-bob .75s ease-in-out infinite alternate; }
+[data-motion="on"][data-reward="party"] .reward-notes span { animation: toy-bob .75s ease-in-out infinite alternate; }
 [data-motion="on"] .reward-notes span:nth-child(2) { animation-delay: -.4s; }

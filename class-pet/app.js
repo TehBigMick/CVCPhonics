@@ -20,6 +20,7 @@ const pointSparkles = byId("point-sparkles");
 const eggChoices = byId("egg-choices");
 const eggLife = byId("egg-life");
 const petTrack = byId("pet-track");
+const readingArt = byId("reading-art");
 const awardButtons = [...document.querySelectorAll("[data-points]")];
 const danceButton = byId("dance-button");
 const petPerformance = createPetPerformance({
@@ -126,6 +127,8 @@ function render() {
       }
       petJump.setAttribute("aria-label", avatar.name + ", " + avatar.animal);
       eggLife.setAttribute("aria-label", avatar.colour + " egg");
+      readingArt.src = "./prizes/reading-" + egg + ".webp";
+      readingArt.alt = avatar.name + " reading a book in a soft armchair";
     }
   }
   if (phase !== "pet" && habitat.dataset.phase === "pet") petPerformance.stop();

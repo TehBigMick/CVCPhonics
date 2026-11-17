@@ -99,10 +99,13 @@ export function createRewards({ getClass, changeClass, performance, habitat, ann
     display.hidden = !showPrize;
     habitat.toggleAttribute("data-show-prize", showPrize);
     if (!showPrize) {
+      delete habitat.dataset.prizeScene;
       delete countdown.dataset.counting;
       return;
     }
 
+    if (prize.id === "story" && habitat.dataset.prizeScene !== "story") performance.stop();
+    habitat.dataset.prizeScene = prize.id;
     rewardTitle.textContent = prize.name;
     rewardIcon.textContent = prize.icon;
     displayLabel.textContent = !endsAt ? "Prize won" : remaining ? "Time remaining" : "Reward finished";
