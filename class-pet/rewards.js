@@ -51,6 +51,11 @@ export function createRewards({ getClass, changeClass, performance, habitat, ann
   const close = byId("close-prize-wheel");
   const result = byId("wheel-result");
   const panel = byId("reward-panel");
+  const display = byId("avatar-prize");
+  const displayLabel = byId("reward-display-label");
+  const rewardTitle = byId("reward-title");
+  const rewardIcon = byId("reward-icon");
+  const countdown = byId("reward-countdown");
   const start = byId("start-reward");
   const finish = byId("finish-reward");
   const music = byId("reward-music");
@@ -89,17 +94,25 @@ export function createRewards({ getClass, changeClass, performance, habitat, ann
     byId("daily-total").textContent = balance;
     open.hidden = Boolean(prize);
     open.disabled = balance < prizeCost;
-    panel.hidden = !prize;
-    if (!prize) return;
+    const showPrize = Boolean(prize) && (!spinning || revealed);
+    panel.hidden = !showPrize;
+    display.hidden = !showPrize;
+    habitat.toggleAttribute("data-show-prize", showPrize);
+    if (!showPrize) {
+      delete countdown.dataset.counting;
+      return;
+    }
 
-    byId("reward-title").textContent = prize.icon + " " + prize.name;
+    rewardTitle.textContent = prize.name;
+    rewardIcon.textContent = prize.icon;
+    displayLabel.textContent = !endsAt ? "Prize won" : remaining ? "Time remaining" : "Reward finished";
     byId("reward-detail").textContent = endsAt && !remaining ? (prize.title + " is over!") : prize.detail;
-    byId("reward-countdown").hidden = !endsAt;
-    byId("reward-countdown").textContent = formatTime(remaining);
+    countdown.hidden = !endsAt;
+    countdown.textContent = formatTime(remaining);
     start.hidden = !prize.seconds || Boolean(endsAt);
     finish.textContent = remaining ? "End reward" : "Done";
-    const wasCounting = byId("reward-countdown").dataset.counting === "yes";
-    byId("reward-countdown").dataset.counting = remaining ? "yes" : "no";
+    const wasCounting = countdown.dataset.counting === "yes";
+    countdown.dataset.counting = remaining ? "yes" : "no";
     if (wasCounting && endsAt && !remaining) announcement.textContent = prize.title + " is over.";
     music.hidden = active !== "party";
     music.textContent = soundtrack.paused ? "Play music" : "Mute music";
@@ -113,11 +126,12 @@ export function createRewards({ getClass, changeClass, performance, habitat, ann
     result.hidden = true;
     spin.hidden = false;
     spin.disabled = false;
+    close.textContent = "Close";
     dialog.showModal();
   });
   close.addEventListener("click", () => {
     dialog.close();
-    if (revealed) finish.focus();
+    if (revealed) (start.hidden ? finish : start).focus();
   });
   dialog.addEventListener("cancel", (event) => {
     if (spinning) event.preventDefault();
@@ -148,7 +162,11 @@ export function createRewards({ getClass, changeClass, performance, habitat, ann
     }
     spinning = false;
     close.disabled = false;
-    if (revealed) close.focus();
+    refresh();
+    if (revealed) {
+      close.textContent = "Show prize with pet";
+      close.focus();
+    }
   });
 
   function playMusic() {

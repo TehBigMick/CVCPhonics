@@ -311,7 +311,7 @@ dialog input { width: 100%; border: 1px solid #9caf9f; border-radius: 9px; paddi
 
 .daily-rewards { margin-top: 14px; padding: 12px; border-radius: 13px; background: #f1f0fa; }
 .daily-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-.daily-heading h3, #reward-title { margin: 0; font-size: 15px; }
+.daily-heading h3 { margin: 0; font-size: 15px; }
 #daily-total { font-size: 20px; font-variant-numeric: tabular-nums; }
 .wheel-button {
   border: 1px solid #d5cced; border-radius: 9px; padding: 8px 11px; min-height: 42px;
@@ -327,7 +327,32 @@ dialog input { width: 100%; border: 1px solid #9caf9f; border-radius: 9px; paddi
 #reward-panel { border-top: 1px solid #ddd7ed; margin-top: 8px; padding-top: 10px; }
 #reward-detail { margin: 5px 0; font-size: 13px; line-height: 1.45; }
 .reward-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
-#reward-countdown { font-size: 24px; padding-right: 4px; font-variant-numeric: tabular-nums; }
+.avatar-prize {
+  position: absolute; z-index: 3; left: 50%; bottom: 13px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: clamp(8px, 2vw, 15px); padding: 8px 12px;
+  width: min(400px, calc(100% - 26px)); min-height: 63px; border: 1px solid #dfcde9;
+  border-radius: 14px; background: #fffaf3; box-shadow: 0 3px 12px #392b5926; color: #422956;
+}
+.avatar-prize-icon {
+  flex: 0 0 40px; height: 40px; display: grid; place-items: center; font-size: 24px;
+  border-radius: 10px; background: #f0e4f8;
+}
+.avatar-prize-copy { flex: 1; min-width: 0; }
+.avatar-prize-copy p { margin: 0 0 2px; font-size: 12px; font-weight: 700; color: #684e76; }
+#reward-title { font-size: clamp(16px, 3vw, 21px); line-height: 1.12; }
+#reward-countdown {
+  flex: none; font-size: clamp(27px, 6vw, 39px); line-height: 1;
+  font-variant-numeric: tabular-nums; letter-spacing: -.04em;
+}
+.habitat[data-show-prize] .pet-track { bottom: 87px; width: clamp(145px, 41%, 220px); }
+.habitat[data-show-prize] .motion-toggle { z-index: 2; top: 13px; bottom: auto; }
+.habitat[data-show-prize] .unlocked { top: 13px; bottom: auto; }
+.habitat[data-show-prize] .celebration { z-index: 2; bottom: 86px; }
+@media (max-width: 740px) {
+  .habitat[data-show-prize] { min-height: clamp(370px, 72vw, 440px); }
+  .habitat[data-show-prize] .motion-toggle { left: 9px; padding-inline: 6px; }
+  .habitat[data-show-prize] .unlocked { right: 10px; width: 33px; height: 33px; font-size: 19px; }
+}
 .prize-dialog { width: min(470px, calc(100% - 30px)); max-height: calc(100% - 28px); }
 .prize-dialog h2 { margin-bottom: 5px; }
 .prize-dialog > p { margin: 0; line-height: 1.45; }
@@ -383,7 +408,7 @@ dialog input { width: 100%; border: 1px solid #9caf9f; border-radius: 9px; paddi
   100% { transform: translate(24px, -200px); opacity: 0; }
 }
 .reward-toys span, .reward-notes span { position: absolute; font-size: clamp(25px, 5vw, 55px); }
-.reward-toys span { bottom: 12%; left: 18%; }
+.reward-toys span { bottom: 20%; left: 18%; }
 .reward-toys span + span { left: auto; right: 18%; }
 [data-motion="on"] .reward-toys span { animation: toy-bob 1.6s ease-in-out infinite alternate; }
 [data-motion="on"] .reward-toys span + span { animation-delay: -.8s; }

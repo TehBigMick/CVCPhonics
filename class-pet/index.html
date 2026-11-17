@@ -64,6 +64,14 @@
           <h1 id="pet-name">Choose an egg</h1>
           <div class="stage" id="stage"></div>
         </div>
+        <section class="avatar-prize" id="avatar-prize" aria-labelledby="reward-title" hidden>
+          <span class="avatar-prize-icon" id="reward-icon" aria-hidden="true"></span>
+          <div class="avatar-prize-copy">
+            <p id="reward-display-label">Prize won</p>
+            <h2 id="reward-title"></h2>
+          </div>
+          <strong id="reward-countdown" role="timer" aria-label="Time remaining" hidden></strong>
+        </section>
         <button class="motion-toggle" id="motion-toggle" type="button" hidden>Pause motion</button>
         <div class="celebration" id="celebration" hidden></div>
         <div class="unlocked" id="unlocked" hidden><span aria-hidden="true">✦</span></div>
@@ -85,10 +93,8 @@
           <div class="daily-heading"><h3 id="daily-heading">Today’s points</h3><strong id="daily-total">0</strong></div>
           <button class="wheel-button" id="open-prize-wheel" type="button" disabled>Prize wheel <span>5 points</span></button>
           <div id="reward-panel" hidden>
-            <h3 id="reward-title"></h3>
             <p id="reward-detail"></p>
             <div class="reward-actions">
-              <strong id="reward-countdown" role="timer" aria-label="Time remaining" hidden></strong>
               <button class="wheel-button" id="start-reward" type="button" hidden>Start reward</button>
               <button class="cancel" id="reward-music" type="button" hidden>Play music</button>
               <button class="cancel" id="finish-reward" type="button">Done</button>
