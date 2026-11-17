@@ -1,6 +1,7 @@
 import { levelProgress } from "./levels.js";
 import { createPetPerformance } from "./performance.js";
 import { avatars, frameSource } from "./avatars.js";
+import { awardDaily, createRewards, undoDaily } from "./rewards.js";
 
 const storageKey = "cvcphonics-class-pet-v1";
 const defaults = () => ({
@@ -61,6 +62,13 @@ function readState() {
 }
 
 let state = readState();
+const rewards = createRewards({
+  getClass: currentClass,
+  changeClass,
+  performance: petPerformance,
+  habitat,
+  announcement: byId("announcement"),
+});
 
 function saveState() {
   try {
@@ -73,6 +81,28 @@ function saveState() {
 
 function currentClass() {
   return state.classes.find((group) => group.id === state.selectedId) ?? state.classes[0];
+}
+
+function changeState(update) {
+  function apply() {
+    if (saveError.hidden) state = readState();
+    const effect = update();
+    if (effect === false) return false;
+    saveState();
+    renderClasses();
+    render();
+    if (typeof effect === "function") effect();
+    return true;
+  }
+  return navigator.locks ? navigator.locks.request(storageKey, apply) : Promise.resolve(apply());
+}
+
+function changeClass(update) {
+  const id = currentClass().id;
+  return changeState(() => {
+    const group = state.classes.find((item) => item.id === id);
+    return group ? update(group) : false;
+  });
 }
 
 function renderClasses() {
@@ -125,6 +155,7 @@ function render() {
   const remaining = goal - towards;
   byId("remaining").textContent = number.format(remaining) + (remaining === 1 ? " point to go" : " points to go");
   byId("next-level").textContent = "Level " + number.format(level + 1);
+  rewards.refresh();
 }
 
 function hideCelebration() {
@@ -141,15 +172,21 @@ function celebratePoints() {
 }
 
 function award(points) {
-  const group = currentClass();
-  const avatar = avatars[group.egg];
-  if (!avatar) return;
-  const previousLevel = levelProgress(group.total).level;
-  group.total += points;
-  group.lastAward = points;
+  changeClass((group) => {
+    const avatar = avatars[group.egg];
+    if (!avatar) return false;
+    const previousLevel = levelProgress(group.total).level;
+    group.total += points;
+    group.lastAward = points;
+    awardDaily(group, points);
+    return () => {
+      if (group.id === currentClass().id) animateAward(group, avatar, previousLevel);
+    };
+  });
+}
+
+function animateAward(group, avatar, previousLevel) {
   const { level, stage } = levelProgress(group.total);
-  saveState();
-  render();
   if (level > previousLevel) {
     const hatching = previousLevel === 1;
     petPerformance.play(hatching ? "hatch" : "level");
@@ -180,33 +217,38 @@ for (const button of awardButtons) {
 
 for (const button of eggChoices.querySelectorAll("[data-egg-choice]")) {
   button.addEventListener("click", () => {
-    const group = currentClass();
-    if (group.egg) return;
-    group.egg = button.dataset.eggChoice;
-    saveState();
-    render();
-    byId("announcement").textContent = avatars[group.egg].colour + " egg chosen.";
-    awardButtons[0].focus();
+    changeClass((group) => {
+      if (group.egg) return false;
+      group.egg = button.dataset.eggChoice;
+      return () => {
+        byId("announcement").textContent = avatars[group.egg].colour + " egg chosen.";
+        awardButtons[0].focus();
+      };
+    });
   });
 }
 
 byId("undo").addEventListener("click", () => {
-  const group = currentClass();
-  group.total -= group.lastAward;
-  group.lastAward = 0;
-  hideCelebration();
-  saveState();
-  render();
-  byId("announcement").textContent = "Last addition undone. " + number.format(group.total) + " total points.";
-  document.querySelector('[data-points="1"]').focus();
+  changeClass((group) => {
+    if (!group.lastAward) return false;
+    undoDaily(group);
+    group.total -= group.lastAward;
+    group.lastAward = 0;
+    hideCelebration();
+    return () => {
+      byId("announcement").textContent = "Last addition undone. " + number.format(group.total) + " lifetime points.";
+      awardButtons[0].focus();
+    };
+  });
 });
 
 select.addEventListener("change", () => {
-  petPerformance.stop();
-  state.selectedId = select.value;
-  hideCelebration();
-  saveState();
-  render();
+  const id = select.value;
+  changeState(() => {
+    petPerformance.stop();
+    state.selectedId = id;
+    hideCelebration();
+  });
 });
 select.form.addEventListener("submit", (event) => event.preventDefault());
 
@@ -221,21 +263,22 @@ className.addEventListener("input", () => className.setCustomValidity(""));
 byId("add-class").addEventListener("submit", (event) => {
   event.preventDefault();
   const name = className.value.trim();
-  if (!name || state.classes.some((group) => group.name.toLowerCase() === name.toLowerCase())) {
-    className.setCustomValidity(name ? "That class already exists." : "Enter a class name.");
-    className.reportValidity();
-    return;
-  }
-  const id = crypto.randomUUID();
-  petPerformance.stop();
-  state.classes.push({ id, name, total: 0, lastAward: 0 });
-  state.selectedId = id;
-  hideCelebration();
-  saveState();
-  renderClasses();
-  render();
-  dialog.close();
-  select.focus();
+  changeState(() => {
+    if (!name || state.classes.some((group) => group.name.toLowerCase() === name.toLowerCase())) {
+      className.setCustomValidity(name ? "That class already exists." : "Enter a class name.");
+      className.reportValidity();
+      return false;
+    }
+    const id = crypto.randomUUID();
+    petPerformance.stop();
+    state.classes.push({ id, name, total: 0, lastAward: 0 });
+    state.selectedId = id;
+    hideCelebration();
+    return () => {
+      dialog.close();
+      select.focus();
+    };
+  });
 });
 
 window.addEventListener("storage", (event) => {

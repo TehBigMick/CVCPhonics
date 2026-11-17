@@ -3,7 +3,11 @@ const shows = {
   level: { sequence: "dance", frameMs: 250, length: 2000 },
   song: { sequence: "dance", frameMs: 250, length: 5000 },
   hatch: { length: 1550 },
+  bubbles: { sequence: "wave", frameMs: 400, length: Infinity },
+  toys: { sequence: "wave", frameMs: 850, length: Infinity },
+  party: { sequence: "dance", frameMs: 250, length: Infinity },
 };
+const activities = new Set(["bubbles", "toys", "party"]);
 
 export function createPetPerformance({ habitat, pet, button, audio, soundStatus }) {
   const frames = new Map([...pet.querySelectorAll("[data-frame]")].map((img) => [img.dataset.frame, img]));
@@ -53,14 +57,15 @@ export function createPetPerformance({ habitat, pet, button, audio, soundStatus 
 
   function play(kind) {
     if (!avatar) return;
-    if (current === "hatch" || current === "song" || (current === "level" && kind === "wave")) {
+    if (activities.has(current) && !activities.has(kind)) return;
+    if (!activities.has(kind) && (current === "hatch" || current === "song" || (current === "level" && kind === "wave"))) {
       if (kind === "level" || (kind === "wave" && !pending)) pending = kind;
       return;
     }
     stop();
     current = kind;
     habitat.dataset.performance = kind;
-    button.disabled = kind === "hatch";
+    button.disabled = kind === "hatch" || activities.has(kind);
     started = performance.now();
     tick(started);
 

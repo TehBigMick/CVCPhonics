@@ -54,6 +54,11 @@
             </div>
           </div>
         </div>
+        <div class="reward-effects" aria-hidden="true">
+          <div class="reward-bubbles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="reward-toys"><span>🧸</span><span>🧩</span></div>
+          <div class="reward-notes"><span>♫</span><span>♪</span><span>♫</span></div>
+        </div>
         <div class="habitat-heading">
           <div class="level-tag"><span aria-hidden="true">✦</span> Level <span id="level"></span></div>
           <h1 id="pet-name">Choose an egg</h1>
@@ -73,13 +78,28 @@
           <button class="award secondary" type="button" data-points="5" disabled>+5 <span>points</span></button>
         </div>
         <div class="points-summary">
-          <span><strong id="total"></strong> total points</span>
+          <span><strong id="total"></strong> lifetime points</span>
           <button class="undo" id="undo" type="button"><span aria-hidden="true">↶</span> Undo</button>
         </div>
+        <section class="daily-rewards" aria-labelledby="daily-heading">
+          <div class="daily-heading"><h3 id="daily-heading">Today’s points</h3><strong id="daily-total">0</strong></div>
+          <button class="wheel-button" id="open-prize-wheel" type="button" disabled>Prize wheel <span>5 points</span></button>
+          <div id="reward-panel" hidden>
+            <h3 id="reward-title"></h3>
+            <p id="reward-detail"></p>
+            <div class="reward-actions">
+              <strong id="reward-countdown" role="timer" aria-label="Time remaining" hidden></strong>
+              <button class="wheel-button" id="start-reward" type="button" hidden>Start reward</button>
+              <button class="cancel" id="reward-music" type="button" hidden>Play music</button>
+              <button class="cancel" id="finish-reward" type="button">Done</button>
+            </div>
+          </div>
+        </section>
         <button type="button" class="dance-button" id="dance-button" aria-describedby="dance-hint" hidden>Dance with Pip</button>
         <span class="sr-only" id="dance-hint" hidden>Plays a five-second dance with music.</span>
         <p id="sound-status" role="status" hidden>The music couldn’t play.</p>
         <audio id="dance-audio" src="./pip-dance.wav" preload="auto"></audio>
+        <audio id="reward-audio" src="./pip-dance.wav" preload="none" loop></audio>
         <p id="save-error" role="alert" hidden>Progress could not be saved in this browser.</p>
       </section>
     </section>
@@ -97,6 +117,18 @@
     </section>
     <div id="announcement" class="sr-only" role="status" aria-atomic="true"></div>
   </main>
+
+  <dialog id="prize-dialog" class="prize-dialog" aria-labelledby="prize-heading">
+    <h2 id="prize-heading">Prize wheel</h2>
+    <p>Every prize costs 5 points. Spinning resets today’s points for this class.</p>
+    <div class="wheel-stage" aria-hidden="true"><div id="prize-wheel" class="prize-wheel"></div></div>
+    <ul id="prize-list" class="prize-list" aria-label="Possible prizes"></ul>
+    <p id="wheel-result" class="wheel-result" role="status" hidden></p>
+    <div class="dialog-actions">
+      <button class="cancel" id="close-prize-wheel" type="button">Close</button>
+      <button class="primary" id="spin-wheel" type="button">Spin the wheel</button>
+    </div>
+  </dialog>
 
   <dialog id="class-dialog">
     <form id="add-class">
